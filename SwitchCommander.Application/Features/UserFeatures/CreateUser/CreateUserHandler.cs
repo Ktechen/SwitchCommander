@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SwitchCommander.Application.Features.UserFeatures.CreateUser.Records;
 using SwitchCommander.Application.Repositories;
 
 namespace SwitchCommander.Application.Features.UserFeatures.CreateUser;

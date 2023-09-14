@@ -1,4 +1,5 @@
 ﻿using Riok.Mapperly.Abstractions;
+using SwitchCommander.Application.Features.UserFeatures.CreateUser.Records;
 using SwitchCommander.Domain.Dtos;
 
 namespace SwitchCommander.Application.Features.UserFeatures.CreateUser;

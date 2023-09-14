@@ -1,4 +1,6 @@
-﻿using SwitchCommander.Application;
+﻿using System.Reflection;
+using MediatR;
+using SwitchCommander.Application;
 using SwitchCommander.Persistence;
 using SwitchCommander.Persistence.Context;
 using SwitchCommander.WebAPI.Extensions;
@@ -21,7 +23,7 @@ public class Startup
 
         services.ConfigureApiBehavior();
         services.ConfigureCorsPolicy();
-
+        
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();

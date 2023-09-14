@@ -12,8 +12,7 @@ public static class ServiceExtensions
     public static void ConfigureApplication(this IServiceCollection services)
     {
         services.AddSingleton<CreateUserMapper>();
-        
-        services.AddMediatR(Assembly.GetExecutingAssembly());
+        services.AddMediatR(cfg=>cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
     }

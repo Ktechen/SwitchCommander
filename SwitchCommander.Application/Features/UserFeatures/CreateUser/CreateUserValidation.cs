@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SwitchCommander.Application.Features.UserFeatures.CreateUser.Records;
 
 namespace SwitchCommander.Application.Features.UserFeatures.CreateUser;
 
