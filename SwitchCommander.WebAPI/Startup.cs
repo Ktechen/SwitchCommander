@@ -34,17 +34,16 @@ public class Startup
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
 
         var serviceScope = app.ApplicationServices.CreateScope();
         var dataContext = serviceScope.ServiceProvider.GetService<DataContext>();
         dataContext?.Database.EnsureCreated();
-
-        app.UseSwagger();
-        app.UseSwaggerUI();
+        
         app.UseErrorHandler();
         app.UseCors();
-
         app.UseRouting();
 
         app.UseEndpoints(endpoints =>
