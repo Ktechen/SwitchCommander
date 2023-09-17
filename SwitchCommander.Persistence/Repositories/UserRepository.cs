@@ -1,18 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MongoDB.Driver;
 using SwitchCommander.Application.Repositories;
 using SwitchCommander.Domain.Dtos;
 using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.Persistence.Repositories;
 
-public class UserRepository : BaseRepository<UserDto>, IUserRepository
+public class UserRepository : BaseRepository<User>, IUserRepository
 {
-    public UserRepository(DataContext context) : base(context)
+    public UserRepository(MongoDbContext context) : base(context)
     {
     }
-    
-    public Task<UserDto?> GetByEmail(string email, CancellationToken cancellationToken)
+
+    public async Task<User?> GetByEmail(string email, CancellationToken cancellationToken)
     {
-        return Context.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        return await Collection.Find(x => x.Email == email).FirstAsync(cancellationToken);
     }
 }

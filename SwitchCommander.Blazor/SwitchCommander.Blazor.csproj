@@ -8,13 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SwitchCommander.WebAPI\SwitchCommander.WebAPI.csproj" />
+        <ProjectReference Include="..\SwitchCommander.WebAPI\SwitchCommander.WebAPI.csproj"/>
     </ItemGroup>
 
 </Project>

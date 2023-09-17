@@ -8,21 +8,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MediatR" Version="12.1.1" />
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+        <PackageReference Include="MediatR" Version="12.1.1"/>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0"/>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.9"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SwitchCommander.Application\SwitchCommander.Application.csproj" />
-      <ProjectReference Include="..\SwitchCommander.Persistence\SwitchCommander.Persistence.csproj" />
+        <ProjectReference Include="..\SwitchCommander.Application\SwitchCommander.Application.csproj"/>
+        <ProjectReference Include="..\SwitchCommander.Persistence\SwitchCommander.Persistence.csproj"/>
     </ItemGroup>
 
 

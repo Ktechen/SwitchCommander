@@ -1,6 +1,9 @@
 ﻿namespace SwitchCommander.Application.Repositories;
 
-public interface IUnitOfWork
+public interface IUnitOfWork : IDisposable
 {
-    Task Save(CancellationToken cancellationToken);
+    void BeginTransaction();
+    Task CommitAsync(CancellationToken cancellationToken = default);
+    void Rollback();
+    Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

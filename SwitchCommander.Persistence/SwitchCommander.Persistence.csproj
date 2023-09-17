@@ -8,21 +8,24 @@
 
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.11" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="7.0.11" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.11"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0"/>
+        <PackageReference Include="MongoDB.Driver" Version="2.21.0"/>
+        <PackageReference Include="MongoDB.Driver.Core" Version="2.21.0"/>
+        <PackageReference Include="ParkBee.MongoDb" Version="1.2.2"/>
+        <PackageReference Include="ParkBee.MongoDb.DependencyInjection" Version="1.0.5"/>
     </ItemGroup>
 
 
     <ItemGroup>
-      <ProjectReference Include="..\SwitchCommander.Application\SwitchCommander.Application.csproj" />
-      <ProjectReference Include="..\SwitchCommander.Domain\SwitchCommander.Domain.csproj" />
+        <ProjectReference Include="..\SwitchCommander.Application\SwitchCommander.Application.csproj"/>
+        <ProjectReference Include="..\SwitchCommander.Domain\SwitchCommander.Domain.csproj"/>
     </ItemGroup>
 
 
     <ItemGroup>
-      <Folder Include="Migrations\" />
+        <Folder Include="Migrations\"/>
     </ItemGroup>
 
 </Project>

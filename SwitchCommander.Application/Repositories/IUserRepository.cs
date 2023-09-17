@@ -2,7 +2,7 @@
 
 namespace SwitchCommander.Application.Repositories;
 
-public interface IUserRepository : IBaseRepository<UserDto>
+public interface IUserRepository : IBaseRepository<User>
 {
-    Task<UserDto?> GetByEmail(string email, CancellationToken cancellationToken);
+    Task<User?> GetByEmail(string email, CancellationToken cancellationToken);
 }

@@ -1,9 +1,16 @@
-﻿namespace SwitchCommander.Domain.Common;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDbFramework.Abstractions;
 
-public abstract class BaseEntity
+namespace SwitchCommander.Domain.Common;
+
+public abstract class BaseEntity : IDocument<Guid>
 {
-    public Guid Id { get; set; }
     public DateTimeOffset DateCreated { get; set; }
     public DateTimeOffset? DateUpdated { get; set; }
     public DateTimeOffset? DateDeleted { get; set; }
+
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public Guid Id { get; set; }
 }

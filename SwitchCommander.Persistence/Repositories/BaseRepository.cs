@@ -1,45 +1,48 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using MongoDB.Driver;
+using ParkBee.MongoDb;
 using SwitchCommander.Application.Repositories;
 using SwitchCommander.Domain.Common;
-using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.Persistence.Repositories;
 
-public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 {
-    protected readonly DataContext Context;
+    protected readonly IMongoCollection<T> Collection;
 
-    public BaseRepository(DataContext context)
+    protected BaseRepository(MongoContext context)
     {
-        Context = context;
-    }
-    
-    public Task Create(T entity)
-    {
-        Context.Add(entity);
-        return Task.CompletedTask;
+        Collection = context.Database.GetCollection<T>(nameof(T));
     }
 
-    public Task Update(T entity)
+    public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        Context.Update(entity);
-        return Task.CompletedTask;
+        return await Collection.Find(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
     }
 
-    public Task Delete(T entity)
+    public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        entity.DateCreated = DateTimeOffset.UtcNow;
-        Context.Update(entity);
-        return Task.CompletedTask;
+        return await Collection.Find(_ => true).ToListAsync(cancellationToken);
     }
 
-    public Task<T?> Get(Guid id, CancellationToken cancellationToken)
+    public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate,
+        CancellationToken cancellationToken = default)
     {
-        return Context.Set<T>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        return await Collection.Find(predicate).ToListAsync(cancellationToken);
     }
 
-    public Task<List<T>> GetAll(CancellationToken cancellationToken)
+    public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
     {
-        return Context.Set<T>().ToListAsync(cancellationToken);
+        await Collection.InsertOneAsync(entity, cancellationToken: cancellationToken);
+    }
+
+    public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+    {
+        await Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity, cancellationToken: cancellationToken);
+    }
+
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        await Collection.DeleteOneAsync(x => x.Id == id, cancellationToken);
     }
 }

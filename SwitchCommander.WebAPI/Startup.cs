@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using MediatR;
-using SwitchCommander.Application;
+﻿using SwitchCommander.Application;
 using SwitchCommander.Persistence;
 using SwitchCommander.Persistence.Context;
 using SwitchCommander.WebAPI.Extensions;
@@ -9,12 +7,12 @@ namespace SwitchCommander.WebAPI;
 
 public class Startup
 {
-    public IConfiguration Configuration { get; }
-    
     public Startup(IConfiguration configuration)
     {
         Configuration = configuration;
     }
+
+    public IConfiguration Configuration { get; }
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -23,7 +21,7 @@ public class Startup
 
         services.ConfigureApiBehavior();
         services.ConfigureCorsPolicy();
-        
+
         services.AddControllers();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
@@ -39,16 +37,13 @@ public class Startup
         }
 
         var serviceScope = app.ApplicationServices.CreateScope();
-        var dataContext = serviceScope.ServiceProvider.GetService<DataContext>();
-        dataContext?.Database.EnsureCreated();
-        
+        var dataContext = serviceScope.ServiceProvider.GetService<MongoDbContext>();
+
+
         app.UseErrorHandler();
         app.UseCors();
         app.UseRouting();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
+        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }

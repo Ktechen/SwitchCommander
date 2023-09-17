@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.UserFeatures.CreateUser;
 using SwitchCommander.Application.Features.UserFeatures.CreateUser.Records;
 
 namespace SwitchCommander.WebAPI.Controllers;
@@ -15,7 +14,7 @@ public class UserController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+
     [HttpPost]
     public async Task<ActionResult<CreateUserResponse>> Create(CreateUserRequest request,
         CancellationToken cancellationToken)
