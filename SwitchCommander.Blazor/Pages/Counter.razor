@@ -1,19 +1,41 @@
 ﻿@page "/counter"
+@using SwitchCommander.WebAPI.Client
+@using SwitchCommander.Domain.Dtos
 
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
 
 <p role="status">Current count: @currentCount</p>
-
+<p role="textbox">Result @text</p>
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
     private int currentCount;
-
+    private string text;
+    
+    private CreateUserResponse createUserResponse;
+    
     private void IncrementCount()
     {
         currentCount++;
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var userClientService = new UserClientService(new HttpClient());
+            createUserResponse = await userClientService.GetByIdAsync("5d018f4a-329d-4e90-8321-66665acbe9a8");
+            text = createUserResponse.Id + " - " + createUserResponse.Email + " - " + createUserResponse.Name;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            text = e.Message;
+        }
+        
+        await InvokeAsync(StateHasChanged);
     }
 
 }

@@ -23,8 +23,10 @@ public class Startup
 
         services.AddControllers();
         services.AddEndpointsApiExplorer();
+        
         services.AddSwaggerGen();
-
+        services.AddOpenApiDocument();
+        
         services.AddLogging(builder =>
         {
             builder.AddConsole(); // Add console logging provider
@@ -36,13 +38,13 @@ public class Startup
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
         }
         else
         {
             // Configure error handling middleware for non-development environments here
-            app.UseExceptionHandler("/Home/Error");
+            app.UseExceptionHandler("/Error");
             app.UseHsts();
 
             var resultOfKey = Configuration.GetSection("LicenseKey").GetValue<string>("key");
