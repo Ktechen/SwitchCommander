@@ -5,7 +5,7 @@ namespace SwitchCommander.Application.Repositories;
 
 public interface IBaseRepository<T> where T : BaseEntity
 {
-    public Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    public Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     public Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
 
     public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate,
