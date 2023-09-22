@@ -10,7 +10,13 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     public UserRepository(MongoDbContext context) : base(context.UserCollection)
     {
     }
-    
+
+    public async Task<User?> FindById(Guid id, CancellationToken cancellationToken)
+    {
+        var result = await FindAsync(x => x.Id == id, cancellationToken);
+        return result.FirstOrDefault();
+    }
+
     public async Task<User?> GetByEmail(string email, CancellationToken cancellationToken)
     {
         return await Collection.Find(x => x.Email == email).FirstAsync(cancellationToken);
