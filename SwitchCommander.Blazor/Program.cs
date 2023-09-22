@@ -1,30 +1,10 @@
-using SwitchCommander.WebAPI.Client;
+using SwitchCommander.Blazor;
 
-var builder = WebApplication.CreateBuilder(args);
+CreateHostBuilder(args).Build().Run();
+return;
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
-builder.Services.AddTransient<HttpClient>();
-builder.Services.AddScoped<UserClientService>();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+IHostBuilder CreateHostBuilder(string[] args)
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    return Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
 }
-
-app.UseHttpsRedirection();
-
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
-
-app.Run();
