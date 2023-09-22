@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using SwitchCommander.Application.Features.UserFeatures.ReadUser.Records;
-using SwitchCommander.Application.Repositories;
+using SwitchCommander.Application.Repositories.Features;
 
 namespace SwitchCommander.Application.Features.UserFeatures.ReadUser;
 
@@ -19,8 +19,8 @@ public sealed class ReadUserHandler : IRequestHandler<ReadUserRequest, ReadUserR
     {
         var user = _mapper.ToUserDto(request);
         var result = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
-        return result is null ? 
-            new ReadUserResponse(Guid.Empty, string.Empty, string.Empty) : 
-            _mapper.ToReadUserResponse(result);
+        return result is null
+            ? new ReadUserResponse(Guid.Empty, string.Empty, string.Empty)
+            : _mapper.ToReadUserResponse(result);
     }
 }

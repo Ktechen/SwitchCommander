@@ -7,7 +7,6 @@ namespace SwitchCommander.WebAPI.Extensions;
 
 public static class ErrorHandlerExtensions
 {
-
     public static void UseErrorHandler(this IApplicationBuilder app)
     {
         app.UseExceptionHandler(appError =>
@@ -27,13 +26,13 @@ public static class ErrorHandlerExtensions
                     NotFoundException => (int)HttpStatusCode.NotFound,
                     _ => (int)HttpStatusCode.InternalServerError
                 };
-                
+
                 var errorResponse = new
                 {
                     statusCode = context.Response.StatusCode,
                     message = contextFeature.Error.GetBaseException().Message
                 };
-                
+
                 await context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse));
             });
         });

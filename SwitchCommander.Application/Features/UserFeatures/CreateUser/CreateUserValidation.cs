@@ -12,7 +12,7 @@ public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
             .MaximumLength(50)
             .EmailAddress()
             .WithMessage("Email is not valid");
-        
+
         RuleFor(x => x.Name)
             .NotEmpty()
             .MinimumLength(3)

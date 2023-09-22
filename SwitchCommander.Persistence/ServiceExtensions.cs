@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SwitchCommander.Application.Repositories;
+using SwitchCommander.Application.Repositories.Features;
 using SwitchCommander.Persistence.Context;
-using SwitchCommander.Persistence.Repositories;
+using SwitchCommander.Persistence.Repositories.Features;
 
 namespace SwitchCommander.Persistence;
 

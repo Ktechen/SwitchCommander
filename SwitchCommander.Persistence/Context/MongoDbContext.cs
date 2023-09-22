@@ -4,12 +4,8 @@ using SwitchCommander.Domain.Dtos;
 
 namespace SwitchCommander.Persistence.Context;
 
-public class MongoDbContext 
+public class MongoDbContext
 {
-    public IMongoCollection<User> UserCollection { get; }
-    
-    public IMongoCollection<Switch> SwitchCollection { get; }
-    
     public MongoDbContext(IConfiguration configuration)
     {
         var config = configuration.GetSection("MongoDB");
@@ -20,4 +16,7 @@ public class MongoDbContext
         SwitchCollection = mongoDatabase.GetCollection<Switch>(nameof(Switch));
     }
 
+    public IMongoCollection<User> UserCollection { get; }
+
+    public IMongoCollection<Switch> SwitchCollection { get; }
 }

@@ -1,6 +1,7 @@
 using SwitchCommander.WebAPI;
 
 CreateHostBuilder(args).Build().Run();
+return;
 
 IHostBuilder CreateHostBuilder(string[] args)
 {

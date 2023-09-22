@@ -1,15 +1,15 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Features.UserFeatures.CreateUser.Records;
-using SwitchCommander.Application.Repositories;
+using SwitchCommander.Application.Repositories.Features;
 
 namespace SwitchCommander.Application.Features.UserFeatures.CreateUser;
 
 public sealed class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserResponse>
 {
+    private readonly ILogger<CreateUserHandler> _logger;
     private readonly CreateUserMapper _mapper;
     private readonly IUserRepository _userRepository;
-    private readonly ILogger<CreateUserHandler> _logger;
 
     public CreateUserHandler(IUserRepository userRepository, CreateUserMapper mapper, ILogger<CreateUserHandler> logger)
     {

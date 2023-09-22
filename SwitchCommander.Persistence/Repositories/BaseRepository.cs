@@ -9,12 +9,12 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
 {
     protected readonly IMongoCollection<T> Collection;
 
-    protected BaseRepository( IMongoCollection<T> collection)
+    protected BaseRepository(IMongoCollection<T> collection)
     {
         Collection = collection;
     }
 
-    public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return await Collection.Find(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
     }

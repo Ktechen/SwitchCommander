@@ -1,9 +1,9 @@
 ﻿using MongoDB.Driver;
-using SwitchCommander.Application.Repositories;
+using SwitchCommander.Application.Repositories.Features;
 using SwitchCommander.Domain.Dtos;
 using SwitchCommander.Persistence.Context;
 
-namespace SwitchCommander.Persistence.Repositories;
+namespace SwitchCommander.Persistence.Repositories.Features;
 
 public class UserRepository : BaseRepository<User>, IUserRepository
 {
@@ -15,5 +15,4 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     {
         return await Collection.Find(x => x.Email == email).FirstAsync(cancellationToken);
     }
-
 }

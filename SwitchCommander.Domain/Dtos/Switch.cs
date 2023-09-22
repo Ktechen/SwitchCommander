@@ -4,5 +4,4 @@ namespace SwitchCommander.Domain.Dtos;
 
 public class Switch : BaseEntity
 {
-
 }
