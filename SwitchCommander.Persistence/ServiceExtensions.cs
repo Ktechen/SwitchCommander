@@ -1,11 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features;
 using SwitchCommander.Persistence.Context;
 using SwitchCommander.Persistence.Repositories.Features;
 using SwitchCommander.Persistence.Services;
-using SwitchCommander.Persistence.Services.BackgroundTasks;
 
 namespace SwitchCommander.Persistence;
 
@@ -16,6 +14,6 @@ public static class ServiceExtensions
         services.AddScoped<MongoDbContext>();
         services.AddSingleton<LicenseKeyService>();
         services.AddTransient<IUserRepository, UserRepository>();
-        services.AddHostedService<LicenseKeyBackgroundService>();
+        
     }
 }
