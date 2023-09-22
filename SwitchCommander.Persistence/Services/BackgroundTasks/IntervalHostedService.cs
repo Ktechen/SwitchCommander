@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace SwitchCommander.Application.Services.BackgroundTasks;
+namespace SwitchCommander.Persistence.Services.BackgroundTasks;
 
 public class IntervalHostedService<T> : BackgroundService
 {
@@ -19,15 +19,13 @@ public class IntervalHostedService<T> : BackgroundService
         _action = action;
     }
     
-    protected override Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
             _action?.Invoke();
             _logger.LogInformation($"{_action?.Method.Name} is executing with interval {_interval}");
-            Task.Delay(_interval, stoppingToken);
+            await Task.Delay(_interval, stoppingToken);
         }
-        
-        return Task.CompletedTask;
     }
 }
