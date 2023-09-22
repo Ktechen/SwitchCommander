@@ -6,9 +6,7 @@ using SwitchCommander.Application.Features.UserFeatures.ReadUser.Records;
 
 namespace SwitchCommander.WebAPI.Controllers;
 
-[ApiController]
-[Route("user")]
-public class UserController : ControllerBase
+public class UserController : BaseController
 {
     private readonly IMediator _mediator;
     private readonly IValidator<CreateUserRequest> _validator;
