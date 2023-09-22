@@ -1,6 +1,6 @@
 ﻿@page "/counter"
 @using SwitchCommander.WebAPI.Client
-@using SwitchCommander.Domain.Dtos
+@inject UserClientService userClientService
 
 <PageTitle>Counter</PageTitle>
 
@@ -25,7 +25,6 @@
     {
         try
         {
-            var userClientService = new UserClientService(new HttpClient());
             createUserResponse = await userClientService.GetByIdAsync("5d018f4a-329d-4e90-8321-66665acbe9a8");
             text = createUserResponse.Id + " - " + createUserResponse.Email + " - " + createUserResponse.Name;
         }
