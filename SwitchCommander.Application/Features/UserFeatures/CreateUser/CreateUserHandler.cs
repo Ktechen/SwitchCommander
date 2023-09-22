@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Features.UserFeatures.CreateUser.Records;
 using SwitchCommander.Application.Repositories;
 
@@ -8,11 +9,13 @@ public sealed class CreateUserHandler : IRequestHandler<CreateUserRequest, Creat
 {
     private readonly CreateUserMapper _mapper;
     private readonly IUserRepository _userRepository;
+    private readonly ILogger<CreateUserHandler> _logger;
 
-    public CreateUserHandler(IUserRepository userRepository, CreateUserMapper mapper)
+    public CreateUserHandler(IUserRepository userRepository, CreateUserMapper mapper, ILogger<CreateUserHandler> logger)
     {
         _userRepository = userRepository;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)

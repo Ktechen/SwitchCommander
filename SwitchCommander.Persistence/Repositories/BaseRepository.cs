@@ -2,11 +2,10 @@
 using MongoDB.Driver;
 using SwitchCommander.Application.Repositories;
 using SwitchCommander.Domain.Common;
-using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.Persistence.Repositories;
 
-public abstract class BaseRepository<T> : IBaseRepository<T> where T : IBaseEntity
+public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
 {
     protected readonly IMongoCollection<T> Collection;
 
