@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SwitchCommander.Application.Features.UserFeatures.CreateUser.Records;
+using SwitchCommander.Domain.Dtos;
+using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.WebAPI.Controllers;
 

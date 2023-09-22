@@ -3,7 +3,7 @@ using SwitchCommander.Domain.Common;
 
 namespace SwitchCommander.Application.Repositories;
 
-public interface IBaseRepository<T> where T : BaseEntity
+public interface IBaseRepository<T> where T : IBaseEntity
 {
     public Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     public Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);

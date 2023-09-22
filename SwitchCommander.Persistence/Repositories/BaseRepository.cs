@@ -1,18 +1,18 @@
 ﻿using System.Linq.Expressions;
 using MongoDB.Driver;
-using ParkBee.MongoDb;
 using SwitchCommander.Application.Repositories;
 using SwitchCommander.Domain.Common;
+using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.Persistence.Repositories;
 
-public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+public abstract class BaseRepository<T> : IBaseRepository<T> where T : IBaseEntity
 {
     protected readonly IMongoCollection<T> Collection;
 
-    protected BaseRepository(MongoContext context)
+    protected BaseRepository( IMongoCollection<T> collection)
     {
-        Collection = context.Database.GetCollection<T>(nameof(T));
+        Collection = collection;
     }
 
     public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)

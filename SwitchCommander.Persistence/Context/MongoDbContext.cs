@@ -1,18 +1,23 @@
-﻿using ParkBee.MongoDb;
+﻿using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
 using SwitchCommander.Domain.Dtos;
 
 namespace SwitchCommander.Persistence.Context;
 
-public class MongoDbContext : MongoContext
+public class MongoDbContext
 {
-    public MongoDbContext(IMongoContextOptionsBuilder optionsBuilder) : base(optionsBuilder)
+    private IConfiguration _configuration;
+    
+    public IMongoCollection<User> UserCollection { get; set; }
+    
+    public MongoDbContext(IConfiguration configuration)
     {
+        _configuration = configuration;
+        var config = configuration.GetSection("MongoDB");
+        var mongoClient = new MongoClient(config.GetValue<string>("ConnectionString"));
+        var mongoDatabase = mongoClient.GetDatabase(config.GetValue<string>("DatabaseName"));
+
+        UserCollection = mongoDatabase.GetCollection<User>(nameof(User));
     }
 
-    public DbSet<User> Users { get; set; }
-
-    protected override async void OnConfiguring()
-    {
-        OptionsBuilder.Entity<User>(entity => { entity.HasKey(p => p.Id); });
-    }
 }

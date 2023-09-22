@@ -1,18 +1,17 @@
 ﻿using SwitchCommander.Application;
 using SwitchCommander.Persistence;
-using SwitchCommander.Persistence.Context;
 using SwitchCommander.WebAPI.Extensions;
 
 namespace SwitchCommander.WebAPI;
 
 public class Startup
 {
+    private IConfiguration Configuration { get; }
+
     public Startup(IConfiguration configuration)
     {
         Configuration = configuration;
     }
-
-    public IConfiguration Configuration { get; }
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -36,14 +35,10 @@ public class Startup
             app.UseSwaggerUI();
         }
 
-        var serviceScope = app.ApplicationServices.CreateScope();
-        var dataContext = serviceScope.ServiceProvider.GetService<MongoDbContext>();
-
-
         app.UseErrorHandler();
         app.UseCors();
         app.UseRouting();
-
+        
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }
