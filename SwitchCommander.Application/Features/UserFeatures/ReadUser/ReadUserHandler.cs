@@ -22,9 +22,9 @@ public sealed class ReadUserHandler : IRequestHandler<ReadUserRequest, ReadUserR
     {
         var user = _mapper.ToUserDto(request);
         var result = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
-        _logger.LogInformation("Read user from Db " + user);
+        _logger.LogInformation("Read user from Db " + user.Email);
         return result is null
-            ? new ReadUserResponse(Guid.Empty, string.Empty, string.Empty)
+            ? new ReadUserResponse(Guid.Empty, string.Empty, string.Empty, string.Empty)
             : _mapper.ToReadUserResponse(result);
     }
 }
