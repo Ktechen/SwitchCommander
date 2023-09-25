@@ -30,7 +30,6 @@
         <Folder Include="Features\SSHManagementFeatures\DeleteSSHCommand\"/>
         <Folder Include="Features\SSHManagementFeatures\ReadSSHCommand\"/>
         <Folder Include="Features\SSHManagementFeatures\Services\"/>
-        <Folder Include="Features\SSHManagementFeature\"/>
     </ItemGroup>
 
 

@@ -6,7 +6,6 @@ namespace SwitchCommander.Application.Features.UserFeatures.CreateUser;
 [Mapper]
 public partial class CreateUserMapper
 {
-    public partial User ToUserDto(CreateUserRequest dto);
-    public partial User ToUserDto(CreateUserResponse dto);
-    public partial CreateUserResponse ToCreateUserResponse(User dto);
+    public partial User FromRequest(CreateUserRequest dto);
+    public partial CreateUserResponse ToResponse(User dto);
 }

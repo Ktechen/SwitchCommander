@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SwitchCommander.Application.Features.UserFeatures.CreateUser;
-using SwitchCommander.Application.Features.UserFeatures.ReadUser.Records;
+using SwitchCommander.Application.Features.UserFeatures.ReadUser;
 
 namespace SwitchCommander.WebAPI.Controllers;
 

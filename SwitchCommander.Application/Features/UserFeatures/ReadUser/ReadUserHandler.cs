@@ -1,9 +1,12 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using SwitchCommander.Application.Features.UserFeatures.ReadUser.Records;
 using SwitchCommander.Application.Repositories.Features;
 
 namespace SwitchCommander.Application.Features.UserFeatures.ReadUser;
+
+public sealed record ReadUserRequest(Guid Id) : IRequest<ReadUserResponse>;
+
+public sealed record ReadUserResponse(Guid Id, string Name, string Email, string? NameTwo);
 
 public sealed class ReadUserHandler : IRequestHandler<ReadUserRequest, ReadUserResponse>
 {
@@ -20,11 +23,11 @@ public sealed class ReadUserHandler : IRequestHandler<ReadUserRequest, ReadUserR
 
     public async Task<ReadUserResponse> Handle(ReadUserRequest request, CancellationToken cancellationToken)
     {
-        var user = _mapper.ToUserDto(request);
+        var user = _mapper.FromRequest(request);
         var result = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
         _logger.LogInformation("Read user from Db " + user.Email);
         return result is null
             ? new ReadUserResponse(Guid.Empty, string.Empty, string.Empty, string.Empty)
-            : _mapper.ToReadUserResponse(result);
+            : _mapper.ToResponse(result);
     }
 }
