@@ -14,5 +14,7 @@ public static class ServiceExtensions
         services.AddScoped<MongoDbContext>();
         services.AddSingleton<LicenseKeyService>();
         services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<ISSHCommanderRepository, SSHCommanderRepository>();
+        //services.AddSingleton<MongoDbContextSeed>();
     }
 }

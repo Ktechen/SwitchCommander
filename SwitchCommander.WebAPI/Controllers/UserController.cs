@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.UserFeatures.CreateUser;
-using SwitchCommander.Application.Features.UserFeatures.ReadUser;
+using SwitchCommander.Application.Features.UserManagement.CreateUser;
+using SwitchCommander.Application.Features.UserManagement.ReadUser;
 
 namespace SwitchCommander.WebAPI.Controllers;
 

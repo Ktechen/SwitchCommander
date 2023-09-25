@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features;
 
-namespace SwitchCommander.Application.Features.SSHManagementFeatures.CreateSSHCommand;
+namespace SwitchCommander.Application.Features.SSHManagement.CreateSSHCommand;
 
 public sealed record CreateSSHCommandRequest
     (Guid id, string? Hash, string? command) : IRequest<CreateSSHCommandResponse>;
@@ -28,6 +28,7 @@ public class CreateSSHCommandHandler : IRequestHandler<CreateSSHCommandRequest, 
     {
         var map = _mapper.FromRequest(request);
         await _repository.AddAsync(map, cancellationToken);
+        
         return _mapper.ToResponse(map);
     }
 }

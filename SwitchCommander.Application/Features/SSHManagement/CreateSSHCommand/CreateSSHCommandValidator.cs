@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace SwitchCommander.Application.Features.SSHManagementFeatures.CreateSSHCommand;
+namespace SwitchCommander.Application.Features.SSHManagement.CreateSSHCommand;
 
-public class CreateSSHCommandValidatior : AbstractValidator<CreateSSHCommandRequest>
+public class CreateSSHCommandValidator : AbstractValidator<CreateSSHCommandRequest>
 {
-    public CreateSSHCommandValidatior()
+    public CreateSSHCommandValidator()
     {
         RuleFor(x => x.Hash)
             .NotEmpty()

@@ -1,7 +1,7 @@
 ﻿using Riok.Mapperly.Abstractions;
 using SwitchCommander.Domain.Dtos;
 
-namespace SwitchCommander.Application.Features.UserFeatures.ReadUser;
+namespace SwitchCommander.Application.Features.UserManagement.ReadUser;
 
 [Mapper]
 public partial class ReadUserMapper

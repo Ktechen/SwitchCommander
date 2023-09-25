@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features;
 
-namespace SwitchCommander.Application.Features.UserFeatures.ReadUser;
+namespace SwitchCommander.Application.Features.UserManagement.ReadUser;
 
 public sealed record ReadUserRequest(Guid Id) : IRequest<ReadUserResponse>;
 

@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using SwitchCommander.Application.Features.UserManagement.DomainEvents;
 using SwitchCommander.Application.Repositories.Features;
+using SwitchCommander.Domain.Common;
 
-namespace SwitchCommander.Application.Features.UserFeatures.CreateUser;
+namespace SwitchCommander.Application.Features.UserManagement.CreateUser;
 
 public sealed record CreateUserRequest(string? Email, string? Name, string? NameTwo) : IRequest<CreateUserResponse>;
 
@@ -24,6 +26,7 @@ public sealed class CreateUserHandler : IRequestHandler<CreateUserRequest, Creat
     public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
     {
         var user = _mapper.FromRequest(request);
+        user.QueueDomainEvent(new CreateUserDomainEvent(user));
         await _userRepository.AddAsync(user, cancellationToken);
         return _mapper.ToResponse(user);
     }

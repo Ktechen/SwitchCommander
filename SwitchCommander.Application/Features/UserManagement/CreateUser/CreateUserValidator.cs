@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SwitchCommander.Application.Features.UserFeatures.CreateUser;
+namespace SwitchCommander.Application.Features.UserManagement.CreateUser;
 
 public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
 {

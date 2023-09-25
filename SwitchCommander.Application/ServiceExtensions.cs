@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Riok.Mapperly.Abstractions;
 using SwitchCommander.Application.Common.Behaviors;
+using SwitchCommander.Application.Features.UserManagement.DomainEvents;
 
 namespace SwitchCommander.Application;
 
