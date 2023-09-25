@@ -14,9 +14,12 @@ public class MongoDbContext
 
         UserCollection = mongoDatabase.GetCollection<User>(nameof(User));
         SwitchCollection = mongoDatabase.GetCollection<Switch>(nameof(Switch));
+        SSHCommandCollection = mongoDatabase.GetCollection<SSHCommand>(nameof(SSHCommand));
     }
 
     public IMongoCollection<User> UserCollection { get; }
 
     public IMongoCollection<Switch> SwitchCollection { get; }
+
+    public IMongoCollection<SSHCommand> SSHCommandCollection { get; }
 }

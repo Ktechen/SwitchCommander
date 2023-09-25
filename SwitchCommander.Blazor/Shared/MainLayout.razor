@@ -1,7 +1,10 @@
-﻿@inherits LayoutComponentBase
+﻿@using SwitchCommander.WebAPI.Client
+@inherits LayoutComponentBase
 
 <PageTitle>SwitchCommander.Blazor</PageTitle>
-
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
 <div class="page">
     <div class="sidebar">
         <NavMenu/>
@@ -13,7 +16,51 @@
         </div>
 
         <article class="content px-4">
+            @if (!_isApiValid)
+            {
+                <MudAlert Severity="Severity.Error" Variant="Variant.Filled">Web Api is currently not avalibe</MudAlert>
+            }
+            else
+            {
+                <MudAlert Severity="Severity.Success" Variant="Variant.Filled">Web Api is now online</MudAlert>
+            }
             @Body
         </article>
     </main>
 </div>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+<link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet"/>
+
+@code
+{
+    private bool _isApiValid;
+
+    protected override async Task OnInitializedAsync()
+    {
+        CheckIsApiOnline();
+    }
+
+    private async void CheckIsApiOnline()
+    {
+        await Task.Run(async () =>
+        {
+            while (true)
+            {
+                try
+                {
+                    var userClientService = new UserClientService(new HttpClient());
+                    await userClientService.GetByIdAsync("");
+                    _isApiValid = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    _isApiValid = false;
+                }
+                await InvokeAsync(StateHasChanged);
+                await Task.Delay(10000);
+            }
+        });
+    }
+}

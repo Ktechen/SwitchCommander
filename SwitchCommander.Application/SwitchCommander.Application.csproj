@@ -18,17 +18,20 @@
     </ItemGroup>
 
 
-
     <ItemGroup>
-      <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
-        <HintPath>..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.9\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
-      </Reference>
+        <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
+            <HintPath>..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.9\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 
-
     <ItemGroup>
-      <Folder Include="Services\" />
+        <Folder Include="Common\Attributes\"/>
+        <Folder Include="Features\SSHManagementFeatures\DeleteSSHCommand\"/>
+        <Folder Include="Features\SSHManagementFeatures\ReadSSHCommand\"/>
+        <Folder Include="Features\SSHManagementFeatures\Services\"/>
+        <Folder Include="Features\SSHManagementFeature\"/>
     </ItemGroup>
+
 
 </Project>

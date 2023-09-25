@@ -5,20 +5,20 @@ namespace SwitchCommander.Persistence.Services.BackgroundTasks;
 
 public class IntervalHostedService<T> : BackgroundService
 {
-    private readonly ILogger<IntervalHostedService<T>> _logger;
-    private readonly int _interval;
     private readonly Action _action;
-    
+    private readonly int _interval;
+    private readonly ILogger<IntervalHostedService<T>> _logger;
+
     public IntervalHostedService(
-        ILogger<IntervalHostedService<T>> logger, 
-        int interval, 
+        ILogger<IntervalHostedService<T>> logger,
+        int interval,
         Action action)
     {
         _logger = logger;
         _interval = interval;
         _action = action;
     }
-    
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)

@@ -7,9 +7,9 @@ namespace SwitchCommander.Application.Features.UserFeatures.ReadUser;
 
 public sealed class ReadUserHandler : IRequestHandler<ReadUserRequest, ReadUserResponse>
 {
+    private readonly ILogger<ReadUserHandler> _logger;
     private readonly ReadUserMapper _mapper;
     private readonly IUserRepository _userRepository;
-    private readonly ILogger<ReadUserHandler> _logger;
 
     public ReadUserHandler(ReadUserMapper mapper, IUserRepository userRepository, ILogger<ReadUserHandler> logger)
     {

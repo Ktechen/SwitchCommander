@@ -1,4 +1,5 @@
-﻿using SwitchCommander.WebAPI.Client;
+﻿using MudBlazor.Services;
+using SwitchCommander.WebAPI.Client;
 
 namespace SwitchCommander.Blazor;
 
@@ -17,6 +18,7 @@ public class Startup
         services.AddServerSideBlazor();
         services.AddTransient<HttpClient>();
         services.AddScoped<UserClientService>();
+        services.AddMudServices();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,7 +45,7 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapBlazorHub();
-            endpoints.MapFallbackToPage("/_Host");    
+            endpoints.MapFallbackToPage("/_Host");
         });
     }
 }

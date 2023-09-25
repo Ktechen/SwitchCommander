@@ -3,38 +3,23 @@
 @inject UserClientService userClientService
 
 <PageTitle>Counter</PageTitle>
+<MudGrid>
+    <MudItem xs="12">
+        <MudPaper Style="padding: 10px 10px 10px 10px">
+            <MudGrid Justify="Justify.FlexStart">
+                @for (var i = 0; i < _papers; i++)
+                {
+                    <MudItem xs="2">
+                        <MudPaper Class="d-flex flex-column align-center justify-center mud-width-full py-8">
+                            <MudText Typo="Typo.h6" Align="Align.Center">W</MudText>
+                        </MudPaper>
+                    </MudItem>
+                }
+            </MudGrid>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
 
-<h1>Counter</h1>
-
-<p role="status">Current count: @currentCount</p>
-<p role="textbox">Result @text</p>
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount;
-    private string text;
-    
-    private CreateUserResponse createUserResponse;
-    
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-    
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            createUserResponse = await userClientService.GetByIdAsync("5d018f4a-329d-4e90-8321-66665acbe9a8");
-            text = createUserResponse.Id + " - " + createUserResponse.Email + " - " + createUserResponse.Name;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            text = e.Message;
-        }
-        
-        await InvokeAsync(StateHasChanged);
-    }
-
+@code{
+    private readonly int _papers = 12;
 }

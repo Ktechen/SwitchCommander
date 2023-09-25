@@ -1,9 +1,12 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using SwitchCommander.Application.Features.UserFeatures.CreateUser.Records;
 using SwitchCommander.Application.Repositories.Features;
 
 namespace SwitchCommander.Application.Features.UserFeatures.CreateUser;
+
+public sealed record CreateUserRequest(string? Email, string? Name, string? NameTwo) : IRequest<CreateUserResponse>;
+
+public sealed record CreateUserResponse(Guid id, string? Email, string? Name, string? NameTwo);
 
 public sealed class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserResponse>
 {

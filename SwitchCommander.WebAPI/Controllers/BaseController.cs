@@ -6,5 +6,4 @@ namespace SwitchCommander.WebAPI.Controllers;
 [Route("api/v1/[controller]")]
 public abstract class BaseController : ControllerBase
 {
-
 }

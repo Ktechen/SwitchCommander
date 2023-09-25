@@ -23,10 +23,10 @@ public class Startup
 
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        
+
         services.AddSwaggerGen();
         services.AddOpenApiDocument();
-        
+
         services.AddLogging(builder =>
         {
             builder.AddConsole(); // Add console logging provider
