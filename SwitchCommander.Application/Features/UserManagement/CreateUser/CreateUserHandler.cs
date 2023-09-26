@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using SwitchCommander.Application.Features.UserManagement.CreateUser.DomainEvents;
 using SwitchCommander.Application.Repositories.Features;
 
 namespace SwitchCommander.Application.Features.UserManagement.CreateUser;
