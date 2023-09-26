@@ -19,7 +19,9 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
 
     public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await Collection.Find(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+        var entity = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+        await DispatchDomainEventsAsync(entity);
+        return entity;
     }
 
     public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -48,15 +50,11 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
     {
         await Collection.DeleteOneAsync(x => x.Id == id, cancellationToken);
     }
-    
+
     private async Task DispatchDomainEventsAsync(BaseEntity entity)
     {
         var domainEvents = entity.DomainEvents.ToList();
         entity.DomainEvents.Clear();
-
-        foreach (var domainEvent in domainEvents)
-        {
-            await _mediator.Publish(domainEvent, CancellationToken.None);
-        }
+        foreach (var domainEvent in domainEvents) await _mediator.Publish(domainEvent, CancellationToken.None);
     }
 }

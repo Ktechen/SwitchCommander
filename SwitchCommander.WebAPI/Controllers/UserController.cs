@@ -29,7 +29,7 @@ public class UserController : BaseController
             var errorMessages = string.Join("\n", validationResult.Errors.Select(error => error.ErrorMessage));
             return BadRequest(errorMessages);
         }
-
+        
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }

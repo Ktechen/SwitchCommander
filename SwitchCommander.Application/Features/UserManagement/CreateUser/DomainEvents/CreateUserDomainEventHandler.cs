@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace SwitchCommander.Application.Features.UserManagement.DomainEvents;
+namespace SwitchCommander.Application.Features.UserManagement.CreateUser.DomainEvents;
 
 public class CreateUserDomainEventHandler : INotificationHandler<CreateUserDomainEvent>
 {
