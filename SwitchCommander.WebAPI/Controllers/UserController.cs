@@ -20,7 +20,8 @@ public class UserController : BaseController
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CreateUserResponse>> Create(CreateUserRequest request,
+    public async Task<ActionResult<CreateUserResponse>> Create(
+        CreateUserRequest request,
         CancellationToken cancellationToken)
     {
         var validationResult = await _validator.ValidateAsync(request, cancellationToken);
@@ -29,7 +30,7 @@ public class UserController : BaseController
             var errorMessages = string.Join("\n", validationResult.Errors.Select(error => error.ErrorMessage));
             return BadRequest(errorMessages);
         }
-        
+
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
@@ -37,7 +38,8 @@ public class UserController : BaseController
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CreateUserResponse>> GetById(string id,
+    public async Task<ActionResult<CreateUserResponse>> GetById(
+        string id,
         CancellationToken cancellationToken)
     {
         if (!Guid.TryParse(id, out var result)) return BadRequest("Id is invalid");

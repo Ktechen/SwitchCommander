@@ -31,6 +31,8 @@ public class Startup
         {
             builder.AddConsole(); // Add console logging provider
         });
+        
+
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,6 +42,10 @@ public class Startup
             app.UseDeveloperExceptionPage();
             app.UseOpenApi();
             app.UseSwaggerUi3();
+            app.UseReDoc(options =>
+            {
+                options.Path = "/redoc";
+            });
         }
         else
         {
