@@ -17,6 +17,12 @@ public class UserController : BaseController
         _validator = validator;
     }
 
+    /// <summary>
+    /// Create a user 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><see cref="CreateUserResponse"/></returns>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -35,6 +41,12 @@ public class UserController : BaseController
         return Ok(response);
     }
 
+    /// <summary>
+    /// Read user by Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns><see cref="ReadUserResponse"/></returns>
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
