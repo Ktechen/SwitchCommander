@@ -1,12 +1,8 @@
-﻿using MediatR;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace SwitchCommander.Domain.Common;
 
-public interface IDomainEvent : INotification
-{
-}
 
 public abstract class BaseEntity
 {
