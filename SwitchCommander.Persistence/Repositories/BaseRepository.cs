@@ -6,15 +6,28 @@ using SwitchCommander.Domain.Common;
 
 namespace SwitchCommander.Persistence.Repositories;
 
-public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+public abstract class BaseRepository<T> : IDisposable, IBaseRepository<T> where T : BaseEntity
 {
     private readonly IMediator _mediator;
+    private readonly IClientSessionHandle _session;
     protected readonly IMongoCollection<T> Collection;
+
 
     protected BaseRepository(IMongoCollection<T> collection, IMediator mediator)
     {
         Collection = collection;
+        _session = collection.Database.Client.StartSession();
         _mediator = mediator;
+    }
+
+    public async Task Commit()
+    {
+        await _session.CommitTransactionAsync();
+    }
+
+    public async Task Rollback()
+    {
+        await _session.AbortTransactionAsync();
     }
 
     public async Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -61,5 +74,10 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
         var domainEvents = entity.DomainEvents.ToList();
         entity.DomainEvents.Clear();
         foreach (var domainEvent in domainEvents) await _mediator.Publish(domainEvent, CancellationToken.None);
+    }
+
+    public void Dispose()
+    {
+        _session.Dispose();
     }
 }

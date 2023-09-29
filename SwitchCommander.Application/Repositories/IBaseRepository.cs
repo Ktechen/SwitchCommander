@@ -5,6 +5,10 @@ namespace SwitchCommander.Application.Repositories;
 
 public interface IBaseRepository<T> where T : BaseEntity
 {
+    public Task Commit();
+
+    public Task Rollback();
+    
     public Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     public Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
 
