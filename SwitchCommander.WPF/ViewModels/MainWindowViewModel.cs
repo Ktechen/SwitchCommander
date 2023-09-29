@@ -5,13 +5,13 @@ using SwitchCommander.WPF.Common;
 
 namespace SwitchCommander.WPF.ViewModels;
 
-public class MainWindowViewModel : INotifyPropertyChanged
+public sealed class MainWindowViewModel : INotifyPropertyChanged
 {
     private string _email;
     private string _name;
     private string _nameTwo;
     
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
     
     public string Email 
     { 
@@ -72,7 +72,7 @@ public class MainWindowViewModel : INotifyPropertyChanged
         };
     }
 
-    protected virtual void OnPropertyChanged(string propertyName = null)
+    private void OnPropertyChanged(string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
