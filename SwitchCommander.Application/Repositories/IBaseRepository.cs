@@ -12,6 +12,9 @@ public interface IBaseRepository<T> where T : BaseEntity
         CancellationToken cancellationToken = default);
 
     public Task AddAsync(T entity, CancellationToken cancellationToken = default);
+    
+    public Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
+    
     public Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
     public Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }

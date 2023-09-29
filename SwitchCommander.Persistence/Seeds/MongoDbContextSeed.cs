@@ -1,11 +1,11 @@
-﻿using SwitchCommander.Domain.Dtos;
-using SwitchCommander.Persistence.Context;
+﻿using SwitchCommander.Application.Repositories.Features;
+using SwitchCommander.Domain.Dtos;
 
 namespace SwitchCommander.Persistence.Seeds;
 
 public class MongoDbContextSeed
 {
-    public MongoDbContextSeed(MongoDbContext context)
+    public MongoDbContextSeed(ISSHCommanderRepository repository)
     {
         var seed = new List<SSHCommand>
         {
@@ -22,6 +22,6 @@ public class MongoDbContextSeed
                 Command = "show version"
             }
         };
-        context.SSHCommandCollection.InsertMany(seed);
+        repository.AddRangeAsync(seed);
     }
 }

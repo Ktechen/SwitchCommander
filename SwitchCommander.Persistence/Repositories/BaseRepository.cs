@@ -41,6 +41,11 @@ public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntit
         await DispatchDomainEventsAsync(entity);
     }
 
+    public async Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
+    {
+        await Collection.InsertManyAsync(entities, cancellationToken: cancellationToken);
+    }
+
     public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
         await Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity, cancellationToken: cancellationToken);
