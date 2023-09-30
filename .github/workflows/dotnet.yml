@@ -18,6 +18,15 @@ jobs:
       with:
         dotnet-version: 7.0.x  # Replace with the desired version of .NET 7
 
+    - name: Restore dependencies for SwitchCommander.Application
+      run: dotnet restore SwitchCommander.Application/SwitchCommander.Application.csproj
+
+    - name: Restore dependencies for SwitchCommander.Domain
+      run: dotnet restore SwitchCommander.Domain/SwitchCommander.Domain.csproj
+
+    - name: Restore dependencies for SwitchCommander.Persistence
+      run: dotnet restore SwitchCommander.Persistence/SwitchCommander.Persistence.csproj
+
     - name: Build SwitchCommander.Application
       run: dotnet build --no-restore --project SwitchCommander.Application/SwitchCommander.Application.csproj
 
