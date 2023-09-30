@@ -18,9 +18,6 @@ jobs:
       with:
         dotnet-version: 7.0.x  # Replace with the desired version of .NET 7
 
-    - name: Restore dependencies
-      run: dotnet restore
-
     - name: Build SwitchCommander.Application
       run: dotnet build --no-restore --project SwitchCommander.Application/SwitchCommander.Application.csproj
 
