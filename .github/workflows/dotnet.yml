@@ -20,9 +20,6 @@ jobs:
       with:
         dotnet-version: 7.x
 
-    - name: Restore Dependencies
-      run: dotnet restore
-
     - name: Build SwitchCommander.Application
       run: dotnet build --configuration Release --project SwitchCommander.Application/SwitchCommander.Application.csproj
 
