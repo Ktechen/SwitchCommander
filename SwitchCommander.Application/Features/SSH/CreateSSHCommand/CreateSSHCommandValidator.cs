@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SwitchCommander.Application.Features.SSHManagement.CreateSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.CreateSSHCommand;
 
 public class CreateSSHCommandValidator : AbstractValidator<CreateSSHCommandRequest>
 {

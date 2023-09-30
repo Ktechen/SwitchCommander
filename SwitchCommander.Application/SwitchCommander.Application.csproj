@@ -27,10 +27,10 @@
 
     <ItemGroup>
         <Folder Include="Common\Attributes\"/>
-        <Folder Include="Features\SSHManagement\DeleteSSHCommand\"/>
-        <Folder Include="Features\SSHManagement\ReadSSHCommand\"/>
-        <Folder Include="Features\SSHManagement\Services\"/>
-        <Folder Include="Features\UserManagement\ReadUser\DomainEvents\"/>
+        <Folder Include="Features\SSH\DeleteSSHCommand\" />
+        <Folder Include="Features\SSH\ReadSSHCommand\" />
+        <Folder Include="Features\SSH\Services\" />
+        <Folder Include="Features\User\ReadUser\DomainEvents\" />
     </ItemGroup>
 
 

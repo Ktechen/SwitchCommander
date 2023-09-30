@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.SSHManagement.CreateSSHCommand;
-using SwitchCommander.Application.Features.UserManagement.CreateUser;
+using SwitchCommander.Application.Features.SSH.CreateSSHCommand;
+using SwitchCommander.Application.Features.User.CreateUser;
 
 namespace SwitchCommander.WebAPI.Controllers;
 
