@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.UserManagement.CreateUser;
-using SwitchCommander.Application.Features.UserManagement.ReadUser;
+using SwitchCommander.Application.Features.User.CreateUser;
+using SwitchCommander.Application.Features.User.ReadUser;
 
 namespace SwitchCommander.WebAPI.Controllers;
 
@@ -53,8 +53,9 @@ public class UserController : BaseController
     /// </returns>
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CreateUserResponse>> GetById(
+    public async Task<ActionResult<ReadUserResponse>> GetById(
         string id,
         CancellationToken cancellationToken)
     {

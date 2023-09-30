@@ -1,7 +1,7 @@
 ﻿using Riok.Mapperly.Abstractions;
 using SwitchCommander.Domain.Dtos;
 
-namespace SwitchCommander.Application.Features.SSHManagement.CreateSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.CreateSSHCommand;
 
 [Mapper]
 public partial class CreateSSHCommandMapper

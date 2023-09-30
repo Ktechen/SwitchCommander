@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features;
 
-namespace SwitchCommander.Application.Features.UserManagement.CreateUser;
+namespace SwitchCommander.Application.Features.User.CreateUser;
 
 public sealed record CreateUserRequest(string? Email, string? Name, string? NameTwo) : IRequest<CreateUserResponse>;
 
