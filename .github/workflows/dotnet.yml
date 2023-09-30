@@ -1,4 +1,4 @@
-name: .NET
+name: Build and Test .NET Projects
 
 on:
   push:
@@ -12,24 +12,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET 7
-      uses: actions/setup-dotnet@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v7
       with:
-        dotnet-version: 7.0.x  # Replace with the desired version of .NET 7
+        dotnet-version: 7.x  # Use the desired .NET 7 version
 
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build WebAPI
-      run: dotnet build --no-restore --project SwitchCommander.WebAPI/SwitchCommander.WebAPI.csproj
+    - name: Build SwitchCommander.Application
+      run: dotnet build --no-restore --project SwitchCommander.Application/SwitchCommander.Application.csproj
 
-    - name: Build Blazor
-      run: dotnet build --no-restore --project SwitchCommander.Blazor/SwitchCommander.Blazor.csproj
+    - name: Build SwitchCommander.Domain
+      run: dotnet build --no-restore --project SwitchCommander.Domain/SwitchCommander.Domain.csproj
+
+    - name: Build SwitchCommander.Persistence
+      run: dotnet build --no-restore --project SwitchCommander.Persistence/SwitchCommander.Persistence.csproj
 
     - name: Run Unit Tests
-      run: dotnet test --no-build --verbosity normal --project SwitchCommander.UnitTests/SwitchCommander.UnitTests.csproj
-
-    - name: Run Integration Tests
-      run: dotnet test --no-build --verbosity normal --project SwitchCommander.IntegrationTests/SwitchCommander.IntegrationTests.csproj
-
+      run: dotnet test --no-build --verbosity normal
