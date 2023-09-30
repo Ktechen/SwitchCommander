@@ -1,28 +1,36 @@
-name: .NET
+name: Build and Test .NET Projects
 
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
+      - master # Adjust the branch name if needed
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup .NET 7
-      uses: actions/setup-dotnet@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v7
       with:
-        dotnet-version: 7.0.x  # Replace with the desired version of .NET 7
+        dotnet-version: 7.x  # Use the desired .NET 7 version
 
-    - name: Install dependencies
+    - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build
-      run: dotnet build
+    - name: Build SwitchCommander.Application
+      run: dotnet build --no-restore --project SwitchCommander.Application/SwitchCommander.Application.csproj
+
+    - name: Build SwitchCommander.Domain
+      run: dotnet build --no-restore --project SwitchCommander.Domain/SwitchCommander.Domain.csproj
+
+    # You can add more build steps for projects you want to include.
+
+    - name: Run Unit Tests
+      run: dotnet test --no-build --verbosity normal
+
+  # You can add more jobs for other workflows if needed.
