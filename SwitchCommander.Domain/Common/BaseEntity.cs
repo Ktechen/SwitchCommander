@@ -10,7 +10,7 @@ public abstract class BaseEntity
 
     [BsonId]
     [BsonRepresentation(BsonType.String)]
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     [BsonIgnore] public List<IDomainEvent> DomainEvents { get; } = new();
 

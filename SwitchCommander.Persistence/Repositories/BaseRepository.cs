@@ -59,14 +59,17 @@ public abstract class BaseRepository<T> : IDisposable, IBaseRepository<T> where 
         await Collection.InsertManyAsync(entities, cancellationToken: cancellationToken);
     }
 
-    public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
-        await Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity, cancellationToken: cancellationToken);
+        entity.DateUpdated = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        var result = await Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity, cancellationToken: cancellationToken);
+        return result.IsAcknowledged && result.ModifiedCount == 1;
     }
 
-    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        await Collection.DeleteOneAsync(x => x.Id == id, cancellationToken);
+        var result = await Collection.DeleteOneAsync(x => x.Id == id, cancellationToken);
+        return result.IsAcknowledged && result.DeletedCount == 1;
     }
 
     public void Dispose()
