@@ -1,9 +1,11 @@
 ﻿using MediatR;
+using MongoDB.Bson.Serialization;
 using SwitchCommander.Application.Repositories.Features;
 
 namespace SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
 
 public sealed record UpdateSSHCommandConfigurationRequest(
+    Guid Id,
     int CommandMinimumLength,
     int CommandMaximumLength,
     int DescriptionMinimumLength,
@@ -30,19 +32,7 @@ public class UpdateSSHCommandConfiguration : IRequestHandler<UpdateSSHCommandCon
         CancellationToken cancellationToken)
     {
         var mapper = _mapper.FromRequest(request);
-        var foundConfig = await _repository.GetAllAsync(cancellationToken);
-        if (!foundConfig.Any())
-        {
-            return new UpdateSSHCommandConfigurationResponse(false);
-        }
-
-        var elem = foundConfig.First();
-        elem.CommandMaximumLength = mapper.CommandMaximumLength;
-        elem.CommandMinimumLength = mapper.CommandMinimumLength;
-        elem.DescriptionMaximumLength = mapper.DescriptionMaximumLength;
-        elem.DescriptionMinimumLength = mapper.DescriptionMinimumLength;
-        
-        var result = await _repository.UpdateAsync(elem, cancellationToken);
+        var result = await _repository.UpdateAsync(mapper, cancellationToken);
         return new UpdateSSHCommandConfigurationResponse(result);
     }
 }
