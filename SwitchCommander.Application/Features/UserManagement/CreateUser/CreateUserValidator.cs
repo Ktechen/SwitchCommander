@@ -5,8 +5,8 @@ namespace SwitchCommander.Application.Features.UserManagement.CreateUser;
 
 public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
 {
-    private IUserRepository _userRepository;
-    
+    private readonly IUserRepository _userRepository;
+
     public CreateUserValidator(IUserRepository userRepository)
     {
         _userRepository = userRepository;
@@ -18,7 +18,7 @@ public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
             .Must(IsUniqueEmail)
             .WithMessage("Email already exists")
             .MaximumLength(50);
-        
+
         RuleFor(x => x.Name)
             .NotEmpty()
             .MinimumLength(3)

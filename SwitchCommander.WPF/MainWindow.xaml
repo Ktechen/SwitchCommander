@@ -10,7 +10,7 @@
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
-    
+
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -19,9 +19,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" Name="Email" Text="{Binding Email}"  />
-        <TextBox Grid.Row="1" Name="Name" Text="{Binding Name}"/>
-        <TextBox Grid.Row="2" Name="NameTwo" Text="{Binding NameTwo}"/>
+        <TextBox Grid.Row="0" Name="Email" Text="{Binding Email}" />
+        <TextBox Grid.Row="1" Name="Name" Text="{Binding Name}" />
+        <TextBox Grid.Row="2" Name="NameTwo" Text="{Binding NameTwo}" />
         <Button Grid.Row="3" Content="Create" Command="{Binding CreateUserCommand}" />
 
     </Grid>

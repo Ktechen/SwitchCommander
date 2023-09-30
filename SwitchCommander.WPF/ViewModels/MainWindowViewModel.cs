@@ -10,11 +10,14 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged
     private string _email;
     private string _name;
     private string _nameTwo;
-    
-    public event PropertyChangedEventHandler? PropertyChanged;
-    
-    public string Email 
-    { 
+
+    public MainWindowViewModel()
+    {
+        CreateUserCommand = new DelegateCommand(CreateUser, CanCreateUser);
+    }
+
+    public string Email
+    {
         get => _email;
         set
         {
@@ -25,8 +28,8 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged
         }
     }
 
-    public string Name 
-    { 
+    public string Name
+    {
         get => _name;
         set
         {
@@ -37,8 +40,8 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged
         }
     }
 
-    public string NameTwo 
-    { 
+    public string NameTwo
+    {
         get => _nameTwo;
         set
         {
@@ -51,18 +54,15 @@ public sealed class MainWindowViewModel : INotifyPropertyChanged
 
     public ICommand CreateUserCommand { get; }
 
-    public MainWindowViewModel() 
-    {
-        CreateUserCommand = new DelegateCommand(CreateUser, CanCreateUser);
-    }
+    public event PropertyChangedEventHandler? PropertyChanged;
 
-    private bool CanCreateUser() 
+    private bool CanCreateUser()
     {
         // Return true or false depending on some rule.
         return true;
     }
 
-    private void CreateUser() 
+    private void CreateUser()
     {
         // Create user here.
         var model = new CreateUserRequest

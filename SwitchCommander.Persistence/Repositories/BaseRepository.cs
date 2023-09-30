@@ -69,15 +69,15 @@ public abstract class BaseRepository<T> : IDisposable, IBaseRepository<T> where 
         await Collection.DeleteOneAsync(x => x.Id == id, cancellationToken);
     }
 
+    public void Dispose()
+    {
+        _session.Dispose();
+    }
+
     private async Task DispatchDomainEventsAsync(BaseEntity entity)
     {
         var domainEvents = entity.DomainEvents.ToList();
         entity.DomainEvents.Clear();
         foreach (var domainEvent in domainEvents) await _mediator.Publish(domainEvent, CancellationToken.None);
-    }
-
-    public void Dispose()
-    {
-        _session.Dispose();
     }
 }

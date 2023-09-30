@@ -18,11 +18,13 @@ public class UserController : BaseController
     }
 
     /// <summary>
-    /// Create a user 
+    ///     Create a user
     /// </summary>
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns><see cref="CreateUserResponse"/></returns>
+    /// <returns>
+    ///     <see cref="CreateUserResponse" />
+    /// </returns>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -42,11 +44,13 @@ public class UserController : BaseController
     }
 
     /// <summary>
-    /// Read user by Id
+    ///     Read user by Id
     /// </summary>
     /// <param name="id"></param>
     /// <param name="cancellationToken"></param>
-    /// <returns><see cref="ReadUserResponse"/></returns>
+    /// <returns>
+    ///     <see cref="ReadUserResponse" />
+    /// </returns>
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

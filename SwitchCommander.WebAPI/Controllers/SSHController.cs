@@ -18,7 +18,8 @@ public class SSHController : BaseController
     }
 
 
-    public Task<ActionResult<CreateSSHCommandResponse>> Create(CreateSSHCommandRequest request, CancellationToken cancellationToken)
+    public Task<ActionResult<CreateSSHCommandResponse>> Create(CreateSSHCommandRequest request,
+        CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

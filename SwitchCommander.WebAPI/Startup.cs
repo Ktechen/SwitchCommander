@@ -40,10 +40,7 @@ public class Startup
             app.UseDeveloperExceptionPage();
             app.UseOpenApi();
             app.UseSwaggerUi3();
-            app.UseReDoc(options =>
-            {
-                options.Path = "/redoc";
-            });
+            app.UseReDoc(options => { options.Path = "/redoc"; });
         }
         else
         {
