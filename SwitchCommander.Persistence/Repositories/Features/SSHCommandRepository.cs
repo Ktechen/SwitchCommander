@@ -5,9 +5,9 @@ using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.Persistence.Repositories.Features;
 
-public class SSHCommanderRepository : BaseRepository<SSHCommand>, ISSHCommanderRepository
+public class SSHCommandRepository : BaseRepository<SSHCommand>, ISSHCommandRepository
 {
-    public SSHCommanderRepository(MongoDbContext context, IMediator mediator) : base(context.SSHCommandCollection,
+    public SSHCommandRepository(MongoDbContext context, IMediator mediator) : base(context.SSHCommandCollection,
         mediator)
     {
     }

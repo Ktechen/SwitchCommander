@@ -2,6 +2,6 @@
 
 namespace SwitchCommander.Application.Repositories.Features;
 
-public interface ISSHCommanderRepository : IBaseRepository<SSHCommand>
+public interface ISSHCommandRepository : IBaseRepository<SSHCommand>
 {
 }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SwitchCommander.Application.Repositories.Features;
+using SwitchCommander.Domain.Dtos;
 using SwitchCommander.Persistence.Context;
 using SwitchCommander.Persistence.Repositories.Features;
+using SwitchCommander.Persistence.Seeds;
 
 namespace SwitchCommander.Persistence;
 
@@ -12,7 +14,9 @@ public static class ServiceExtensions
     {
         services.AddScoped<MongoDbContext>();
         services.AddTransient<IUserRepository, UserRepository>();
-        services.AddTransient<ISSHCommanderRepository, SSHCommanderRepository>();
-        //services.AddSingleton<MongoDbContextSeed>();
+        services.AddTransient<ISSHCommandRepository, SSHCommandRepository>();
+        services.AddTransient<ISSHCommandConfigurationRepository, SSHCommandConfigurationRepository>();
+        services.AddTransient<MongoDbContextSeed>();
+        services.BuildServiceProvider().GetRequiredService<MongoDbContextSeed>();
     }
 }

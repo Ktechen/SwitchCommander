@@ -15,6 +15,8 @@ public class MongoDbContext
         UserCollection = mongoDatabase.GetCollection<User>(nameof(User));
         SwitchCollection = mongoDatabase.GetCollection<Switch>(nameof(Switch));
         SSHCommandCollection = mongoDatabase.GetCollection<SSHCommand>(nameof(SSHCommand));
+        SSHCommandConfigurationCollection =
+            mongoDatabase.GetCollection<SShCommandConfiguration>(nameof(SShCommandConfiguration));
     }
 
     public IMongoCollection<User> UserCollection { get; }
@@ -22,4 +24,6 @@ public class MongoDbContext
     public IMongoCollection<Switch> SwitchCollection { get; }
 
     public IMongoCollection<SSHCommand> SSHCommandCollection { get; }
+    
+    public IMongoCollection<SShCommandConfiguration> SSHCommandConfigurationCollection { get; }
 }
