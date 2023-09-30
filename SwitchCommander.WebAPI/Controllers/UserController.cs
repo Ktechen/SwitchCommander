@@ -55,7 +55,7 @@ public class UserController : BaseController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CreateUserResponse>> GetById(
+    public async Task<ActionResult<ReadUserResponse>> GetById(
         string id,
         CancellationToken cancellationToken)
     {
