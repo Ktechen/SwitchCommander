@@ -24,9 +24,6 @@ jobs:
     - name: Build WebAPI
       run: dotnet build --no-restore --project SwitchCommander.WebAPI/SwitchCommander.WebAPI.csproj
 
-    - name: Build WPF
-      run: dotnet build --no-restore --project SwitchCommander.WPF/SwitchCommander.WPF.csproj
-
     - name: Build Blazor
       run: dotnet build --no-restore --project SwitchCommander.Blazor/SwitchCommander.Blazor.csproj
 
