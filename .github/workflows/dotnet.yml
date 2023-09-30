@@ -20,13 +20,9 @@ jobs:
         
     - name: Restore Dependencies
       run: dotnet restore
-
-    - name: Build SwitchCommander.Application
-      run: dotnet build --configuration Release --project SwitchCommander.Application/SwitchCommander.Application.csproj
-
-    - name: Build SwitchCommander.Domain
-      run: dotnet build --configuration Release --project SwitchCommander.Domain/SwitchCommander.Domain.csproj
-
-    # Exclude the SwitchCommander.WPF project from the build process
-    - name: Skip SwitchCommander.WPF Project
-      run: echo "Skipping SwitchCommander.WPF project"
+      
+    - name: Build
+      run: dotnet build --no-restore
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
