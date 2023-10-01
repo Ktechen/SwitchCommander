@@ -7,7 +7,7 @@ namespace SwitchCommander.Application.Features.SSH.CreateSSHCommand;
 public class CreateSSHCommandValidator : AbstractValidator<CreateSSHCommandRequest>
 {
     private readonly ISSHCommandConfigurationRepository _repository;
-    
+
     public CreateSSHCommandValidator(ISSHCommandConfigurationRepository repository)
     {
         _repository = repository;
@@ -34,5 +34,4 @@ public class CreateSSHCommandValidator : AbstractValidator<CreateSSHCommandReque
         var result = _repository.GetDefaultConfig(default).Result;
         return result ?? new SShCommandConfiguration();
     }
-    
 }

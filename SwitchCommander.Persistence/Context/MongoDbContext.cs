@@ -24,6 +24,6 @@ public class MongoDbContext
     public IMongoCollection<Switch> SwitchCollection { get; }
 
     public IMongoCollection<SSHCommand> SSHCommandCollection { get; }
-    
+
     public IMongoCollection<SShCommandConfiguration> SSHCommandConfigurationCollection { get; }
 }

@@ -23,10 +23,9 @@ public class MongoDbContextSeed
                 Command = "show version"
             }
         };
-        
+
         var hasInsert = context.SSHCommandConfigurationCollection.FindAsync(x => true).Result.Any();
         if (!hasInsert)
-        {
             context.SSHCommandConfigurationCollection.InsertOne(new SShCommandConfiguration
             {
                 CommandMinimumLength = 1,
@@ -34,6 +33,5 @@ public class MongoDbContextSeed
                 CommandMaximumLength = 200,
                 DescriptionMaximumLength = 1000
             });
-        }
     }
 }

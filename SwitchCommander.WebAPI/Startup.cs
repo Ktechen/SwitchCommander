@@ -55,9 +55,8 @@ public class Startup
                 Environment.Exit(0);
             }
         }
-        
-        
-        
+
+
         app.UseErrorHandler();
         app.UseCors();
         app.UseRouting();

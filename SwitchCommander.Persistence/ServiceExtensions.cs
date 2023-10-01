@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SwitchCommander.Application.Repositories.Features;
-using SwitchCommander.Domain.Dtos;
 using SwitchCommander.Persistence.Context;
 using SwitchCommander.Persistence.Repositories.Features;
 using SwitchCommander.Persistence.Seeds;
