@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using MongoDB.Bson.Serialization;
 using SwitchCommander.Application.Repositories.Features;
 
 namespace SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
@@ -19,10 +18,11 @@ public sealed record UpdateSSHCommandConfigurationResponse(
 public class UpdateSSHCommandConfiguration : IRequestHandler<UpdateSSHCommandConfigurationRequest,
     UpdateSSHCommandConfigurationResponse>
 {
-    private readonly ISSHCommandConfigurationRepository _repository;
     private readonly UpdateSSHCommandConfigurationMapper _mapper;
+    private readonly ISSHCommandConfigurationRepository _repository;
 
-    public UpdateSSHCommandConfiguration(ISSHCommandConfigurationRepository repository, UpdateSSHCommandConfigurationMapper mapper)
+    public UpdateSSHCommandConfiguration(ISSHCommandConfigurationRepository repository,
+        UpdateSSHCommandConfigurationMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;

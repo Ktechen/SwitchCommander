@@ -24,7 +24,7 @@ public class SSHController : BaseController
     {
         throw new NotImplementedException();
     }
-    
+
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

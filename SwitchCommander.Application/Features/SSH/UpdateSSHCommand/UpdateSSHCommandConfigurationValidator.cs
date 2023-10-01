@@ -2,7 +2,7 @@
 
 namespace SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
 
-public class UpdateSSHCommandConfigurationValidator :  AbstractValidator<UpdateSSHCommandConfigurationRequest>
+public class UpdateSSHCommandConfigurationValidator : AbstractValidator<UpdateSSHCommandConfigurationRequest>
 {
     public UpdateSSHCommandConfigurationValidator()
     {
@@ -25,8 +25,5 @@ public class UpdateSSHCommandConfigurationValidator :  AbstractValidator<UpdateS
         RuleFor(x => x.DescriptionMaximumLength)
             .GreaterThan(x => x.DescriptionMinimumLength)
             .WithMessage("DescriptionMaximumLength must be greater than DescriptionMinimumLength");
-
     }
-    
-    
 }
