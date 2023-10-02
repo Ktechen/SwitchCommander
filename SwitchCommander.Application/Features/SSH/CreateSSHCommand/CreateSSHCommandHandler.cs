@@ -28,7 +28,6 @@ public class CreateSSHCommandHandler : IRequestHandler<CreateSSHCommandRequest, 
     {
         var map = _mapper.FromRequest(request);
         await _repository.AddAsync(map, cancellationToken);
-
         return _mapper.ToResponse(map);
     }
 }
