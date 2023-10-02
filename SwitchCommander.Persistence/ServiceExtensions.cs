@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SwitchCommander.Application.Repositories.Features;
+using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Persistence.Context;
 using SwitchCommander.Persistence.Repositories.Features;
+using SwitchCommander.Persistence.Repositories.Features.SSH;
 using SwitchCommander.Persistence.Seeds;
 
 namespace SwitchCommander.Persistence;

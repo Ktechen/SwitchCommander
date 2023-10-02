@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using SwitchCommander.Application.Repositories.Features;
+using SwitchCommander.Application.Repositories.Features.SSH;
 
 namespace SwitchCommander.Application.Features.SSH.CreateSSHCommand;
 

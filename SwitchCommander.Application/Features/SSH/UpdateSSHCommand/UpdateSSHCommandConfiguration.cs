@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SwitchCommander.Application.Repositories.Features;
+using SwitchCommander.Application.Repositories.Features.SSH;
 
 namespace SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
 

@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SwitchCommander.Application.Repositories.Features;
+using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Domain.Dtos;
 
 namespace SwitchCommander.Application.Features.SSH.CreateSSHCommand;
