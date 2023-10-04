@@ -5,13 +5,13 @@ using SwitchCommander.Application.Repositories.Features.SSH;
 
 namespace SwitchCommander.Application.Features.SSH;
 
-public sealed record ExecuteSSHCommandHandlerRequest
-    (Guid serverId, Guid commandId) : IRequest<ExecuteSSHCommandHandlerResponse>;
+public sealed record ExecuteSSHCommandRequest
+    (Guid serverId, Guid commandId) : IRequest<ExecuteSSHCommandResponse>;
 
-public sealed record ExecuteSSHCommandHandlerResponse(string? Hostname, string? Username, string? Name,
+public sealed record ExecuteSSHCommandResponse(string? Hostname, string? Username, string? Name,
     string? Description, string? Command, string? CommandResult);
 
-public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandHandlerRequest, ExecuteSSHCommandHandlerResponse>
+public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandRequest, ExecuteSSHCommandResponse>
 {
     private readonly ILogger<ExecuteSSHCommandHandler> _logger;
     private readonly ISSHServerRepository _serverRepository;
@@ -25,7 +25,7 @@ public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandHandler
         _commandRepository = commandRepository;
     }
 
-    public async Task<ExecuteSSHCommandHandlerResponse> Handle(ExecuteSSHCommandHandlerRequest request,
+    public async Task<ExecuteSSHCommandResponse> Handle(ExecuteSSHCommandRequest request,
         CancellationToken cancellationToken)
     {
         var server = await _serverRepository.FindByIdAsync(request.serverId, cancellationToken);
@@ -34,7 +34,7 @@ public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandHandler
         if (server is null || sshCommand is null)
         {
             _logger.LogError("server is null || sshCommand is null");
-            return new ExecuteSSHCommandHandlerResponse(null, null, null, null, null,
+            return new ExecuteSSHCommandResponse(null, null, null, null, null,
                 "server is null or sshCommand is null");
         }
 
@@ -47,9 +47,9 @@ public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandHandler
         _logger.LogInformation("client ExitStatus: " + runCommand.ExitStatus);
 
         return runCommand.Error.Length != 0
-            ? new ExecuteSSHCommandHandlerResponse(server.Hostname, server.Username, sshCommand.Name,
+            ? new ExecuteSSHCommandResponse(server.Hostname, server.Username, sshCommand.Name,
                 sshCommand.Description, sshCommand.Command, runCommand.Error)
-            : new ExecuteSSHCommandHandlerResponse(server.Hostname, server.Username, sshCommand.Name,
+            : new ExecuteSSHCommandResponse(server.Hostname, server.Username, sshCommand.Name,
                 sshCommand.Description, sshCommand.Command, runCommand.Result);
     }
 }

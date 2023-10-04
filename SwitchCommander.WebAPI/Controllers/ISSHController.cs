@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SwitchCommander.Application.Features.SSH;
 using SwitchCommander.Application.Features.SSH.CreateSSHCommand;
 using SwitchCommander.Application.Features.SSH.DeleteSSHCommand;
 using SwitchCommander.Application.Features.SSH.ReadSSHCommand;
@@ -17,4 +18,8 @@ public interface ISSHController
     public Task<ActionResult<ReadSSHCommandResponse>> ReadServer(ReadSSHCommandRequest request, CancellationToken cancellationToken);
     public Task<ActionResult<DeleteSSHCommandResponse>> DeleteServer(DeleteSSHCommandResponse request, CancellationToken cancellationToken);
     public Task<ActionResult<UpdateSSHCommandResponse>> UpdateServer(UpdateSSHCommandRequest request, CancellationToken cancellationToken);
+    
+    public Task<ActionResult<ExecuteSSHCommandResponse>> ExecuteSSHCommand(ExecuteSSHCommandRequest request, CancellationToken cancellationToken);
+    public Task<ActionResult<UpdateSSHCommandConfigurationResponse>> UpdateSSHCommandConfiguration(UpdateSSHCommandConfigurationRequest request, CancellationToken cancellationToken);
+
 }
