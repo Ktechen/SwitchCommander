@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Renci.SshNet;
-using SwitchCommander.Application.Common.Exceptions;
 using SwitchCommander.Application.Repositories.Features.SSH;
 
 namespace SwitchCommander.Application.Features.SSH;

@@ -13,11 +13,22 @@ public static class ServiceExtensions
 {
     public static void ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
     {
+        AddMongoDb(services);
+        AddRepository(services);
+    }
+
+    private static void AddMongoDb(this IServiceCollection services)
+    {
         services.AddScoped<MongoDbContext>();
+        services.AddTransient<MongoDbContextSeed>();
+        services.BuildServiceProvider().GetRequiredService<MongoDbContextSeed>();
+    }
+
+    private static void AddRepository(this IServiceCollection services)
+    {
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<ISSHCommandRepository, SSHCommandRepository>();
         services.AddTransient<ISSHCommandConfigurationRepository, SSHCommandConfigurationRepository>();
-        services.AddTransient<MongoDbContextSeed>();
-        services.BuildServiceProvider().GetRequiredService<MongoDbContextSeed>();
+        services.AddTransient<ISSHServerRepository, SSHServerRepository>();
     }
 }
