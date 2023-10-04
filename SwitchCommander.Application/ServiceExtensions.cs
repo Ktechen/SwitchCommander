@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Riok.Mapperly.Abstractions;
 using SwitchCommander.Application.Common.Behaviors;
+using SwitchCommander.Application.Common.Services;
 
 namespace SwitchCommander.Application;
 
@@ -15,6 +16,7 @@ public static class ServiceExtensions
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddSingleton<IPasswordService, PasswordService>();
     }
 
     private static void AddMappersFromAssembly(this IServiceCollection services, Assembly assembly)
