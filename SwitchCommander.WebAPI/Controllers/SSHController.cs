@@ -44,6 +44,23 @@ public class SSHController : BaseController
         return Ok(response);
     }
     
+    [HttpPost("server")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<CreateSSHServerResponse>> Delete(CreateSSHServerRequest request,
+        CancellationToken cancellationToken)
+    {
+        var validationResult = await _validatorCreateSSHServerRequest.ValidateAsync(request, cancellationToken);
+        if (!validationResult.IsValid)
+        {
+            var errorMessages = string.Join("\n", validationResult.Errors.Select(error => error.ErrorMessage));
+            return BadRequest(errorMessages);
+        }
+
+        var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
+    
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

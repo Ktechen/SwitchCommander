@@ -24,7 +24,7 @@ public sealed class ReadUserHandler : IRequestHandler<ReadUserRequest, ReadUserR
     public async Task<ReadUserResponse> Handle(ReadUserRequest request, CancellationToken cancellationToken)
     {
         var user = _mapper.FromRequest(request);
-        var result = await _userRepository.GetByIdAsync(request.Id, cancellationToken);
+        var result = await _userRepository.FindByIdAsync(request.Id, cancellationToken);
         _logger.LogInformation("Read user from Db " + user.Email);
         return result is null
             ? new ReadUserResponse(Guid.Empty, string.Empty, string.Empty, string.Empty)

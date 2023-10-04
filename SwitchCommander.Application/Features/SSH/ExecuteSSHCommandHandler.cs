@@ -28,8 +28,8 @@ public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandHandler
     public async Task<ExecuteSSHCommandHandlerResponse> Handle(ExecuteSSHCommandHandlerRequest request,
         CancellationToken cancellationToken)
     {
-        var server = await _serverRepository.GetByIdAsync(request.serverId, cancellationToken);
-        var sshCommand = await _commandRepository.GetByIdAsync(request.commandId, cancellationToken);
+        var server = await _serverRepository.FindByIdAsync(request.serverId, cancellationToken);
+        var sshCommand = await _commandRepository.FindByIdAsync(request.commandId, cancellationToken);
 
         if (server is null || sshCommand is null)
         {

@@ -29,8 +29,6 @@
 
     <ItemGroup>
         <Folder Include="Common\Attributes\"/>
-        <Folder Include="Features\SSH\DeleteSSHCommand\"/>
-        <Folder Include="Features\SSH\ReadSSHCommand\"/>
         <Folder Include="Features\User\ReadUser\DomainEvents\"/>
     </ItemGroup>
 
