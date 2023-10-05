@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SwitchCommander.Application.Features.User.CreateUser;
 using SwitchCommander.Application.Features.User.ReadUser;
 
-namespace SwitchCommander.WebAPI.Controllers;
+namespace SwitchCommander.WebAPI.Controllers.SSH;
 
 public class UserController : BaseController
 {

@@ -3,19 +3,17 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
 
-namespace SwitchCommander.WebAPI.Controllers;
+namespace SwitchCommander.WebAPI.Controllers.User;
 
-public class SSHController : BaseController
+public class SSHConfigController : BaseController
 {
     private readonly IValidator<UpdateSSHCommandConfigurationRequest> _validatorUpdateSshCommandConfigurationRequest;
     
-    public SSHController(
-        IMediator mediator, 
-        IValidator<UpdateSSHCommandConfigurationRequest> validatorUpdateSshCommandConfigurationRequest) : base(mediator)
+    public SSHConfigController(IMediator mediator, IValidator<UpdateSSHCommandConfigurationRequest> validatorUpdateSshCommandConfigurationRequest) : base(mediator)
     {
         _validatorUpdateSshCommandConfigurationRequest = validatorUpdateSshCommandConfigurationRequest;
     }
-
+    
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

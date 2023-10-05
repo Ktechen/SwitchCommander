@@ -17,7 +17,9 @@ public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandRequest
     private readonly ISSHServerRepository _serverRepository;
     private readonly ISSHCommandRepository _commandRepository;
 
-    public ExecuteSSHCommandHandler(ILogger<ExecuteSSHCommandHandler> logger, ISSHServerRepository serverRepository,
+    public ExecuteSSHCommandHandler(
+        ILogger<ExecuteSSHCommandHandler> logger, 
+        ISSHServerRepository serverRepository,
         ISSHCommandRepository commandRepository)
     {
         _logger = logger;

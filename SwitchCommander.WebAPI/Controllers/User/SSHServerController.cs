@@ -6,7 +6,7 @@ using SwitchCommander.Application.Features.SSH.DeleteSSHCommand;
 using SwitchCommander.Application.Features.SSH.ReadSSHCommand;
 using SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
 
-namespace SwitchCommander.WebAPI.Controllers;
+namespace SwitchCommander.WebAPI.Controllers.User;
 
 public class SSHServerController : BaseController
 {
@@ -17,6 +17,22 @@ public class SSHServerController : BaseController
     {
         _validatorUpdateSSHServerValidator = validatorUpdateSshServerValidator;
         _validatorCreateSSHServerValidator = validatorCreateSshServerValidator;
+    }
+    
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<CreateSSHServerResponse>> Create([FromBody]CreateSSHServerRequest request, CancellationToken cancellationToken)
+    {
+        var validationResult = await _validatorCreateSSHServerValidator.ValidateAsync(request, cancellationToken);
+        if (!validationResult.IsValid)
+        {
+            var errorMessages = string.Join("\n", validationResult.Errors.Select(error => error.ErrorMessage));
+            return BadRequest(errorMessages);
+        }
+
+        var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
     }
     
     [HttpGet("{id}")]
@@ -30,15 +46,6 @@ public class SSHServerController : BaseController
         {
             return BadRequest(response);
         }
-        return Ok(response);
-    }
-    
-    [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<DeleteSSHServerResponse>> Delete(string id, CancellationToken cancellationToken)
-    {        
-        if (!Guid.TryParse(id, out var result)) return BadRequest("Id is invalid");
-        var response = await _mediator.Send(new DeleteSSHServerRequest(result), cancellationToken);
         return Ok(response);
     }
     
@@ -58,20 +65,12 @@ public class SSHServerController : BaseController
         return Ok(response);
     }
     
-    
-    [HttpPost]
+    [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<CreateSSHServerResponse>> Create([FromBody]CreateSSHServerRequest request, CancellationToken cancellationToken)
-    {
-        var validationResult = await _validatorCreateSSHServerValidator.ValidateAsync(request, cancellationToken);
-        if (!validationResult.IsValid)
-        {
-            var errorMessages = string.Join("\n", validationResult.Errors.Select(error => error.ErrorMessage));
-            return BadRequest(errorMessages);
-        }
-
-        var response = await _mediator.Send(request, cancellationToken);
+    public async Task<ActionResult<DeleteSSHServerResponse>> Delete(string id, CancellationToken cancellationToken)
+    {        
+        if (!Guid.TryParse(id, out var result)) return BadRequest("Id is invalid");
+        var response = await _mediator.Send(new DeleteSSHServerRequest(result), cancellationToken);
         return Ok(response);
     }
     
