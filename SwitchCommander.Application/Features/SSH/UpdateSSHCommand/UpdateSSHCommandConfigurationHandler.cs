@@ -15,13 +15,13 @@ public sealed record UpdateSSHCommandConfigurationResponse(
     bool status
 );
 
-public class UpdateSSHCommandConfiguration : IRequestHandler<UpdateSSHCommandConfigurationRequest,
+public class UpdateSSHCommandConfigurationHandler : IRequestHandler<UpdateSSHCommandConfigurationRequest,
     UpdateSSHCommandConfigurationResponse>
 {
     private readonly UpdateSSHCommandConfigurationMapper _mapper;
     private readonly ISSHCommandConfigurationRepository _repository;
 
-    public UpdateSSHCommandConfiguration(ISSHCommandConfigurationRepository repository,
+    public UpdateSSHCommandConfigurationHandler(ISSHCommandConfigurationRepository repository,
         UpdateSSHCommandConfigurationMapper mapper)
     {
         _repository = repository;

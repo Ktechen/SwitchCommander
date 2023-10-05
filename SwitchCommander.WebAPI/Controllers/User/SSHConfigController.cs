@@ -17,7 +17,7 @@ public class SSHConfigController : BaseController
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async  Task<ActionResult<UpdateSSHCommandConfigurationResponse>> UpdateSSHCommandConfiguration(UpdateSSHCommandConfigurationRequest request, CancellationToken cancellationToken)
+    public async  Task<ActionResult<UpdateSSHCommandConfigurationResponse>> UpdateSSHCommandConfiguration([FromBody] UpdateSSHCommandConfigurationRequest request, CancellationToken cancellationToken)
     {
         var validationResult = await _validatorUpdateSshCommandConfigurationRequest.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
