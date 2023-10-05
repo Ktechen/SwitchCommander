@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features.SSH;
 
-namespace SwitchCommander.Application.Features.SSH.ReadSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Read.Server;
 
 public sealed record ReadSSHServerRequest(Guid Id) : IRequest<ReadSSHServerResponse>;
 

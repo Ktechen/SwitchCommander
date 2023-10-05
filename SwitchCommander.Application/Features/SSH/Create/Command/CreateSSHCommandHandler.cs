@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features.SSH;
 
-namespace SwitchCommander.Application.Features.SSH.CreateSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Create.Command;
 
 public sealed record CreateSSHCommandRequest
     (string? Name, string? Description, string? Command) : IRequest<CreateSSHCommandResponse>;

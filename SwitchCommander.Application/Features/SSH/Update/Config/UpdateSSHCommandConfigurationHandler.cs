@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SwitchCommander.Application.Repositories.Features.SSH;
 
-namespace SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Update.Config;
 
 public sealed record UpdateSSHCommandConfigurationRequest(
     Guid Id,

@@ -2,7 +2,7 @@
 using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Domain.Dtos;
 
-namespace SwitchCommander.Application.Features.SSH.CreateSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Create.Command;
 
 public class CreateSSHCommandValidator : AbstractValidator<CreateSSHCommandRequest>
 {

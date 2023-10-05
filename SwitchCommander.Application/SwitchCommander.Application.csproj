@@ -29,6 +29,7 @@
 
     <ItemGroup>
         <Folder Include="Common\Attributes\"/>
+        <Folder Include="Features\SSH\Update\Command\" />
         <Folder Include="Features\User\ReadUser\DomainEvents\"/>
     </ItemGroup>
 

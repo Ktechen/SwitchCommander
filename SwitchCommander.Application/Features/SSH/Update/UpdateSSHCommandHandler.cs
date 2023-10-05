@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Update;
 
 public sealed record UpdateSSHCommandRequest(Guid Id) : IRequest<UpdateSSHCommandResponse>;
 

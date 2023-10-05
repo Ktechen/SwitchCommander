@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features.SSH;
 
-namespace SwitchCommander.Application.Features.SSH.DeleteSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Delete.Command;
 
 public sealed record DeleteSSHCommandRequest(Guid Id) : IRequest<DeleteSSHCommandResponse>;
 

@@ -1,4 +1,4 @@
-﻿using SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
+﻿using SwitchCommander.Application.Features.SSH.Update.Config;
 
 namespace SwitchCommander.UnitTests.Features.SSH.UpdateSSHCommand;
 

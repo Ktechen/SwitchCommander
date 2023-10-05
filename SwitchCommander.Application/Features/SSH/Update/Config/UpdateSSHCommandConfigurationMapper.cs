@@ -1,7 +1,7 @@
 ﻿using Riok.Mapperly.Abstractions;
 using SwitchCommander.Domain.Dtos;
 
-namespace SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Update.Config;
 
 [Mapper]
 public partial class UpdateSSHCommandConfigurationMapper

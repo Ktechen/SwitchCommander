@@ -1,10 +1,13 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.SSH.CreateSSHCommand;
-using SwitchCommander.Application.Features.SSH.DeleteSSHCommand;
-using SwitchCommander.Application.Features.SSH.ReadSSHCommand;
-using SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
+using SwitchCommander.Application.Features.SSH.Create;
+using SwitchCommander.Application.Features.SSH.Create.Server;
+using SwitchCommander.Application.Features.SSH.Delete;
+using SwitchCommander.Application.Features.SSH.Delete.Server;
+using SwitchCommander.Application.Features.SSH.Read;
+using SwitchCommander.Application.Features.SSH.Read.Server;
+using SwitchCommander.Application.Features.SSH.Update.Server;
 
 namespace SwitchCommander.WebAPI.Controllers.User;
 
@@ -52,8 +55,9 @@ public class SSHServerController : BaseController
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<UpdateSSHServerResponse>> Update([FromBody]UpdateSSHServerRequest request, CancellationToken cancellationToken)
+    public async Task<ActionResult<UpdateSSHServerResponse>> Update([FromBody] UpdateSSHServerRequest request, CancellationToken cancellationToken)
     {
+        if (!Guid.TryParse(request.Id, out var result)) return BadRequest("Id is invalid");
         var validationResult = await _validatorUpdateSSHServerValidator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
         {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Update.Config;
 
 public class UpdateSSHCommandConfigurationValidator : AbstractValidator<UpdateSSHCommandConfigurationRequest>
 {

@@ -1,10 +1,13 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.SSH.CreateSSHCommand;
-using SwitchCommander.Application.Features.SSH.DeleteSSHCommand;
-using SwitchCommander.Application.Features.SSH.ReadSSHCommand;
-using SwitchCommander.Application.Features.SSH.UpdateSSHCommand;
+using SwitchCommander.Application.Features.SSH.Create;
+using SwitchCommander.Application.Features.SSH.Create.Command;
+using SwitchCommander.Application.Features.SSH.Delete;
+using SwitchCommander.Application.Features.SSH.Delete.Command;
+using SwitchCommander.Application.Features.SSH.Read;
+using SwitchCommander.Application.Features.SSH.Read.Command;
+using SwitchCommander.Application.Features.SSH.Update;
 
 namespace SwitchCommander.WebAPI.Controllers.User;
 

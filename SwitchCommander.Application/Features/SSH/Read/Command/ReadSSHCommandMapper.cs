@@ -1,7 +1,7 @@
 ﻿using Riok.Mapperly.Abstractions;
 using SwitchCommander.Domain.Dtos;
 
-namespace SwitchCommander.Application.Features.SSH.ReadSSHCommand;
+namespace SwitchCommander.Application.Features.SSH.Read.Command;
 
 [Mapper]
 public partial class ReadSSHCommandMapper
