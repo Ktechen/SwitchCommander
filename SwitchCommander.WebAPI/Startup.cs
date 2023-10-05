@@ -61,6 +61,9 @@ public class Startup
         app.UseCors();
         app.UseRouting();
 
-        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
     }
 }

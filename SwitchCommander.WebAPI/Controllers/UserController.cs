@@ -8,12 +8,10 @@ namespace SwitchCommander.WebAPI.Controllers;
 
 public class UserController : BaseController
 {
-    private readonly IMediator _mediator;
     private readonly IValidator<CreateUserRequest> _validator;
 
-    public UserController(IMediator mediator, IValidator<CreateUserRequest> validator)
+    public UserController(IMediator mediator, IValidator<CreateUserRequest> validator) : base(mediator)
     {
-        _mediator = mediator;
         _validator = validator;
     }
 

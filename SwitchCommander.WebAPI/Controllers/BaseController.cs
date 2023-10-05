@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SwitchCommander.WebAPI.Controllers;
 
@@ -6,4 +7,10 @@ namespace SwitchCommander.WebAPI.Controllers;
 [Route("api/v1/[controller]")]
 public abstract class BaseController : ControllerBase
 {
+    protected readonly IMediator _mediator;
+
+    protected BaseController(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
 }

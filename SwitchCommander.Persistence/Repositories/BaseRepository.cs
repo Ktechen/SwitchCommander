@@ -61,8 +61,7 @@ public abstract class BaseRepository<T> : IDisposable, IBaseRepository<T> where 
     public async Task<bool> UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
         entity.DateUpdated = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        var result =
-            await Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity, cancellationToken: cancellationToken);
+        var result = await Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity, cancellationToken: cancellationToken);
         return result.IsAcknowledged && result.ModifiedCount == 1;
     }
 
