@@ -1,17 +1,27 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SwitchCommander.Application.Features.SSH.Read.Config;
 using SwitchCommander.Application.Features.SSH.Update.Config;
 
 namespace SwitchCommander.WebAPI.Controllers.SSH;
 
-public class SSHConfigController : BaseController
+public class SSHConfigurationController : BaseController
 {
     private readonly IValidator<UpdateSSHCommandConfigurationRequest> _validatorUpdateSshCommandConfigurationRequest;
     
-    public SSHConfigController(IMediator mediator, IValidator<UpdateSSHCommandConfigurationRequest> validatorUpdateSshCommandConfigurationRequest) : base(mediator)
+    public SSHConfigurationController(IMediator mediator, IValidator<UpdateSSHCommandConfigurationRequest> validatorUpdateSshCommandConfigurationRequest) : base(mediator)
     {
         _validatorUpdateSshCommandConfigurationRequest = validatorUpdateSshCommandConfigurationRequest;
+    }
+    
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<UpdateSSHCommandConfigurationResponse>>> ReadAll(CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new ReadSSHCommandConfigurationRequest(), cancellationToken);
+        return Ok(response);
     }
     
     [HttpPut]

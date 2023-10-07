@@ -56,7 +56,6 @@ public class Startup
             }
         }
 
-
         app.UseErrorHandler();
         app.UseCors();
         app.UseRouting();

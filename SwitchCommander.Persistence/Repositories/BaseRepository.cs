@@ -32,7 +32,6 @@ public abstract class BaseRepository<T> : IDisposable, IBaseRepository<T> where 
     public async Task<T?> FindByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
-        await DispatchDomainEventsAsync(entity);
         return entity;
     }
 
