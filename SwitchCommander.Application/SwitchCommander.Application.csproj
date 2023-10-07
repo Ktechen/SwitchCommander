@@ -15,6 +15,7 @@
         <PackageReference Include="FluentValidation" Version="11.7.1"/>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1"/>
         <PackageReference Include="MediatR" Version="12.1.1"/>
+        <PackageReference Include="MongoDB.Driver" Version="2.21.0" />
         <PackageReference Include="Riok.Mapperly" Version="3.1.0"/>
         <PackageReference Include="SSH.NET" Version="2020.0.2"/>
     </ItemGroup>
@@ -29,7 +30,6 @@
 
     <ItemGroup>
         <Folder Include="Common\Attributes\"/>
-        <Folder Include="Features\SSH\Update\Command\" />
         <Folder Include="Features\User\ReadUser\DomainEvents\"/>
     </ItemGroup>
 

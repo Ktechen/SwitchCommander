@@ -1,25 +1,27 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.SSH.Create;
 using SwitchCommander.Application.Features.SSH.Create.Server;
-using SwitchCommander.Application.Features.SSH.Delete;
 using SwitchCommander.Application.Features.SSH.Delete.Server;
-using SwitchCommander.Application.Features.SSH.Read;
 using SwitchCommander.Application.Features.SSH.Read.Server;
 using SwitchCommander.Application.Features.SSH.Update.Server;
 
-namespace SwitchCommander.WebAPI.Controllers.User;
+namespace SwitchCommander.WebAPI.Controllers.SSH;
 
 public class SSHServerController : BaseController
 {
     private readonly IValidator<UpdateSSHServerRequest> _validatorUpdateSSHServerValidator;
     private readonly IValidator<CreateSSHServerRequest> _validatorCreateSSHServerValidator;
-
-    public SSHServerController(IMediator mediator, IValidator<UpdateSSHServerRequest> validatorUpdateSshServerValidator, IValidator<CreateSSHServerRequest> validatorCreateSshServerValidator) : base(mediator)
+    private readonly IValidator<UpdateSSHServerPasswordRequest> _validatorUpdateSSHServerPasswordValidator;
+    
+    public SSHServerController(IMediator mediator, 
+        IValidator<UpdateSSHServerRequest> validatorUpdateSshServerValidator, 
+        IValidator<CreateSSHServerRequest> validatorCreateSshServerValidator, 
+        IValidator<UpdateSSHServerPasswordRequest> validatorUpdateSshServerPasswordValidator) : base(mediator)
     {
         _validatorUpdateSSHServerValidator = validatorUpdateSshServerValidator;
         _validatorCreateSSHServerValidator = validatorCreateSshServerValidator;
+        _validatorUpdateSSHServerPasswordValidator = validatorUpdateSshServerPasswordValidator;
     }
     
     [HttpPost]
@@ -59,6 +61,24 @@ public class SSHServerController : BaseController
     {
         if (!Guid.TryParse(request.Id, out var result)) return BadRequest("Id is invalid");
         var validationResult = await _validatorUpdateSSHServerValidator.ValidateAsync(request, cancellationToken);
+        if (!validationResult.IsValid)
+        {
+            var errorMessages = string.Join("\n", validationResult.Errors.Select(error => error.ErrorMessage));
+            return BadRequest(errorMessages);
+        }
+        
+        var response = await _mediator.Send(request, cancellationToken);
+        return Ok(response);
+    }
+    
+    [HttpPut("password")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<UpdateSSHServerResponse>> Update([FromBody] UpdateSSHServerPasswordRequest request, CancellationToken cancellationToken)
+    {
+        if (!Guid.TryParse(request.Id, out var result)) return BadRequest("Id is invalid");
+        
+        var validationResult = await _validatorUpdateSSHServerPasswordValidator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
         {
             var errorMessages = string.Join("\n", validationResult.Errors.Select(error => error.ErrorMessage));

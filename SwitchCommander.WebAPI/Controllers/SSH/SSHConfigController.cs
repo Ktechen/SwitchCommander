@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SwitchCommander.Application.Features.SSH.Update.Config;
 
-namespace SwitchCommander.WebAPI.Controllers.User;
+namespace SwitchCommander.WebAPI.Controllers.SSH;
 
 public class SSHConfigController : BaseController
 {

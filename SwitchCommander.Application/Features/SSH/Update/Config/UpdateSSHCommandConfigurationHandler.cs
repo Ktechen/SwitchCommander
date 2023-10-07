@@ -32,7 +32,7 @@ public class UpdateSSHCommandConfigurationHandler : IRequestHandler<UpdateSSHCom
         CancellationToken cancellationToken)
     {
         var mapper = _mapper.FromRequest(request);
-        var result = await _repository.UpdateAsync(mapper, cancellationToken);
+        var result = await _repository.ReplaceAsync(mapper, cancellationToken);
         return new UpdateSSHCommandConfigurationResponse(result);
     }
 }

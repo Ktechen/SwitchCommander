@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using MongoDB.Driver;
 using SwitchCommander.Domain.Common;
 
 namespace SwitchCommander.Application.Repositories;
@@ -19,6 +20,8 @@ public interface IBaseRepository<T> where T : BaseEntity
 
     public Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
 
-    public Task<bool> UpdateAsync(T entity, CancellationToken cancellationToken = default);
+    public Task<bool> ReplaceAsync(T entity, CancellationToken cancellationToken = default);
+    
+    public Task<bool> UpdateAsync(FilterDefinition<T> filter, UpdateDefinition<T> update, CancellationToken cancellationToken = default);
     public Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }

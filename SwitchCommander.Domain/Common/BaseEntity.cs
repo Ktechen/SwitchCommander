@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using SwitchCommander.Domain.Dtos;
 
 namespace SwitchCommander.Domain.Common;
 

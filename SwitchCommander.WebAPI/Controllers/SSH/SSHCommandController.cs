@@ -1,15 +1,13 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.SSH.Create;
 using SwitchCommander.Application.Features.SSH.Create.Command;
-using SwitchCommander.Application.Features.SSH.Delete;
 using SwitchCommander.Application.Features.SSH.Delete.Command;
-using SwitchCommander.Application.Features.SSH.Read;
 using SwitchCommander.Application.Features.SSH.Read.Command;
 using SwitchCommander.Application.Features.SSH.Update;
+using SwitchCommander.Application.Features.SSH.Update.Command;
 
-namespace SwitchCommander.WebAPI.Controllers.User;
+namespace SwitchCommander.WebAPI.Controllers.SSH;
 
 public class SSHCommandController : BaseController
 {
@@ -55,13 +53,13 @@ public class SSHCommandController : BaseController
         return Ok(response);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UpdateSSHCommandResponse>> Update(UpdateSSHCommandRequest request,
         CancellationToken cancellationToken)
     {
-
+        if (!Guid.TryParse(request.Id, out var result)) return BadRequest("Id is invalid");
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }

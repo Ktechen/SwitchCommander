@@ -15,6 +15,7 @@ public class CreateSSHServerValidator : AbstractValidator<CreateSSHServerRequest
             .MaximumLength(255).WithMessage("Username cannot exceed 255 characters.");
 
         RuleFor(request => request.Password)
-            .NotEmpty().WithMessage("Password is required.");
+            .NotEmpty()
+            .WithMessage("Password is required.");
     }
 }
