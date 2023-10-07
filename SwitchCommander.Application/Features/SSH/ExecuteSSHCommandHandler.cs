@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Renci.SshNet;
+using SwitchCommander.Application.Common.Exceptions;
 using SwitchCommander.Application.Common.Services;
 using SwitchCommander.Application.Repositories.Features.SSH;
 
@@ -40,15 +41,14 @@ public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandRequest
         if (server is null || sshCommand is null)
         {
             _logger.LogError("server is null || sshCommand is null");
-            throw new Exception("server is null or sshCommand is null");
+            throw new BadRequestException("server is null or sshCommand is null");
         }
 
         var password = await _passwordService.VerifyPassword(request.Password, server.Password);
         if (!password)
         {
             _logger.LogError("password is invalid");
-            return new ExecuteSSHCommandResponse(null, null, null, null, null,
-                "password is invalid");
+            throw new BadRequestException("password is invalid");
         }
 
         try
@@ -69,7 +69,7 @@ public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandRequest
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            throw;
+            throw new SSHNetException(e.Message);
         }
     }
 }
