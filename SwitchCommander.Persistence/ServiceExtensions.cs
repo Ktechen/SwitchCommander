@@ -26,9 +26,9 @@ public static class ServiceExtensions
 
     private static void AddRepository(this IServiceCollection services)
     {
-        services.AddTransient<IUserRepository, UserRepository>();
-        services.AddTransient<ISSHCommandRepository, SSHCommandRepository>();
-        services.AddTransient<ISSHCommandConfigurationRepository, SSHCommandConfigurationRepository>();
-        services.AddTransient<ISSHServerRepository, SSHServerRepository>();
+        services.AddTransient<IUserMongoRepository, UserMongoRepository>();
+        services.AddTransient<ISshCommandMongoRepository, SshCommandMongoRepository>();
+        services.AddTransient<ISshCommandConfigurationMongoRepository, SshCommandConfigurationMongoRepository>();
+        services.AddTransient<ISshServerMongoRepository, SshServerMongoRepository>();
     }
 }

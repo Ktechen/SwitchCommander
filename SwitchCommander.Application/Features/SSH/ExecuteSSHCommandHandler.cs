@@ -16,27 +16,27 @@ public sealed record ExecuteSSHCommandResponse(string? Hostname, string? Usernam
 public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandRequest, ExecuteSSHCommandResponse>
 {
     private readonly ILogger<ExecuteSSHCommandHandler> _logger;
-    private readonly ISSHServerRepository _serverRepository;
-    private readonly ISSHCommandRepository _commandRepository;
+    private readonly ISshServerMongoRepository _serverMongoRepository;
+    private readonly ISshCommandMongoRepository _commandMongoRepository;
     private readonly IPasswordService _passwordService;
 
     public ExecuteSSHCommandHandler(
         ILogger<ExecuteSSHCommandHandler> logger, 
-        ISSHServerRepository serverRepository,
-        ISSHCommandRepository commandRepository, 
+        ISshServerMongoRepository serverMongoRepository,
+        ISshCommandMongoRepository commandMongoRepository, 
         IPasswordService passwordService)
     {
         _logger = logger;
-        _serverRepository = serverRepository;
-        _commandRepository = commandRepository;
+        _serverMongoRepository = serverMongoRepository;
+        _commandMongoRepository = commandMongoRepository;
         _passwordService = passwordService;
     }
 
     public async Task<ExecuteSSHCommandResponse> Handle(ExecuteSSHCommandRequest request,
         CancellationToken cancellationToken)
     {
-        var server = await _serverRepository.FindByIdAsync(new Guid(request.ServerId), cancellationToken);
-        var sshCommand = await _commandRepository.FindByIdAsync(new Guid(request.CommandId), cancellationToken);
+        var server = await _serverMongoRepository.FindByIdAsync(new Guid(request.ServerId), cancellationToken);
+        var sshCommand = await _commandMongoRepository.FindByIdAsync(new Guid(request.CommandId), cancellationToken);
 
         if (server is null || sshCommand is null)
         {

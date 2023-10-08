@@ -5,9 +5,9 @@ using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.Persistence.Repositories.Features;
 
-public class SwitchRepository : BaseRepository<Switch>, ISwitchRepository
+public class SwitchMongoRepository : BaseMongoRepository<Switch>, ISwitchMongoRepository
 {
-    public SwitchRepository(MongoDbContext context, IMediator mediator) : base(context.SwitchCollection, mediator)
+    public SwitchMongoRepository(MongoDbContext context, IMediator mediator) : base(context.SwitchCollection, mediator)
     {
     }
 }

@@ -5,11 +5,11 @@ namespace SwitchCommander.Application.Features.User.CreateUser;
 
 public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
 {
-    private readonly IUserRepository _userRepository;
+    private readonly IUserMongoRepository _userMongoRepository;
 
-    public CreateUserValidator(IUserRepository userRepository)
+    public CreateUserValidator(IUserMongoRepository userMongoRepository)
     {
-        _userRepository = userRepository;
+        _userMongoRepository = userMongoRepository;
 
         RuleFor(x => x.Email)
             .NotEmpty()
@@ -19,7 +19,7 @@ public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
             .WithMessage("Email already exists")
             .MaximumLength(50);
 
-        RuleFor(x => x.Name)
+        RuleFor(x => x.Username)
             .NotEmpty()
             .MinimumLength(3)
             .MaximumLength(50)
@@ -28,7 +28,7 @@ public sealed class CreateUserValidator : AbstractValidator<CreateUserRequest>
 
     private bool IsUniqueEmail(string email)
     {
-        var result = _userRepository.FindAsync(x => x.Email == email).Result;
+        var result = _userMongoRepository.FindAsync(x => x.Email == email).Result;
         return !result.Any();
     }
 }

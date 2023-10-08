@@ -2,7 +2,7 @@
 
 namespace SwitchCommander.Application.Repositories.Features.SSH;
 
-public interface ISSHCommandConfigurationRepository : IBaseRepository<SShCommandConfiguration>
+public interface ISshCommandConfigurationMongoRepository : IBaseMongoRepository<SShCommandConfiguration>
 {
     Task<SShCommandConfiguration?> GetDefaultConfig(CancellationToken cancellationToken);
 }

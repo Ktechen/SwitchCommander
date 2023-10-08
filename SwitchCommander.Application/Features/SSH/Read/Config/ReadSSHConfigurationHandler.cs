@@ -12,18 +12,18 @@ public sealed record ReadSSHCommandConfigurationResponse(
 
 public class ReadSSHConfigurationHandler : IRequestHandler<ReadSSHCommandConfigurationRequest, IEnumerable<ReadSSHCommandConfigurationResponse>>
 {
-    private readonly ISSHCommandConfigurationRepository _repository;
+    private readonly ISshCommandConfigurationMongoRepository _mongoRepository;
     private readonly ReadSSHConfigurationMapper _mapper;
 
-    public ReadSSHConfigurationHandler(ISSHCommandConfigurationRepository repository, ReadSSHConfigurationMapper mapper)
+    public ReadSSHConfigurationHandler(ISshCommandConfigurationMongoRepository mongoRepository, ReadSSHConfigurationMapper mapper)
     {
-        _repository = repository;
+        _mongoRepository = mongoRepository;
         _mapper = mapper;
     }
     
     public async Task<IEnumerable<ReadSSHCommandConfigurationResponse>> Handle(ReadSSHCommandConfigurationRequest request, CancellationToken cancellationToken)
     {
-        var result = await _repository.GetAllAsync(cancellationToken);
+        var result = await _mongoRepository.GetAllAsync(cancellationToken);
         return _mapper.FromResponse(result);
     }
 }

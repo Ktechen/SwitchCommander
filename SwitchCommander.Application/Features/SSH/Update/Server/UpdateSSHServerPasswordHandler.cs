@@ -15,16 +15,16 @@ public sealed record UpdateSSHServerPasswordResponse(bool Result);
 public class UpdateSSHServerPasswordHandler : IRequestHandler<UpdateSSHServerPasswordRequest, UpdateSSHServerPasswordResponse>
 {
     private readonly ILogger<UpdateSSHServerPasswordHandler> _logger;
-    private readonly ISSHServerRepository _repository;
+    private readonly ISshServerMongoRepository _mongoRepository;
     private readonly IPasswordService _passwordService;
 
     public UpdateSSHServerPasswordHandler(
         ILogger<UpdateSSHServerPasswordHandler> logger, 
-        ISSHServerRepository repository,
+        ISshServerMongoRepository mongoRepository,
         UpdateSSHServerMapper mapper, IPasswordService passwordService)
     {
         _logger = logger;
-        _repository = repository;
+        _mongoRepository = mongoRepository;
         _passwordService = passwordService;
     }
 
@@ -40,7 +40,7 @@ public class UpdateSSHServerPasswordHandler : IRequestHandler<UpdateSSHServerPas
             .Set(x => x.Password, hash)
             .Set(x => x.DateUpdated, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 
-        var result = await _repository.UpdateAsync(filter, update, cancellationToken);
+        var result = await _mongoRepository.UpdateAsync(filter, update, cancellationToken);
         
         _logger.LogInformation("Hostname: {0} is updated: {1}", request.Id, result);
         return new UpdateSSHServerPasswordResponse(result);

@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SwitchCommander.Application.Features.SSH.Create.Command;
 using SwitchCommander.Application.Features.SSH.Delete.Command;
 using SwitchCommander.Application.Features.SSH.Read.Command;
-using SwitchCommander.Application.Features.SSH.Update;
 using SwitchCommander.Application.Features.SSH.Update.Command;
 
 namespace SwitchCommander.WebAPI.Controllers.SSH;
@@ -21,6 +21,7 @@ public class SSHCommandController : BaseController
         _validatorCreateSSHCommandRequest = validatorCreateSshCommandRequest;
     }
 
+    [Authorize(Policy = "AdminOnly")]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -38,6 +39,7 @@ public class SSHCommandController : BaseController
         return Ok(response);
     }
 
+    [Authorize(Policy = "StandardUser")]
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -53,6 +55,7 @@ public class SSHCommandController : BaseController
         return Ok(response);
     }
 
+    [Authorize(Policy = "AdminOnly")]
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -64,6 +67,7 @@ public class SSHCommandController : BaseController
         return Ok(response);
     }
 
+    [Authorize(Policy = "AdminOnly")]
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<DeleteSSHCommandResponse>> Delete(string id, CancellationToken cancellationToken)

@@ -4,7 +4,7 @@ using SwitchCommander.Domain.Common;
 
 namespace SwitchCommander.Application.Repositories;
 
-public interface IBaseRepository<T> where T : BaseEntity
+public interface IBaseMongoRepository<T> where T : BaseEntity
 {
     public Task Commit();
 

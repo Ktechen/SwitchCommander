@@ -4,19 +4,19 @@ using SwitchCommander.Application.Repositories.Features;
 
 namespace SwitchCommander.Application.Features.User.CreateUser;
 
-public sealed record CreateUserRequest(string? Email, string? Name, string? NameTwo) : IRequest<CreateUserResponse>;
+public sealed record CreateUserRequest(string? Email, string? Username) : IRequest<CreateUserResponse>;
 
-public sealed record CreateUserResponse(Guid? id, string? Email, string? Name, string? NameTwo);
+public sealed record CreateUserResponse(Guid? Id, string? Email, string? Username);
 
 public sealed class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserResponse>
 {
     private readonly ILogger<CreateUserHandler> _logger;
     private readonly CreateUserMapper _mapper;
-    private readonly IUserRepository _userRepository;
+    private readonly IUserMongoRepository _userMongoRepository;
 
-    public CreateUserHandler(IUserRepository userRepository, CreateUserMapper mapper, ILogger<CreateUserHandler> logger)
+    public CreateUserHandler(IUserMongoRepository userMongoRepository, CreateUserMapper mapper, ILogger<CreateUserHandler> logger)
     {
-        _userRepository = userRepository;
+        _userMongoRepository = userMongoRepository;
         _mapper = mapper;
         _logger = logger;
     }
@@ -25,7 +25,7 @@ public sealed class CreateUserHandler : IRequestHandler<CreateUserRequest, Creat
     {
         var user = _mapper.FromRequest(request);
         user.QueueDomainEvent(new CreateUserDomainEvent(user));
-        await _userRepository.AddAsync(user, cancellationToken);
+        await _userMongoRepository.AddAsync(user, cancellationToken);
         return _mapper.ToResponse(user);
     }
 }

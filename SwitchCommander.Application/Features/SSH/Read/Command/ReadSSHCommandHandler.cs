@@ -11,19 +11,19 @@ public sealed record ReadSSHCommandResponse(Guid? Id, string? Name, string? Desc
 public class ReadSSHCommandHandler : IRequestHandler<ReadSSHCommandRequest, ReadSSHCommandResponse>
 {
     private readonly ILogger<ReadSSHCommandHandler> _logger;
-    private readonly ISSHCommandRepository _repository;
+    private readonly ISshCommandMongoRepository _mongoRepository;
     private readonly ReadSSHCommandMapper _mapper;
     
-    public ReadSSHCommandHandler(ILogger<ReadSSHCommandHandler> logger, ISSHCommandRepository repository, ReadSSHCommandMapper mapper)
+    public ReadSSHCommandHandler(ILogger<ReadSSHCommandHandler> logger, ISshCommandMongoRepository mongoRepository, ReadSSHCommandMapper mapper)
     {
         _logger = logger;
-        _repository = repository;
+        _mongoRepository = mongoRepository;
         _mapper = mapper;
     }
 
     public async Task<ReadSSHCommandResponse> Handle(ReadSSHCommandRequest request, CancellationToken cancellationToken)
     {
-        var result = await _repository.FindByIdAsync(request.Id, cancellationToken);
+        var result = await _mongoRepository.FindByIdAsync(request.Id, cancellationToken);
         if (result is null)
         {
             return new ReadSSHCommandResponse(null, null, null, null, 0, 0);

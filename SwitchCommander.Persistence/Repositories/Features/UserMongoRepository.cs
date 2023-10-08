@@ -6,9 +6,9 @@ using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.Persistence.Repositories.Features;
 
-public class UserRepository : BaseRepository<User>, IUserRepository
+public class UserMongoRepository : BaseMongoRepository<User>, IUserMongoRepository
 {
-    public UserRepository(MongoDbContext context, IMediator mediator) : base(context.UserCollection, mediator)
+    public UserMongoRepository(MongoDbContext context, IMediator mediator) : base(context.UserCollection, mediator)
     {
     }
 

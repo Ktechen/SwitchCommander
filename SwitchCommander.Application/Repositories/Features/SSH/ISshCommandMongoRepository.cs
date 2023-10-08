@@ -2,6 +2,6 @@
 
 namespace SwitchCommander.Application.Repositories.Features.SSH;
 
-public interface ISSHCommandRepository : IBaseRepository<SSHCommand>
+public interface ISshCommandMongoRepository : IBaseMongoRepository<SSHCommand>
 {
 }

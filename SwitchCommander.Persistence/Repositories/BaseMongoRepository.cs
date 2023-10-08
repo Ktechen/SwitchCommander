@@ -6,13 +6,13 @@ using SwitchCommander.Domain.Common;
 
 namespace SwitchCommander.Persistence.Repositories;
 
-public abstract class BaseRepository<T> : IDisposable, IBaseRepository<T> where T : BaseEntity
+public abstract class BaseMongoRepository<T> : IDisposable, IBaseMongoRepository<T> where T : BaseEntity
 {
     private readonly IMediator _mediator;
     private readonly IClientSessionHandle _session;
     protected readonly IMongoCollection<T> Collection;
 
-    protected BaseRepository(IMongoCollection<T> collection, IMediator mediator)
+    protected BaseMongoRepository(IMongoCollection<T> collection, IMediator mediator)
     {
         Collection = collection;
         _session = collection.Database.Client.StartSession();

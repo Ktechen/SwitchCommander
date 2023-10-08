@@ -1,4 +1,8 @@
-﻿using SwitchCommander.Application;
+﻿using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using SwitchCommander.Application;
 using SwitchCommander.Persistence;
 using SwitchCommander.WebAPI.Extensions;
 
@@ -24,8 +28,70 @@ public class Startup
         services.AddControllers();
         services.AddEndpointsApiExplorer();
 
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "Your API",
+                Version = "v1",
+            });
+
+            // Configure JWT authentication for Swagger
+            var securityScheme = new OpenApiSecurityScheme
+            {
+                Name = "JWT Authentication",
+                Description = "Enter your JWT token",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer", // Use "bearer" for JWT
+                BearerFormat = "JWT",
+                Reference = new OpenApiReference
+                {
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
+                }
+            };
+            c.AddSecurityDefinition("Bearer", securityScheme);
+
+            var securityRequirement = new OpenApiSecurityRequirement
+            {
+                { securityScheme, new[] { "Bearer" } }
+            };
+            c.AddSecurityRequirement(securityRequirement);
+        });
+        
         services.AddOpenApiDocument();
+
+        services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey("YourSecretKey"u8.ToArray()),
+                };
+            });
+        
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("AdminOnly", policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireRole("admin");
+            });
+
+            options.AddPolicy("StandardUser", policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireClaim("userType", "standard");
+            });
+        });
 
         services.AddLogging(builder =>
         {
@@ -55,14 +121,14 @@ public class Startup
                 Environment.Exit(0);
             }
         }
+        
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseErrorHandler();
         app.UseCors();
-        app.UseRouting();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllers();
-        });
+        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }

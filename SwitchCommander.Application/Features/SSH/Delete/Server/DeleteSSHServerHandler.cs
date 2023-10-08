@@ -11,17 +11,17 @@ public sealed record DeleteSSHServerResponse(bool Deleted);
 public class DeleteSSHServerHandler : IRequestHandler<DeleteSSHServerRequest, DeleteSSHServerResponse>
 {
     private readonly ILogger<DeleteSSHServerHandler> _logger;
-    private readonly ISSHServerRepository _repository;
+    private readonly ISshServerMongoRepository _mongoRepository;
     
-    public DeleteSSHServerHandler(ILogger<DeleteSSHServerHandler> logger, ISSHServerRepository repository)
+    public DeleteSSHServerHandler(ILogger<DeleteSSHServerHandler> logger, ISshServerMongoRepository mongoRepository)
     {
         _logger = logger;
-        _repository = repository;
+        _mongoRepository = mongoRepository;
     }
 
     public async Task<DeleteSSHServerResponse> Handle(DeleteSSHServerRequest request, CancellationToken cancellationToken)
     {
-        var result = await _repository.DeleteAsync(request.Id, cancellationToken);
+        var result = await _mongoRepository.DeleteAsync(request.Id, cancellationToken);
         _logger.LogInformation("Delete by Id: {0} result: {1}", request.Id, result);
         return new DeleteSSHServerResponse(result);
     }

@@ -19,12 +19,12 @@ public class UpdateSSHCommandConfigurationHandler : IRequestHandler<UpdateSSHCom
     UpdateSSHCommandConfigurationResponse>
 {
     private readonly UpdateSSHCommandConfigurationMapper _mapper;
-    private readonly ISSHCommandConfigurationRepository _repository;
+    private readonly ISshCommandConfigurationMongoRepository _mongoRepository;
 
-    public UpdateSSHCommandConfigurationHandler(ISSHCommandConfigurationRepository repository,
+    public UpdateSSHCommandConfigurationHandler(ISshCommandConfigurationMongoRepository mongoRepository,
         UpdateSSHCommandConfigurationMapper mapper)
     {
-        _repository = repository;
+        _mongoRepository = mongoRepository;
         _mapper = mapper;
     }
 
@@ -32,7 +32,7 @@ public class UpdateSSHCommandConfigurationHandler : IRequestHandler<UpdateSSHCom
         CancellationToken cancellationToken)
     {
         var mapper = _mapper.FromRequest(request);
-        var result = await _repository.ReplaceAsync(mapper, cancellationToken);
+        var result = await _mongoRepository.ReplaceAsync(mapper, cancellationToken);
         return new UpdateSSHCommandConfigurationResponse(result);
     }
 }

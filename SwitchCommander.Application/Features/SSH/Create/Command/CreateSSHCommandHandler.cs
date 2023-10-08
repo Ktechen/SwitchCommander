@@ -13,21 +13,21 @@ public class CreateSSHCommandHandler : IRequestHandler<CreateSSHCommandRequest, 
 {
     private readonly ILogger<CreateSSHCommandHandler> _logger;
     private readonly CreateSSHCommandMapper _mapper;
-    private readonly ISSHCommandRepository _repository;
+    private readonly ISshCommandMongoRepository _mongoRepository;
 
     public CreateSSHCommandHandler(ILogger<CreateSSHCommandHandler> logger, CreateSSHCommandMapper mapper,
-        ISSHCommandRepository repository)
+        ISshCommandMongoRepository mongoRepository)
     {
         _logger = logger;
         _mapper = mapper;
-        _repository = repository;
+        _mongoRepository = mongoRepository;
     }
 
     public async Task<CreateSSHCommandResponse> Handle(CreateSSHCommandRequest request,
         CancellationToken cancellationToken)
     {
         var map = _mapper.FromRequest(request);
-        await _repository.AddAsync(map, cancellationToken);
+        await _mongoRepository.AddAsync(map, cancellationToken);
         return _mapper.ToResponse(map);
     }
 }

@@ -15,14 +15,14 @@ public sealed record UpdateSSHServerResponse(bool result);
 public class UpdateSSHServerHandler : IRequestHandler<UpdateSSHServerRequest, UpdateSSHServerResponse>
 {
     private readonly ILogger<UpdateSSHServerHandler> _logger;
-    private readonly ISSHServerRepository _repository;
+    private readonly ISshServerMongoRepository _mongoRepository;
     private readonly UpdateSSHServerMapper _mapper;
 
-    public UpdateSSHServerHandler(ILogger<UpdateSSHServerHandler> logger, ISSHServerRepository repository,
+    public UpdateSSHServerHandler(ILogger<UpdateSSHServerHandler> logger, ISshServerMongoRepository mongoRepository,
         UpdateSSHServerMapper mapper, IPasswordService passwordService)
     {
         _logger = logger;
-        _repository = repository;
+        _mongoRepository = mongoRepository;
         _mapper = mapper;
     }
 
@@ -38,7 +38,7 @@ public class UpdateSSHServerHandler : IRequestHandler<UpdateSSHServerRequest, Up
             .Set(x => x.Username, request.Username)
             .Set(x => x.DateUpdated, DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 
-        var result = await _repository.UpdateAsync(filter, update, cancellationToken);
+        var result = await _mongoRepository.UpdateAsync(filter, update, cancellationToken);
         
         _logger.LogInformation("Hostname: {0} is updated: {1}", request.Hostname, result);
         return new UpdateSSHServerResponse(result);

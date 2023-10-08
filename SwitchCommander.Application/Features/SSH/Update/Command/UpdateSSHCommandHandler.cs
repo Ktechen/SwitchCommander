@@ -13,22 +13,22 @@ public class UpdateSSHCommandHandler : IRequestHandler<UpdateSSHCommandRequest, 
 {
     private readonly ILogger<UpdateSSHCommandHandler> _logger;
     private readonly UpdateSSHCommandMapper _mapper;
-    private readonly ISSHCommandRepository _repository;
+    private readonly ISshCommandMongoRepository _mongoRepository;
 
     public UpdateSSHCommandHandler(
         ILogger<UpdateSSHCommandHandler> logger, 
         UpdateSSHCommandMapper mapper, 
-        ISSHCommandRepository repository)
+        ISshCommandMongoRepository mongoRepository)
     {
         _logger = logger;
         _mapper = mapper;
-        _repository = repository;
+        _mongoRepository = mongoRepository;
     }
 
     public async Task<UpdateSSHCommandResponse> Handle(UpdateSSHCommandRequest request, CancellationToken cancellationToken)
     {
         var mapper = _mapper.FromRequest(request);
-        var result = await _repository.ReplaceAsync(mapper, cancellationToken);
+        var result = await _mongoRepository.ReplaceAsync(mapper, cancellationToken);
         return new UpdateSSHCommandResponse(result);
     }
 }

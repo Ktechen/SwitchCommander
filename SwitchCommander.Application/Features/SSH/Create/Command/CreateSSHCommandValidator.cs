@@ -6,11 +6,11 @@ namespace SwitchCommander.Application.Features.SSH.Create.Command;
 
 public class CreateSSHCommandValidator : AbstractValidator<CreateSSHCommandRequest>
 {
-    private readonly ISSHCommandConfigurationRepository _repository;
+    private readonly ISshCommandConfigurationMongoRepository _mongoRepository;
 
-    public CreateSSHCommandValidator(ISSHCommandConfigurationRepository repository)
+    public CreateSSHCommandValidator(ISshCommandConfigurationMongoRepository mongoRepository)
     {
-        _repository = repository;
+        _mongoRepository = mongoRepository;
 
         RuleFor(x => x.Name)
             .NotEmpty()
@@ -31,7 +31,7 @@ public class CreateSSHCommandValidator : AbstractValidator<CreateSSHCommandReque
 
     private SShCommandConfiguration GetDefaultConfig()
     {
-        var result = _repository.GetDefaultConfig(default).Result;
+        var result = _mongoRepository.GetDefaultConfig(default).Result;
         return result ?? new SShCommandConfiguration();
     }
 }
