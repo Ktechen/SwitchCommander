@@ -1,9 +1,11 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SwitchCommander.Application;
 using SwitchCommander.Persistence;
+using SwitchCommander.Persistence.Context;
 using SwitchCommander.WebAPI.Extensions;
 
 namespace SwitchCommander.WebAPI;
@@ -27,7 +29,7 @@ public class Startup
 
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-
+        
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo

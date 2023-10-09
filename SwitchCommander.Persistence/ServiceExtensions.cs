@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SwitchCommander.Application.Repositories.Features;
 using SwitchCommander.Application.Repositories.Features.SSH;
@@ -15,6 +17,7 @@ public static class ServiceExtensions
     {
         AddMongoDb(services);
         AddRepository(services);
+        AddIdentityContext(services, configuration);
     }
 
     private static void AddMongoDb(this IServiceCollection services)
@@ -22,6 +25,21 @@ public static class ServiceExtensions
         services.AddScoped<MongoDbContext>();
         services.AddTransient<MongoDbContextSeed>();
         services.BuildServiceProvider().GetRequiredService<MongoDbContextSeed>();
+    }
+
+    private static void AddIdentityContext(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<IdentityContext>(option => option.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        services.AddIdentityCore<IdentityUser>(options => {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+            })
+            .AddEntityFrameworkStores<IdentityContext>();
     }
 
     private static void AddRepository(this IServiceCollection services)
