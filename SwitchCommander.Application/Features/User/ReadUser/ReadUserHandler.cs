@@ -15,7 +15,8 @@ public sealed class ReadUserHandler : IRequestHandler<ReadUserRequest, ReadUserR
     private readonly ReadUserMapper _mapper;
     private readonly IUserMongoRepository _userMongoRepository;
 
-    public ReadUserHandler(ReadUserMapper mapper, IUserMongoRepository userMongoRepository, ILogger<ReadUserHandler> logger)
+    public ReadUserHandler(ReadUserMapper mapper, IUserMongoRepository userMongoRepository,
+        ILogger<ReadUserHandler> logger)
     {
         _mapper = mapper;
         _userMongoRepository = userMongoRepository;

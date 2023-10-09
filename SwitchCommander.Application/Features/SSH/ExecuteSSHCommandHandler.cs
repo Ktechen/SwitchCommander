@@ -15,15 +15,15 @@ public sealed record ExecuteSSHCommandResponse(string? Hostname, string? Usernam
 
 public class ExecuteSSHCommandHandler : IRequestHandler<ExecuteSSHCommandRequest, ExecuteSSHCommandResponse>
 {
-    private readonly ILogger<ExecuteSSHCommandHandler> _logger;
-    private readonly ISshServerMongoRepository _serverMongoRepository;
     private readonly ISshCommandMongoRepository _commandMongoRepository;
+    private readonly ILogger<ExecuteSSHCommandHandler> _logger;
     private readonly IPasswordService _passwordService;
+    private readonly ISshServerMongoRepository _serverMongoRepository;
 
     public ExecuteSSHCommandHandler(
-        ILogger<ExecuteSSHCommandHandler> logger, 
+        ILogger<ExecuteSSHCommandHandler> logger,
         ISshServerMongoRepository serverMongoRepository,
-        ISshCommandMongoRepository commandMongoRepository, 
+        ISshCommandMongoRepository commandMongoRepository,
         IPasswordService passwordService)
     {
         _logger = logger;

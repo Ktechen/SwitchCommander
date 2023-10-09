@@ -19,7 +19,8 @@ public class DeleteSSHCommandHandler : IRequestHandler<DeleteSSHCommandRequest, 
         _mongoRepository = mongoRepository;
     }
 
-    public async Task<DeleteSSHCommandResponse> Handle(DeleteSSHCommandRequest request, CancellationToken cancellationToken)
+    public async Task<DeleteSSHCommandResponse> Handle(DeleteSSHCommandRequest request,
+        CancellationToken cancellationToken)
     {
         var result = await _mongoRepository.DeleteAsync(request.Id, cancellationToken);
         _logger.LogInformation("Delete by Id: {0} result: {1}", request.Id, result);

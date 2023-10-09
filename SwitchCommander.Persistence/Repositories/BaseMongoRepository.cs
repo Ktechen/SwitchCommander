@@ -60,11 +60,13 @@ public abstract class BaseMongoRepository<T> : IDisposable, IBaseMongoRepository
     public async Task<bool> ReplaceAsync(T entity, CancellationToken cancellationToken = default)
     {
         entity.DateUpdated = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        var result = await Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity, cancellationToken: cancellationToken);
+        var result =
+            await Collection.ReplaceOneAsync(x => x.Id == entity.Id, entity, cancellationToken: cancellationToken);
         return result.IsAcknowledged && result.ModifiedCount == 1;
     }
 
-    public async Task<bool> UpdateAsync(FilterDefinition<T> filter, UpdateDefinition<T> update, CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateAsync(FilterDefinition<T> filter, UpdateDefinition<T> update,
+        CancellationToken cancellationToken = default)
     {
         var result = await Collection.UpdateOneAsync(filter, update, cancellationToken: cancellationToken);
         return result.IsAcknowledged && result.ModifiedCount == 1;

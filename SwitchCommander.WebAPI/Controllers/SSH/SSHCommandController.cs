@@ -16,7 +16,7 @@ public class SSHCommandController : BaseController
     public SSHCommandController(
         IMediator mediator,
         IValidator<CreateSSHCommandRequest> validatorCreateSshCommandRequest
-        ) : base(mediator)
+    ) : base(mediator)
     {
         _validatorCreateSSHCommandRequest = validatorCreateSshCommandRequest;
     }
@@ -47,10 +47,7 @@ public class SSHCommandController : BaseController
     {
         if (!Guid.TryParse(id, out var result)) return BadRequest("Id is invalid");
         var response = await _mediator.Send(new ReadSSHCommandRequest(result), cancellationToken);
-        if (response.Id is null)
-        {
-            return BadRequest(response);
-        }
+        if (response.Id is null) return BadRequest(response);
 
         return Ok(response);
     }

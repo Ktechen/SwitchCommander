@@ -21,7 +21,9 @@ public interface IBaseMongoRepository<T> where T : BaseEntity
     public Task AddRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default);
 
     public Task<bool> ReplaceAsync(T entity, CancellationToken cancellationToken = default);
-    
-    public Task<bool> UpdateAsync(FilterDefinition<T> filter, UpdateDefinition<T> update, CancellationToken cancellationToken = default);
+
+    public Task<bool> UpdateAsync(FilterDefinition<T> filter, UpdateDefinition<T> update,
+        CancellationToken cancellationToken = default);
+
     public Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }

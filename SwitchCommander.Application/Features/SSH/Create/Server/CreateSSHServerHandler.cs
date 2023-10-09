@@ -13,11 +13,12 @@ public sealed record CreateSSHServerResponse(string? Hostname, string? Username)
 public class CreateSSHServerHandler : IRequestHandler<CreateSSHServerRequest, CreateSSHServerResponse>
 {
     private readonly ILogger<CreateSSHServerHandler> _logger;
-    private readonly ISshServerMongoRepository _mongoRepository;
     private readonly CreateSSHServerMapper _mapper;
+    private readonly ISshServerMongoRepository _mongoRepository;
     private readonly IPasswordService _passwordService;
-    
-    public CreateSSHServerHandler(ILogger<CreateSSHServerHandler> logger, ISshServerMongoRepository serverMongoRepository, CreateSSHServerMapper mapper, IPasswordService passwordService)
+
+    public CreateSSHServerHandler(ILogger<CreateSSHServerHandler> logger,
+        ISshServerMongoRepository serverMongoRepository, CreateSSHServerMapper mapper, IPasswordService passwordService)
     {
         _logger = logger;
         _mongoRepository = serverMongoRepository;
@@ -25,7 +26,8 @@ public class CreateSSHServerHandler : IRequestHandler<CreateSSHServerRequest, Cr
         _passwordService = passwordService;
     }
 
-    public async Task<CreateSSHServerResponse> Handle(CreateSSHServerRequest request, CancellationToken cancellationToken)
+    public async Task<CreateSSHServerResponse> Handle(CreateSSHServerRequest request,
+        CancellationToken cancellationToken)
     {
         _logger.LogInformation("Create a server {0} ", request.Hostname);
         var map = _mapper.FromRequest(request);

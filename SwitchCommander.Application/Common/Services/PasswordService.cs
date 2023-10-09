@@ -3,7 +3,7 @@
 public class PasswordService : IPasswordService
 {
     private readonly string pepper = "";
-    
+
     public async Task<string> HashPassword(string password)
     {
         var pepperedPassword = pepper + password;
@@ -11,7 +11,7 @@ public class PasswordService : IPasswordService
         var hashedPassword = BCrypt.Net.BCrypt.HashPassword(pepperedPassword, salt);
         return await Task.FromResult(hashedPassword);
     }
-    
+
     public async Task<bool> VerifyPassword(string password, string hashedPassword)
     {
         return await Task.FromResult(BCrypt.Net.BCrypt.Verify(pepper + password, hashedPassword));

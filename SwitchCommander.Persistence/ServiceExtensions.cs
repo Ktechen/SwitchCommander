@@ -29,8 +29,10 @@ public static class ServiceExtensions
 
     private static void AddIdentityContext(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<IdentityContext>(option => option.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-        services.AddIdentityCore<IdentityUser>(options => {
+        services.AddDbContext<IdentityContext>(option =>
+            option.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        services.AddIdentityCore<IdentityUser>(options =>
+            {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.User.RequireUniqueEmail = true;
                 options.Password.RequireDigit = true;

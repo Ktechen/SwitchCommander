@@ -5,7 +5,6 @@ using SwitchCommander.Persistence.Context;
 
 namespace SwitchCommander.Persistence.Repositories.Features.SSH;
 
-
 public class SshCommandMongoRepository : BaseMongoRepository<SSHCommand>, ISshCommandMongoRepository
 {
     public SshCommandMongoRepository(MongoDbContext context, IMediator mediator) : base(context.SSHCommandCollection,

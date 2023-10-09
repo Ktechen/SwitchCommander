@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using SwitchCommander.Application.Common.Exceptions;
 using SwitchCommander.Application.Common.Services;
 using SwitchCommander.Application.Repositories.Features;
 
@@ -13,10 +12,11 @@ public sealed record LoginResponse(bool IsLogged);
 public class LoginHandler : IRequestHandler<LoginRequest, LoginResponse>
 {
     private readonly ILogger<LoginHandler> _logger;
-    private readonly IUserMongoRepository _userMongoRepository;
     private readonly IPasswordService _passwordService;
+    private readonly IUserMongoRepository _userMongoRepository;
 
-    public LoginHandler(ILogger<LoginHandler> logger, IPasswordService passwordService, IUserMongoRepository userMongoRepository)
+    public LoginHandler(ILogger<LoginHandler> logger, IPasswordService passwordService,
+        IUserMongoRepository userMongoRepository)
     {
         _logger = logger;
         _passwordService = passwordService;
@@ -32,9 +32,10 @@ public class LoginHandler : IRequestHandler<LoginRequest, LoginResponse>
             return new LoginResponse(false);
         }
 
-        var resultPasswordValidation = await _passwordService.VerifyPassword(request.Password, resultEmailFound.Password);
+        var resultPasswordValidation =
+            await _passwordService.VerifyPassword(request.Password, resultEmailFound.Password);
         if (resultPasswordValidation) return new LoginResponse(true);
-        
+
         _logger.LogError("Password is invalid | Email: {0}", request.Email);
         return new LoginResponse(false);
     }

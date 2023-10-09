@@ -14,7 +14,8 @@ public sealed class CreateUserHandler : IRequestHandler<CreateUserRequest, Creat
     private readonly CreateUserMapper _mapper;
     private readonly IUserMongoRepository _userMongoRepository;
 
-    public CreateUserHandler(IUserMongoRepository userMongoRepository, CreateUserMapper mapper, ILogger<CreateUserHandler> logger)
+    public CreateUserHandler(IUserMongoRepository userMongoRepository, CreateUserMapper mapper,
+        ILogger<CreateUserHandler> logger)
     {
         _userMongoRepository = userMongoRepository;
         _mapper = mapper;

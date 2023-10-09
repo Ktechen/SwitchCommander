@@ -4,10 +4,10 @@ using SwitchCommander.Application.Repositories.Features.SSH;
 
 namespace SwitchCommander.Application.Features.SSH.Update.Command;
 
-public sealed record UpdateSSHCommandRequest(string Id, string Name, string Description, string Command) : IRequest<UpdateSSHCommandResponse>;
+public sealed record UpdateSSHCommandRequest
+    (string Id, string Name, string Description, string Command) : IRequest<UpdateSSHCommandResponse>;
 
 public sealed record UpdateSSHCommandResponse(bool result);
-
 
 public class UpdateSSHCommandHandler : IRequestHandler<UpdateSSHCommandRequest, UpdateSSHCommandResponse>
 {
@@ -16,8 +16,8 @@ public class UpdateSSHCommandHandler : IRequestHandler<UpdateSSHCommandRequest, 
     private readonly ISshCommandMongoRepository _mongoRepository;
 
     public UpdateSSHCommandHandler(
-        ILogger<UpdateSSHCommandHandler> logger, 
-        UpdateSSHCommandMapper mapper, 
+        ILogger<UpdateSSHCommandHandler> logger,
+        UpdateSSHCommandMapper mapper,
         ISshCommandMongoRepository mongoRepository)
     {
         _logger = logger;
@@ -25,7 +25,8 @@ public class UpdateSSHCommandHandler : IRequestHandler<UpdateSSHCommandRequest, 
         _mongoRepository = mongoRepository;
     }
 
-    public async Task<UpdateSSHCommandResponse> Handle(UpdateSSHCommandRequest request, CancellationToken cancellationToken)
+    public async Task<UpdateSSHCommandResponse> Handle(UpdateSSHCommandRequest request,
+        CancellationToken cancellationToken)
     {
         var mapper = _mapper.FromRequest(request);
         var result = await _mongoRepository.ReplaceAsync(mapper, cancellationToken);

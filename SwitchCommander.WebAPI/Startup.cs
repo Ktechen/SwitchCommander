@@ -1,11 +1,8 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SwitchCommander.Application;
 using SwitchCommander.Persistence;
-using SwitchCommander.Persistence.Context;
 using SwitchCommander.WebAPI.Extensions;
 
 namespace SwitchCommander.WebAPI;
@@ -29,13 +26,13 @@ public class Startup
 
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        
+
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo
             {
                 Title = "Your API",
-                Version = "v1",
+                Version = "v1"
             });
 
             // Configure JWT authentication for Swagger
@@ -61,7 +58,7 @@ public class Startup
             };
             c.AddSecurityRequirement(securityRequirement);
         });
-        
+
         services.AddOpenApiDocument();
 
         services.AddAuthentication(options =>
@@ -76,10 +73,10 @@ public class Startup
                     ValidateIssuer = false,
                     ValidateAudience = false,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey("YourSecretKey"u8.ToArray()),
+                    IssuerSigningKey = new SymmetricSecurityKey("YourSecretKey"u8.ToArray())
                 };
             });
-        
+
         services.AddAuthorization(options =>
         {
             options.AddPolicy("AdminOnly", policy =>
@@ -123,7 +120,7 @@ public class Startup
                 Environment.Exit(0);
             }
         }
-        
+
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
