@@ -5,6 +5,9 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <Title>SwitchCommander.WebAPI</Title>
+        <Authors>Kevin Techen</Authors>
+        <UserSecretsId>a0fea0c9-cc64-4f61-99e2-14bbd1b4c8be</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>

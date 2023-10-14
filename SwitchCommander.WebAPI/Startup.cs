@@ -128,6 +128,8 @@ public class Startup
         app.UseErrorHandler();
         app.UseCors();
 
+        //Net.8
+        //app.MapIdentityApi<IdentityUser>();
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
 }

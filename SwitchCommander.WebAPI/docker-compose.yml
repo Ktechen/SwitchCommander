@@ -1,5 +1,18 @@
 ﻿version: '3.7'
 services:
+  switch_commander:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb_container
+    networks:
+      - backend
+    environment:
+      MONGO_CONNECTION_STRING: "mongodb://root:root@mongodb_container:27017/"
+  
   mongodb_container:
     image: mongo:latest
     environment:
@@ -9,6 +22,11 @@ services:
       - "27017:27017"
     volumes:
       - mongodb_data_container:/data/db
+    networks:
+      - backend
+      
+networks:
+  backend:
 
 volumes:
   mongodb_data_container:

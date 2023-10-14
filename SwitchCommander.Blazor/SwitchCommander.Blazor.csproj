@@ -5,6 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <Authors>Kevin Techen</Authors>
+        <Title>SwitchCommander.Blazor</Title>
     </PropertyGroup>
 
     <ItemGroup>

@@ -4,6 +4,8 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>SwitchCommander.Domain</Title>
+        <Authors>Kevin Techen</Authors>
     </PropertyGroup>
 
 
