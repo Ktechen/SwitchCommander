@@ -7,4 +7,5 @@ namespace SwitchCommander.Application.Features.SSH.Read.Server;
 public partial class ReadSSHServerMapper
 {
     public partial ReadSSHServerResponse ToResponse(SSHServer dto);
+    public partial IEnumerable<ReadAllSSHServerResponse> ToResponse(IEnumerable<SSHServer> dtos);
 }

@@ -1,4 +1,5 @@
 ﻿@page "/counter"
+@using SwitchCommander.Blazor.Services
 
 <PageTitle>Counter</PageTitle>
 <MudGrid>
@@ -20,4 +21,12 @@
 
 @code{
     private readonly int _papers = 12;
+    private readonly SSHServerService _serverService;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
 }

@@ -2,43 +2,50 @@
 
 public class SSHCommandService : ISSHCommandClient
 {
+    private ISSHCommandClient _isshCommandClientImplementation;
+
+    public SSHCommandService(ISSHCommandClient isshCommandClientImplementation)
+    {
+        _isshCommandClientImplementation = isshCommandClientImplementation;
+    }
+
     public Task<CreateSSHCommandResponse> CreateAsync(CreateSSHCommandRequest request)
     {
-        throw new NotImplementedException();
+        return _isshCommandClientImplementation.CreateAsync(request);
     }
 
     public Task<CreateSSHCommandResponse> CreateAsync(CreateSSHCommandRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshCommandClientImplementation.CreateAsync(request, cancellationToken);
     }
 
     public Task<UpdateSSHCommandResponse> UpdateAsync(UpdateSSHCommandRequest request)
     {
-        throw new NotImplementedException();
+        return _isshCommandClientImplementation.UpdateAsync(request);
     }
 
     public Task<UpdateSSHCommandResponse> UpdateAsync(UpdateSSHCommandRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshCommandClientImplementation.UpdateAsync(request, cancellationToken);
     }
 
     public Task<ReadSSHCommandResponse> ReadAsync(string id)
     {
-        throw new NotImplementedException();
+        return _isshCommandClientImplementation.ReadAsync(id);
     }
 
     public Task<ReadSSHCommandResponse> ReadAsync(string id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshCommandClientImplementation.ReadAsync(id, cancellationToken);
     }
 
     public Task<DeleteSSHCommandResponse> DeleteAsync(string id)
     {
-        throw new NotImplementedException();
+        return _isshCommandClientImplementation.DeleteAsync(id);
     }
 
     public Task<DeleteSSHCommandResponse> DeleteAsync(string id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshCommandClientImplementation.DeleteAsync(id, cancellationToken);
     }
 }

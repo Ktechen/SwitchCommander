@@ -2,13 +2,20 @@
 
 public class SSHExecuteCommandService : ISSHExecuteCommandClient
 {
+    private ISSHExecuteCommandClient _isshExecuteCommandClientImplementation;
+
+    public SSHExecuteCommandService(ISSHExecuteCommandClient isshExecuteCommandClientImplementation)
+    {
+        _isshExecuteCommandClientImplementation = isshExecuteCommandClientImplementation;
+    }
+
     public Task<ExecuteSSHCommandResponse> ExecuteAsync(ExecuteSSHCommandRequest request)
     {
-        throw new NotImplementedException();
+        return _isshExecuteCommandClientImplementation.ExecuteAsync(request);
     }
 
     public Task<ExecuteSSHCommandResponse> ExecuteAsync(ExecuteSSHCommandRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshExecuteCommandClientImplementation.ExecuteAsync(request, cancellationToken);
     }
 }

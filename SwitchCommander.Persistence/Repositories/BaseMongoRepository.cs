@@ -35,7 +35,7 @@ public abstract class BaseMongoRepository<T> : IDisposable, IBaseMongoRepository
         return entity;
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<T>> ReadAllAsync(CancellationToken cancellationToken = default)
     {
         return await Collection.Find(_ => true).ToListAsync(cancellationToken);
     }

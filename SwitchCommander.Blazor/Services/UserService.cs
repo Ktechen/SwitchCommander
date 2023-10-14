@@ -2,23 +2,30 @@
 
 public class UserService : IUserClient
 {
+    private IUserClient _userClientImplementation;
+
+    public UserService(IUserClient userClientImplementation)
+    {
+        _userClientImplementation = userClientImplementation;
+    }
+
     public Task<CreateUserResponse> CreateAsync(CreateUserRequest request)
     {
-        throw new NotImplementedException();
+        return _userClientImplementation.CreateAsync(request);
     }
 
     public Task<CreateUserResponse> CreateAsync(CreateUserRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _userClientImplementation.CreateAsync(request, cancellationToken);
     }
 
     public Task<ReadUserResponse> GetByIdAsync(string id)
     {
-        throw new NotImplementedException();
+        return _userClientImplementation.GetByIdAsync(id);
     }
 
     public Task<ReadUserResponse> GetByIdAsync(string id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _userClientImplementation.GetByIdAsync(id, cancellationToken);
     }
 }

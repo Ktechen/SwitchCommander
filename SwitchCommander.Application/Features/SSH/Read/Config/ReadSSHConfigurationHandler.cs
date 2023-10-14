@@ -25,7 +25,7 @@ public class ReadSSHConfigurationHandler : IRequestHandler<ReadSSHCommandConfigu
     public async Task<IEnumerable<ReadSSHCommandConfigurationResponse>> Handle(
         ReadSSHCommandConfigurationRequest request, CancellationToken cancellationToken)
     {
-        var result = await _mongoRepository.GetAllAsync(cancellationToken);
-        return _mapper.FromResponse(result);
+        var result = await _mongoRepository.ReadAllAsync(cancellationToken);
+        return _mapper.ToResponse(result);
     }
 }

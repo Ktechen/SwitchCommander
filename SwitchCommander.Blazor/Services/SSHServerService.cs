@@ -2,53 +2,60 @@
 
 public class SSHServerService : ISSHServerClient
 {
+    private ISSHServerClient _isshServerClientImplementation;
+
+    public SSHServerService(ISSHServerClient isshServerClientImplementation)
+    {
+        _isshServerClientImplementation = isshServerClientImplementation;
+    }
+
     public Task<CreateSSHServerResponse> CreateAsync(CreateSSHServerRequest request)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.CreateAsync(request);
     }
 
     public Task<CreateSSHServerResponse> CreateAsync(CreateSSHServerRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.CreateAsync(request, cancellationToken);
     }
 
     public Task<UpdateSSHServerResponse> UpdateAsync(UpdateSSHServerRequest request)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.UpdateAsync(request);
     }
 
     public Task<UpdateSSHServerResponse> UpdateAsync(UpdateSSHServerRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.UpdateAsync(request, cancellationToken);
     }
 
     public Task<ReadSSHServerResponse> ReadAsync(string id)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.ReadAsync(id);
     }
 
     public Task<ReadSSHServerResponse> ReadAsync(string id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.ReadAsync(id, cancellationToken);
     }
 
     public Task<DeleteSSHServerResponse> DeleteAsync(string id)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.DeleteAsync(id);
     }
 
     public Task<DeleteSSHServerResponse> DeleteAsync(string id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.DeleteAsync(id, cancellationToken);
     }
 
     public Task<UpdateSSHServerResponse> Update2Async(UpdateSSHServerPasswordRequest request)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.Update2Async(request);
     }
 
     public Task<UpdateSSHServerResponse> Update2Async(UpdateSSHServerPasswordRequest request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshServerClientImplementation.Update2Async(request, cancellationToken);
     }
 }

@@ -17,7 +17,10 @@ public class Startup
         services.AddRazorPages();
         services.AddServerSideBlazor();
         services.AddTransient<HttpClient>();
-        services.AddScoped<UserClient>();
+        services.AddScoped<ISSHServerClient, SSHServerClient>();
+        services.AddScoped<ISSHExecuteCommandClient, SSHExecuteCommandClient>();
+        services.AddScoped<ISSHConfigurationClient, SSHConfigurationClient>();
+        services.AddScoped<ISSHCommandClient, SSHCommandClient>();
         services.AddMudServices();
     }
 

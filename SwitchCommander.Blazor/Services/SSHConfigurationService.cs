@@ -2,24 +2,31 @@
 
 public class SSHConfigurationService : ISSHConfigurationClient
 {
+    private ISSHConfigurationClient _isshConfigurationClientImplementation;
+
+    public SSHConfigurationService(ISSHConfigurationClient isshConfigurationClientImplementation)
+    {
+        _isshConfigurationClientImplementation = isshConfigurationClientImplementation;
+    }
+
     public Task<ICollection<UpdateSSHCommandConfigurationResponse>> ReadAllAsync()
     {
-        throw new NotImplementedException();
+        return _isshConfigurationClientImplementation.ReadAllAsync();
     }
 
     public Task<ICollection<UpdateSSHCommandConfigurationResponse>> ReadAllAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshConfigurationClientImplementation.ReadAllAsync(cancellationToken);
     }
 
     public Task<UpdateSSHCommandConfigurationResponse> UpdateSSHCommandConfigurationAsync(UpdateSSHCommandConfigurationRequest request)
     {
-        throw new NotImplementedException();
+        return _isshConfigurationClientImplementation.UpdateSSHCommandConfigurationAsync(request);
     }
 
     public Task<UpdateSSHCommandConfigurationResponse> UpdateSSHCommandConfigurationAsync(UpdateSSHCommandConfigurationRequest request,
         CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return _isshConfigurationClientImplementation.UpdateSSHCommandConfigurationAsync(request, cancellationToken);
     }
 }

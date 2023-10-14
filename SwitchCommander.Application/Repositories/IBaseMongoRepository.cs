@@ -11,7 +11,7 @@ public interface IBaseMongoRepository<T> where T : BaseEntity
     public Task Rollback();
 
     public Task<T?> FindByIdAsync(Guid id, CancellationToken cancellationToken = default);
-    public Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
+    public Task<IEnumerable<T>> ReadAllAsync(CancellationToken cancellationToken = default);
 
     public Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate,
         CancellationToken cancellationToken = default);
