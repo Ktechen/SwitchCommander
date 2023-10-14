@@ -51,6 +51,14 @@ public class SSHCommandController : BaseController
 
         return Ok(response);
     }
+    
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ReadSSHCommandResponse>> ReadAll(CancellationToken cancellationToken)
+    {
+        return Ok(await _mediator.Send(new ReadAllSSHCommandRequest(), cancellationToken));
+    }
 
     [Authorize(Policy = "AdminOnly")]
     [HttpPut]

@@ -51,6 +51,14 @@ public class SSHServerController : BaseController
         if (response.Id is null) return BadRequest(response);
         return Ok(response);
     }
+    
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<ReadSSHServerResponse>> ReadAll(CancellationToken cancellationToken)
+    {
+        return Ok(await _mediator.Send(new ReadAllSSHServerRequest(), cancellationToken));
+    }
 
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
