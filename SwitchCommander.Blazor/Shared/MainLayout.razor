@@ -1,4 +1,4 @@
-﻿@using SwitchCommander.WebAPI.Client
+﻿@using SwitchCommander.Blazor.Services
 @inherits LayoutComponentBase
 
 <PageTitle>SwitchCommander.Blazor</PageTitle>
@@ -49,8 +49,9 @@
             {
                 try
                 {
-                    var userClientService = new UserClientService(new HttpClient());
+                    var userClientService = new UserClient(new HttpClient());
                     await userClientService.GetByIdAsync("");
+                    
                     _isApiValid = true;
                 }
                 catch (Exception e)

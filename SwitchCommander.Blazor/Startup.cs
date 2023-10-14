@@ -1,5 +1,5 @@
 ﻿using MudBlazor.Services;
-using SwitchCommander.WebAPI.Client;
+using SwitchCommander.Blazor.Services;
 
 namespace SwitchCommander.Blazor;
 
@@ -17,7 +17,7 @@ public class Startup
         services.AddRazorPages();
         services.AddServerSideBlazor();
         services.AddTransient<HttpClient>();
-        services.AddScoped<UserClientService>();
+        services.AddScoped<UserClient>();
         services.AddMudServices();
     }
 

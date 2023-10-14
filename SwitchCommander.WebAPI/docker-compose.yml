@@ -10,8 +10,6 @@ services:
       - mongodb_container
     networks:
       - backend
-    environment:
-      MONGO_CONNECTION_STRING: "mongodb://root:root@mongodb_container:27017/"
   
   mongodb_container:
     image: mongo:latest
