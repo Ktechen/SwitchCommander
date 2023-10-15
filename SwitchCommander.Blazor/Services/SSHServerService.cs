@@ -19,6 +19,16 @@ public class SSHServerService : ISSHServerClient
         return _isshServerClientImplementation.CreateAsync(request, cancellationToken);
     }
 
+    public Task<ReadSSHServerResponse> ReadAllAsync()
+    {
+        return _isshServerClientImplementation.ReadAllAsync();
+    }
+
+    public Task<ReadSSHServerResponse> ReadAllAsync(CancellationToken cancellationToken)
+    {
+        return _isshServerClientImplementation.ReadAllAsync(cancellationToken);
+    }
+
     public Task<UpdateSSHServerResponse> UpdateAsync(UpdateSSHServerRequest request)
     {
         return _isshServerClientImplementation.UpdateAsync(request);

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using SwitchCommander.Application.Repositories.Features;
 using SwitchCommander.Domain.Dtos;
-using SwitchCommander.Persistence.Context;
+using SwitchCommander.Infrastructure.Context;
 
-namespace SwitchCommander.Persistence.Repositories.Features;
+namespace SwitchCommander.Infrastructure.Repositories.Features;
 
 public class SwitchMongoRepository : BaseMongoRepository<Switch>, ISwitchMongoRepository
 {

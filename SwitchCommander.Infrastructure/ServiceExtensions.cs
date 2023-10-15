@@ -4,12 +4,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SwitchCommander.Application.Repositories.Features;
 using SwitchCommander.Application.Repositories.Features.SSH;
-using SwitchCommander.Persistence.Context;
-using SwitchCommander.Persistence.Repositories.Features;
-using SwitchCommander.Persistence.Repositories.Features.SSH;
-using SwitchCommander.Persistence.Seeds;
+using SwitchCommander.Infrastructure.Context;
+using SwitchCommander.Infrastructure.Repositories.Features;
+using SwitchCommander.Infrastructure.Repositories.Features.SSH;
+using SwitchCommander.Infrastructure.Seeds;
 
-namespace SwitchCommander.Persistence;
+namespace SwitchCommander.Infrastructure;
 
 public static class ServiceExtensions
 {

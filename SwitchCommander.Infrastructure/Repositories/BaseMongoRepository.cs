@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using SwitchCommander.Application.Repositories;
 using SwitchCommander.Domain.Common;
 
-namespace SwitchCommander.Persistence.Repositories;
+namespace SwitchCommander.Infrastructure.Repositories;
 
 public abstract class BaseMongoRepository<T> : IDisposable, IBaseMongoRepository<T> where T : BaseEntity
 {

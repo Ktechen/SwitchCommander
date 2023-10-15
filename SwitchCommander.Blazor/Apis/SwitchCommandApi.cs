@@ -15,25 +15,25 @@
 #pragma warning disable 8603 // Disable "CS8603 Possible null reference return"
 #pragma warning disable 8604 // Disable "CS8604 Possible null reference argument for parameter"
 
-namespace  SwitchCommander.Blazor.Services
+namespace SwitchCommander.Blazor.Services
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial interface IUserClient
     {
-        /// <exception cref="UserClientService">A server side error occurred.</exception>
+        /// <exception cref="UserClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<CreateUserResponse> CreateAsync(CreateUserRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="UserClientService">A server side error occurred.</exception>
+        /// <exception cref="UserClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<CreateUserResponse> CreateAsync(CreateUserRequest request, System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="UserClientService">A server side error occurred.</exception>
+        /// <exception cref="UserClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ReadUserResponse> GetByIdAsync(string id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="UserClientService">A server side error occurred.</exception>
+        /// <exception cref="UserClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ReadUserResponse> GetByIdAsync(string id, System.Threading.CancellationToken cancellationToken);
 
     }
@@ -72,14 +72,14 @@ namespace  SwitchCommander.Blazor.Services
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
-        /// <exception cref="UserClientService">A server side error occurred.</exception>
+        /// <exception cref="UserClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<CreateUserResponse> CreateAsync(CreateUserRequest request)
         {
             return CreateAsync(request, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="UserClientService">A server side error occurred.</exception>
+        /// <exception cref="UserClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<CreateUserResponse> CreateAsync(CreateUserRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
@@ -127,7 +127,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<CreateUserResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new UserClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new UserClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -137,14 +137,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new UserClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new UserClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new UserClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new UserClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new UserClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new UserClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -161,14 +161,14 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="UserClientService">A server side error occurred.</exception>
+        /// <exception cref="UserClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<ReadUserResponse> GetByIdAsync(string id)
         {
             return GetByIdAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="UserClientService">A server side error occurred.</exception>
+        /// <exception cref="UserClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ReadUserResponse> GetByIdAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
@@ -213,7 +213,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ReadUserResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new UserClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new UserClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -223,9 +223,9 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new UserClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new UserClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new UserClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new UserClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         if (status_ == 404)
@@ -233,14 +233,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new UserClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new UserClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new UserClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new UserClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new UserClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new UserClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -290,7 +290,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body string as " + typeof(T).FullName + ".";
-                    throw new UserClientService(message, (int)response.StatusCode, responseText, headers, exception);
+                    throw new UserClient(message, (int)response.StatusCode, responseText, headers, exception);
                 }
             }
             else
@@ -309,7 +309,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
-                    throw new UserClientService(message, (int)response.StatusCode, string.Empty, headers, exception);
+                    throw new UserClient(message, (int)response.StatusCode, string.Empty, headers, exception);
                 }
             }
         }
@@ -363,32 +363,39 @@ namespace  SwitchCommander.Blazor.Services
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial interface ISSHCommandClient
     {
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<CreateSSHCommandResponse> CreateAsync(CreateSSHCommandRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<CreateSSHCommandResponse> CreateAsync(CreateSSHCommandRequest request, System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ReadSSHCommandResponse> ReadAllAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ReadSSHCommandResponse> ReadAllAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<UpdateSSHCommandResponse> UpdateAsync(UpdateSSHCommandRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<UpdateSSHCommandResponse> UpdateAsync(UpdateSSHCommandRequest request, System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ReadSSHCommandResponse> ReadAsync(string id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ReadSSHCommandResponse> ReadAsync(string id, System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<DeleteSSHCommandResponse> DeleteAsync(string id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<DeleteSSHCommandResponse> DeleteAsync(string id, System.Threading.CancellationToken cancellationToken);
 
     }
@@ -427,14 +434,14 @@ namespace  SwitchCommander.Blazor.Services
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<CreateSSHCommandResponse> CreateAsync(CreateSSHCommandRequest request)
         {
             return CreateAsync(request, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<CreateSSHCommandResponse> CreateAsync(CreateSSHCommandRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
@@ -482,7 +489,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<CreateSSHCommandResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -492,14 +499,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHCommandClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHCommandClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHCommandClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHCommandClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -516,14 +523,96 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<ReadSSHCommandResponse> ReadAllAsync()
+        {
+            return ReadAllAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<ReadSSHCommandResponse> ReadAllAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/SSHCommand");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ReadSSHCommandResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new SSHCommandClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new SSHCommandClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<UpdateSSHCommandResponse> UpdateAsync(UpdateSSHCommandRequest request)
         {
             return UpdateAsync(request, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<UpdateSSHCommandResponse> UpdateAsync(UpdateSSHCommandRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
@@ -571,7 +660,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<UpdateSSHCommandResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -581,14 +670,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHCommandClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHCommandClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHCommandClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHCommandClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -605,14 +694,14 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<ReadSSHCommandResponse> ReadAsync(string id)
         {
             return ReadAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ReadSSHCommandResponse> ReadAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
@@ -657,7 +746,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ReadSSHCommandResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -667,14 +756,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHCommandClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHCommandClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHCommandClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHCommandClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -691,14 +780,14 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<DeleteSSHCommandResponse> DeleteAsync(string id)
         {
             return DeleteAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHCommandClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<DeleteSSHCommandResponse> DeleteAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
@@ -743,14 +832,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<DeleteSSHCommandResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHCommandClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHCommandClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -800,7 +889,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body string as " + typeof(T).FullName + ".";
-                    throw new SSHCommandClientService(message, (int)response.StatusCode, responseText, headers, exception);
+                    throw new SSHCommandClient(message, (int)response.StatusCode, responseText, headers, exception);
                 }
             }
             else
@@ -819,7 +908,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
-                    throw new SSHCommandClientService(message, (int)response.StatusCode, string.Empty, headers, exception);
+                    throw new SSHCommandClient(message, (int)response.StatusCode, string.Empty, headers, exception);
                 }
             }
         }
@@ -873,18 +962,18 @@ namespace  SwitchCommander.Blazor.Services
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial interface ISSHConfigurationClient
     {
-        /// <exception cref="SSHConfigurationClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHConfigurationClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<System.Collections.Generic.ICollection<UpdateSSHCommandConfigurationResponse>> ReadAllAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHConfigurationClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHConfigurationClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<System.Collections.Generic.ICollection<UpdateSSHCommandConfigurationResponse>> ReadAllAsync(System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="SSHConfigurationClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHConfigurationClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<UpdateSSHCommandConfigurationResponse> UpdateSSHCommandConfigurationAsync(UpdateSSHCommandConfigurationRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHConfigurationClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHConfigurationClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<UpdateSSHCommandConfigurationResponse> UpdateSSHCommandConfigurationAsync(UpdateSSHCommandConfigurationRequest request, System.Threading.CancellationToken cancellationToken);
 
     }
@@ -923,14 +1012,14 @@ namespace  SwitchCommander.Blazor.Services
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
-        /// <exception cref="SSHConfigurationClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHConfigurationClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<UpdateSSHCommandConfigurationResponse>> ReadAllAsync()
         {
             return ReadAllAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHConfigurationClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHConfigurationClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<UpdateSSHCommandConfigurationResponse>> ReadAllAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
@@ -971,7 +1060,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<UpdateSSHCommandConfigurationResponse>>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHConfigurationClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHConfigurationClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -981,14 +1070,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHConfigurationClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHConfigurationClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHConfigurationClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHConfigurationClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHConfigurationClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHConfigurationClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -1005,14 +1094,14 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="SSHConfigurationClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHConfigurationClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<UpdateSSHCommandConfigurationResponse> UpdateSSHCommandConfigurationAsync(UpdateSSHCommandConfigurationRequest request)
         {
             return UpdateSSHCommandConfigurationAsync(request, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHConfigurationClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHConfigurationClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<UpdateSSHCommandConfigurationResponse> UpdateSSHCommandConfigurationAsync(UpdateSSHCommandConfigurationRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
@@ -1060,7 +1149,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<UpdateSSHCommandConfigurationResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHConfigurationClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHConfigurationClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -1070,14 +1159,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHConfigurationClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHConfigurationClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHConfigurationClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHConfigurationClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHConfigurationClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHConfigurationClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -1127,7 +1216,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body string as " + typeof(T).FullName + ".";
-                    throw new SSHConfigurationClientService(message, (int)response.StatusCode, responseText, headers, exception);
+                    throw new SSHConfigurationClient(message, (int)response.StatusCode, responseText, headers, exception);
                 }
             }
             else
@@ -1146,7 +1235,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
-                    throw new SSHConfigurationClientService(message, (int)response.StatusCode, string.Empty, headers, exception);
+                    throw new SSHConfigurationClient(message, (int)response.StatusCode, string.Empty, headers, exception);
                 }
             }
         }
@@ -1200,11 +1289,11 @@ namespace  SwitchCommander.Blazor.Services
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial interface ISSHExecuteCommandClient
     {
-        /// <exception cref="SSHExecuteCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHExecuteCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ExecuteSSHCommandResponse> ExecuteAsync(ExecuteSSHCommandRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHExecuteCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHExecuteCommandClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ExecuteSSHCommandResponse> ExecuteAsync(ExecuteSSHCommandRequest request, System.Threading.CancellationToken cancellationToken);
 
     }
@@ -1243,14 +1332,14 @@ namespace  SwitchCommander.Blazor.Services
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
-        /// <exception cref="SSHExecuteCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHExecuteCommandClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<ExecuteSSHCommandResponse> ExecuteAsync(ExecuteSSHCommandRequest request)
         {
             return ExecuteAsync(request, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHExecuteCommandClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHExecuteCommandClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ExecuteSSHCommandResponse> ExecuteAsync(ExecuteSSHCommandRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
@@ -1298,7 +1387,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ExecuteSSHCommandResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHExecuteCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHExecuteCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -1308,14 +1397,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHExecuteCommandClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHExecuteCommandClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHExecuteCommandClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHExecuteCommandClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHExecuteCommandClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHExecuteCommandClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -1365,7 +1454,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body string as " + typeof(T).FullName + ".";
-                    throw new SSHExecuteCommandClientService(message, (int)response.StatusCode, responseText, headers, exception);
+                    throw new SSHExecuteCommandClient(message, (int)response.StatusCode, responseText, headers, exception);
                 }
             }
             else
@@ -1384,7 +1473,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
-                    throw new SSHExecuteCommandClientService(message, (int)response.StatusCode, string.Empty, headers, exception);
+                    throw new SSHExecuteCommandClient(message, (int)response.StatusCode, string.Empty, headers, exception);
                 }
             }
         }
@@ -1438,39 +1527,46 @@ namespace  SwitchCommander.Blazor.Services
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial interface ISSHServerClient
     {
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<CreateSSHServerResponse> CreateAsync(CreateSSHServerRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<CreateSSHServerResponse> CreateAsync(CreateSSHServerRequest request, System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ReadSSHServerResponse> ReadAllAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ReadSSHServerResponse> ReadAllAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<UpdateSSHServerResponse> UpdateAsync(UpdateSSHServerRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<UpdateSSHServerResponse> UpdateAsync(UpdateSSHServerRequest request, System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ReadSSHServerResponse> ReadAsync(string id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ReadSSHServerResponse> ReadAsync(string id, System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<DeleteSSHServerResponse> DeleteAsync(string id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<DeleteSSHServerResponse> DeleteAsync(string id, System.Threading.CancellationToken cancellationToken);
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<UpdateSSHServerResponse> Update2Async(UpdateSSHServerPasswordRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         System.Threading.Tasks.Task<UpdateSSHServerResponse> Update2Async(UpdateSSHServerPasswordRequest request, System.Threading.CancellationToken cancellationToken);
 
     }
@@ -1509,14 +1605,14 @@ namespace  SwitchCommander.Blazor.Services
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<CreateSSHServerResponse> CreateAsync(CreateSSHServerRequest request)
         {
             return CreateAsync(request, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<CreateSSHServerResponse> CreateAsync(CreateSSHServerRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
@@ -1564,7 +1660,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<CreateSSHServerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -1574,14 +1670,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHServerClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHServerClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHServerClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHServerClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -1598,14 +1694,96 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<ReadSSHServerResponse> ReadAllAsync()
+        {
+            return ReadAllAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<ReadSSHServerResponse> ReadAllAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/SSHServer");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ReadSSHServerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new SSHServerClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new SSHServerClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<UpdateSSHServerResponse> UpdateAsync(UpdateSSHServerRequest request)
         {
             return UpdateAsync(request, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<UpdateSSHServerResponse> UpdateAsync(UpdateSSHServerRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
@@ -1653,7 +1831,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<UpdateSSHServerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -1663,14 +1841,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHServerClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHServerClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHServerClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHServerClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -1687,14 +1865,14 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<ReadSSHServerResponse> ReadAsync(string id)
         {
             return ReadAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ReadSSHServerResponse> ReadAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
@@ -1739,7 +1917,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ReadSSHServerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -1749,14 +1927,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHServerClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHServerClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHServerClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHServerClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -1773,14 +1951,14 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<DeleteSSHServerResponse> DeleteAsync(string id)
         {
             return DeleteAsync(id, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<DeleteSSHServerResponse> DeleteAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
@@ -1825,14 +2003,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<DeleteSSHServerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHServerClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHServerClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -1849,14 +2027,14 @@ namespace  SwitchCommander.Blazor.Services
             }
         }
 
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<UpdateSSHServerResponse> Update2Async(UpdateSSHServerPasswordRequest request)
         {
             return Update2Async(request, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <exception cref="SSHServerClientService">A server side error occurred.</exception>
+        /// <exception cref="SSHServerClient">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<UpdateSSHServerResponse> Update2Async(UpdateSSHServerPasswordRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
@@ -1904,7 +2082,7 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<UpdateSSHServerResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
                         }
@@ -1914,14 +2092,14 @@ namespace  SwitchCommander.Blazor.Services
                             var objectResponse_ = await ReadObjectResponseAsync<ProblemDetails>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
-                                throw new SSHServerClientService("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                                throw new SSHServerClient("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
-                            throw new SSHServerClientService<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                            throw new SSHServerClient<ProblemDetails>("A server side error occurred.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new SSHServerClientService("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                            throw new SSHServerClient("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
                         }
                     }
                     finally
@@ -1971,7 +2149,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body string as " + typeof(T).FullName + ".";
-                    throw new SSHServerClientService(message, (int)response.StatusCode, responseText, headers, exception);
+                    throw new SSHServerClient(message, (int)response.StatusCode, responseText, headers, exception);
                 }
             }
             else
@@ -1990,7 +2168,7 @@ namespace  SwitchCommander.Blazor.Services
                 catch (Newtonsoft.Json.JsonException exception)
                 {
                     var message = "Could not deserialize the response body stream as " + typeof(T).FullName + ".";
-                    throw new SSHServerClientService(message, (int)response.StatusCode, string.Empty, headers, exception);
+                    throw new SSHServerClient(message, (int)response.StatusCode, string.Empty, headers, exception);
                 }
             }
         }
@@ -2345,9 +2523,8 @@ namespace  SwitchCommander.Blazor.Services
     }
 
 
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UserClientService : System.Exception
+    
+    public partial class UserClient : System.Exception
     {
         public int StatusCode { get; private set; }
 
@@ -2355,7 +2532,7 @@ namespace  SwitchCommander.Blazor.Services
 
         public System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
 
-        public UserClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
+        public UserClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
             : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + ((response == null) ? "(null)" : response.Substring(0, response.Length >= 512 ? 512 : response.Length)), innerException)
         {
             StatusCode = statusCode;
@@ -2370,19 +2547,52 @@ namespace  SwitchCommander.Blazor.Services
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UserClientService<TResult> : UserClientService
+    public partial class UserClient<TResult> : UserClient
     {
         public TResult Result { get; private set; }
 
-        public UserClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
+        public UserClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
+            : base(message, statusCode, response, headers, innerException)
+        {
+            Result = result;
+        }
+    }
+    
+    public partial class SSHCommandClient : System.Exception
+    {
+        public int StatusCode { get; private set; }
+
+        public string Response { get; private set; }
+
+        public System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
+
+        public SSHCommandClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
+            : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + ((response == null) ? "(null)" : response.Substring(0, response.Length >= 512 ? 512 : response.Length)), innerException)
+        {
+            StatusCode = statusCode;
+            Response = response;
+            Headers = headers;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("HTTP Response: \n\n{0}\n\n{1}", Response, base.ToString());
+        }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class SSHCommandClient<TResult> : SSHCommandClient
+    {
+        public TResult Result { get; private set; }
+
+        public SSHCommandClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
             : base(message, statusCode, response, headers, innerException)
         {
             Result = result;
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SSHCommandClientService : System.Exception
+    public partial class SSHConfigurationClient : System.Exception
     {
         public int StatusCode { get; private set; }
 
@@ -2390,7 +2600,7 @@ namespace  SwitchCommander.Blazor.Services
 
         public System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
 
-        public SSHCommandClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
+        public SSHConfigurationClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
             : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + ((response == null) ? "(null)" : response.Substring(0, response.Length >= 512 ? 512 : response.Length)), innerException)
         {
             StatusCode = statusCode;
@@ -2405,19 +2615,18 @@ namespace  SwitchCommander.Blazor.Services
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SSHCommandClientService<TResult> : SSHCommandClientService
+    public partial class SSHConfigurationClient<TResult> : SSHConfigurationClient
     {
         public TResult Result { get; private set; }
 
-        public SSHCommandClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
+        public SSHConfigurationClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
             : base(message, statusCode, response, headers, innerException)
         {
             Result = result;
         }
     }
 
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SSHConfigurationClientService : System.Exception
+    public partial class SSHExecuteCommandClient : System.Exception
     {
         public int StatusCode { get; private set; }
 
@@ -2425,7 +2634,7 @@ namespace  SwitchCommander.Blazor.Services
 
         public System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
 
-        public SSHConfigurationClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
+        public SSHExecuteCommandClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
             : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + ((response == null) ? "(null)" : response.Substring(0, response.Length >= 512 ? 512 : response.Length)), innerException)
         {
             StatusCode = statusCode;
@@ -2440,19 +2649,18 @@ namespace  SwitchCommander.Blazor.Services
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SSHConfigurationClientService<TResult> : SSHConfigurationClientService
+    public partial class SSHExecuteCommandClient<TResult> : SSHExecuteCommandClient
     {
         public TResult Result { get; private set; }
 
-        public SSHConfigurationClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
+        public SSHExecuteCommandClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
             : base(message, statusCode, response, headers, innerException)
         {
             Result = result;
         }
     }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SSHExecuteCommandClientService : System.Exception
+    
+    public partial class SSHServerClient : System.Exception
     {
         public int StatusCode { get; private set; }
 
@@ -2460,7 +2668,7 @@ namespace  SwitchCommander.Blazor.Services
 
         public System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
 
-        public SSHExecuteCommandClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
+        public SSHServerClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
             : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + ((response == null) ? "(null)" : response.Substring(0, response.Length >= 512 ? 512 : response.Length)), innerException)
         {
             StatusCode = statusCode;
@@ -2475,46 +2683,11 @@ namespace  SwitchCommander.Blazor.Services
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SSHExecuteCommandClientService<TResult> : SSHExecuteCommandClientService
+    public partial class SSHServerClient<TResult> : SSHServerClient
     {
         public TResult Result { get; private set; }
 
-        public SSHExecuteCommandClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
-            : base(message, statusCode, response, headers, innerException)
-        {
-            Result = result;
-        }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SSHServerClientService : System.Exception
-    {
-        public int StatusCode { get; private set; }
-
-        public string Response { get; private set; }
-
-        public System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
-
-        public SSHServerClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
-            : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + ((response == null) ? "(null)" : response.Substring(0, response.Length >= 512 ? 512 : response.Length)), innerException)
-        {
-            StatusCode = statusCode;
-            Response = response;
-            Headers = headers;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("HTTP Response: \n\n{0}\n\n{1}", Response, base.ToString());
-        }
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SSHServerClientService<TResult> : SSHServerClientService
-    {
-        public TResult Result { get; private set; }
-
-        public SSHServerClientService(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
+        public SSHServerClient(string message, int statusCode, string response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
             : base(message, statusCode, response, headers, innerException)
         {
             Result = result;

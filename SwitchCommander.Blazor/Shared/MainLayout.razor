@@ -1,4 +1,5 @@
 ﻿@using SwitchCommander.Blazor.Services
+@using System.Net.NetworkInformation
 @inherits LayoutComponentBase
 
 <PageTitle>SwitchCommander.Blazor</PageTitle>
@@ -22,7 +23,7 @@
             }
             else
             {
-                <MudAlert Severity="Severity.Success" Variant="Variant.Filled">Web Api is now online</MudAlert>
+                <MudAlert @bind="_isShow" Severity="Severity.Success" Variant="Variant.Filled">Web Api is now online</MudAlert>
             }
             @Body
         </article>
@@ -35,32 +36,44 @@
 @code
 {
     private bool _isApiValid;
-
+    private bool _isShow;
+    
     protected override async Task OnInitializedAsync()
     {
-        CheckIsApiOnline();
+        await CheckIsApiOnline();
     }
 
-    private async void CheckIsApiOnline()
+    private async Task CheckIsApiOnline()
     {
         await Task.Run(async () =>
         {
             while (true)
             {
+                var client = new System.Net.Sockets.TcpClient();
                 try
                 {
-                    var userClientService = new UserClient(new HttpClient());
-                    await userClientService.GetByIdAsync("");
-                    
-                    _isApiValid = true;
+                    await client.ConnectAsync("localhost", 44317);
+                    if (client.Connected)
+                    {
+                        _isApiValid = true;
+                    }
                 }
-                catch (Exception e)
+                catch (System.Net.Sockets.SocketException)
                 {
-                    Console.WriteLine(e);
                     _isApiValid = false;
                 }
-                await InvokeAsync(StateHasChanged);
-                await Task.Delay(10000);
+                finally
+                {
+                    await InvokeAsync(StateHasChanged);
+                    await Task.Delay(1000);
+                    client.Close();
+                    
+                    if (_isApiValid)
+                    {
+                        await Task.Delay(5000); // Delay for 5 seconds
+                        _isShow = false; // Set the is variable to false to hide the alert
+                    }
+                }
             }
         });
     }

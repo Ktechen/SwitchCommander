@@ -1,8 +1,8 @@
 ﻿using MongoDB.Driver;
 using SwitchCommander.Domain.Dtos;
-using SwitchCommander.Persistence.Context;
+using SwitchCommander.Infrastructure.Context;
 
-namespace SwitchCommander.Persistence.Seeds;
+namespace SwitchCommander.Infrastructure.Seeds;
 
 public class MongoDbContextSeed
 {

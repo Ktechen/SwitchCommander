@@ -19,6 +19,16 @@ public class SSHCommandService : ISSHCommandClient
         return _isshCommandClientImplementation.CreateAsync(request, cancellationToken);
     }
 
+    public Task<ReadSSHCommandResponse> ReadAllAsync()
+    {
+        return _isshCommandClientImplementation.ReadAllAsync();
+    }
+
+    public Task<ReadSSHCommandResponse> ReadAllAsync(CancellationToken cancellationToken)
+    {
+        return _isshCommandClientImplementation.ReadAllAsync(cancellationToken);
+    }
+
     public Task<UpdateSSHCommandResponse> UpdateAsync(UpdateSSHCommandRequest request)
     {
         return _isshCommandClientImplementation.UpdateAsync(request);

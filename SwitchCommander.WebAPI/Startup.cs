@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SwitchCommander.Application;
-using SwitchCommander.Persistence;
+using SwitchCommander.Infrastructure;
 using SwitchCommander.WebAPI.Extensions;
 
 namespace SwitchCommander.WebAPI;

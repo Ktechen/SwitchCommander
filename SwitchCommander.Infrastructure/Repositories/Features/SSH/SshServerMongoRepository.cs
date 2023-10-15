@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Domain.Dtos;
-using SwitchCommander.Persistence.Context;
+using SwitchCommander.Infrastructure.Context;
 
-namespace SwitchCommander.Persistence.Repositories.Features.SSH;
+namespace SwitchCommander.Infrastructure.Repositories.Features.SSH;
 
 public class SshServerMongoRepository : BaseMongoRepository<SSHServer>, ISshServerMongoRepository
 {

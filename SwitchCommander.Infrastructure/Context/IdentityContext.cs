@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace SwitchCommander.Persistence.Context;
+namespace SwitchCommander.Infrastructure.Context;
 
 public class IdentityContext : IdentityDbContext<IdentityUser>
 {

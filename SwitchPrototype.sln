@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchCommander.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchCommander.Domain", "SwitchCommander.Domain\SwitchCommander.Domain.csproj", "{7CCE6A60-3CAB-45AE-9AB8-C9DB339B7AA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchCommander.Persistence", "SwitchCommander.Persistence\SwitchCommander.Persistence.csproj", "{08571550-8F6C-4FCF-9021-8FA1B176EC9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchCommander.Infrastructure", "SwitchCommander.Infrastructure\SwitchCommander.Infrastructure.csproj", "{08571550-8F6C-4FCF-9021-8FA1B176EC9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchCommander.WebAPI", "SwitchCommander.WebAPI\SwitchCommander.WebAPI.csproj", "{A03B5BBE-D4B4-4D53-AC24-46DD765354DF}"
 EndProject

@@ -43,7 +43,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\SwitchCommander.Application\SwitchCommander.Application.csproj"/>
-        <ProjectReference Include="..\SwitchCommander.Persistence\SwitchCommander.Persistence.csproj"/>
+        <ProjectReference Include="..\SwitchCommander.Infrastructure\SwitchCommander.Infrastructure.csproj" />
     </ItemGroup>
 
 

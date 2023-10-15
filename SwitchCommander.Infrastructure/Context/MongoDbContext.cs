@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using SwitchCommander.Domain.Dtos;
 
-namespace SwitchCommander.Persistence.Context;
+namespace SwitchCommander.Infrastructure.Context;
 
 public class MongoDbContext
 {
