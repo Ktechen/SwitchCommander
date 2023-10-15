@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Hangfire;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -55,9 +56,10 @@ public class SSHCommandController : BaseController
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ReadSSHCommandResponse>> ReadAll(CancellationToken cancellationToken)
+    public async Task<ActionResult<IEnumerator<ReadAllSSHCommandResponse>>> ReadAll(CancellationToken cancellationToken)
     {
-        return Ok(await _mediator.Send(new ReadAllSSHCommandRequest(), cancellationToken));
+        var result = await _mediator.Send(new ReadAllSSHCommandRequest(), cancellationToken);
+        return Ok(result);
     }
 
     [Authorize(Policy = "AdminOnly")]

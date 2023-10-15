@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using FluentValidation;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Riok.Mapperly.Abstractions;
 using SwitchCommander.Application.Common.Behaviors;
@@ -10,13 +11,14 @@ namespace SwitchCommander.Application;
 
 public static class ServiceExtensions
 {
-    public static void ConfigureApplication(this IServiceCollection services)
+    public static void ConfigureApplication(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddMappersFromAssembly(Assembly.GetExecutingAssembly());
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
         services.AddSingleton<IPasswordService, PasswordService>();
+        services.AddSingleton<IPingService, PingService>();
     }
 
     private static void AddMappersFromAssembly(this IServiceCollection services, Assembly assembly)

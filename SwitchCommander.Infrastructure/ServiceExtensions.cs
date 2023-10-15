@@ -1,13 +1,17 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Hangfire;
+using Hangfire.SqlServer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SwitchCommander.Application.Repositories.Features;
 using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Infrastructure.Context;
+using SwitchCommander.Infrastructure.Features.SSH.BackgroundJobs;
 using SwitchCommander.Infrastructure.Repositories.Features;
 using SwitchCommander.Infrastructure.Repositories.Features.SSH;
 using SwitchCommander.Infrastructure.Seeds;
+using ZstdSharp.Unsafe;
 
 namespace SwitchCommander.Infrastructure;
 
@@ -18,6 +22,7 @@ public static class ServiceExtensions
         AddMongoDb(services);
         AddRepository(services);
         AddIdentityContext(services, configuration);
+        AddHangfire(services, configuration);
     }
 
     private static void AddMongoDb(this IServiceCollection services)
@@ -42,6 +47,24 @@ public static class ServiceExtensions
                 options.Password.RequireLowercase = true;
             })
             .AddEntityFrameworkStores<IdentityContext>();
+    }
+
+    private static void AddHangfire(this IServiceCollection services, IConfiguration builder)
+    {
+        services.AddHangfire(configuration => configuration
+            .SetDataCompatibilityLevel(CompatibilityLevel.Version_110)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSqlServerStorage(builder.GetConnectionString("HangfireConnection"), new SqlServerStorageOptions
+            {
+                CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                QueuePollInterval = TimeSpan.Zero,
+                UseRecommendedIsolationLevel = true,
+                DisableGlobalLocks = true
+            }));
+        
+        services.AddHangfireServer();
     }
 
     private static void AddRepository(this IServiceCollection services)

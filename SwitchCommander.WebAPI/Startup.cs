@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Hangfire;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SwitchCommander.Application;
@@ -19,14 +20,14 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.ConfigurePersistence(Configuration);
-        services.ConfigureApplication();
+        services.ConfigureApplication(Configuration);
 
         services.ConfigureApiBehavior();
         services.ConfigureCorsPolicy();
 
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-
+        
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo
@@ -116,20 +117,26 @@ public class Startup
             var resultOfKey = Configuration.GetSection("LicenseKey").GetValue<string>("key");
             if (string.Compare(resultOfKey, "ServerIP", StringComparison.Ordinal) != 0)
             {
-                Console.WriteLine("Enter a License Key...");
+                Console.WriteLine("Enter a License Key ...");
+                Console.ReadLine();
                 Environment.Exit(0);
             }
         }
-
+        
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
 
         app.UseErrorHandler();
         app.UseCors();
-
+        app.UseHangfireDashboard();
+        
         //Net.8
         //app.MapIdentityApi<IdentityUser>();
-        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+            endpoints.MapHangfireDashboard();
+        });
     }
 }

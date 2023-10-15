@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNet.SignalR.Messaging;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
-namespace SwitchCommander.Application.Features.SSH.Hub;
+namespace SwitchCommander.Infrastructure.Features.SSH.Hub;
 
 public class SSHHub : Microsoft.AspNet.SignalR.Hub
 {
@@ -12,9 +11,9 @@ public class SSHHub : Microsoft.AspNet.SignalR.Hub
         _logger = logger;
     }
     
-    public async Task SendMessage(string user, string message)
+    public async Task SendIsConnected(bool result)
     {
-        await Clients.All.SendAsync("ReceiveMessage", user, message);
+        await Clients.All.SendAsync("IsConnected", result);
     }
 
 
