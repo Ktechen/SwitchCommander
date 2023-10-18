@@ -25,6 +25,7 @@ public class SSHServerController : BaseController
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<CreateSSHServerResponse>> Create([FromBody] CreateSSHServerRequest request,
@@ -42,6 +43,7 @@ public class SSHServerController : BaseController
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ReadSSHServerResponse>> Read(string id, CancellationToken cancellationToken)
@@ -53,6 +55,7 @@ public class SSHServerController : BaseController
     }
     
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ReadSSHServerResponse>> ReadAll(CancellationToken cancellationToken)
@@ -61,6 +64,7 @@ public class SSHServerController : BaseController
     }
 
     [HttpPut]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UpdateSSHServerResponse>> Update([FromBody] UpdateSSHServerRequest request,
@@ -79,6 +83,7 @@ public class SSHServerController : BaseController
     }
 
     [HttpPut("password")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UpdateSSHServerResponse>> Update([FromBody] UpdateSSHServerPasswordRequest request,
@@ -99,6 +104,7 @@ public class SSHServerController : BaseController
     }
 
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<DeleteSSHServerResponse>> Delete(string id, CancellationToken cancellationToken)
     {

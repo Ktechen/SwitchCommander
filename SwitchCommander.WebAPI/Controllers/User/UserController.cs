@@ -24,6 +24,7 @@ public class UserController : BaseController
     ///     <see cref="CreateUserResponse" />
     /// </returns>
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<CreateUserResponse>> Create(
@@ -50,6 +51,7 @@ public class UserController : BaseController
     ///     <see cref="ReadUserResponse" />
     /// </returns>
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

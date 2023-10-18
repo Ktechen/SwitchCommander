@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Hangfire;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +7,7 @@ using SwitchCommander.Application.Features.SSH.Delete.Command;
 using SwitchCommander.Application.Features.SSH.Read.Command;
 using SwitchCommander.Application.Features.SSH.Update.Command;
 
-namespace SwitchCommander.WebAPI.Controllers.SSH;
+namespace SwitchCommander.WebAPI.Controllers.v1.SSH;
 
 public class SSHCommandController : BaseController
 {
@@ -24,6 +23,7 @@ public class SSHCommandController : BaseController
 
     [Authorize(Policy = "AdminOnly")]
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<CreateSSHCommandResponse>> Create([FromBody] CreateSSHCommandRequest request,

@@ -1,9 +1,15 @@
-﻿using Hangfire;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Interfaces;
 using Microsoft.OpenApi.Models;
 using SwitchCommander.Application;
 using SwitchCommander.Infrastructure;
+using SwitchCommander.Infrastructure.Context;
 using SwitchCommander.WebAPI.Extensions;
 
 namespace SwitchCommander.WebAPI;
@@ -27,56 +33,9 @@ public class Startup
 
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo
-            {
-                Title = "Your API",
-                Version = "v1"
-            });
-
-            // Configure JWT authentication for Swagger
-            var securityScheme = new OpenApiSecurityScheme
-            {
-                Name = "JWT Authentication",
-                Description = "Enter your JWT token",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = "bearer", // Use "bearer" for JWT
-                BearerFormat = "JWT",
-                Reference = new OpenApiReference
-                {
-                    Id = "Bearer",
-                    Type = ReferenceType.SecurityScheme
-                }
-            };
-            c.AddSecurityDefinition("Bearer", securityScheme);
-
-            var securityRequirement = new OpenApiSecurityRequirement
-            {
-                { securityScheme, new[] { "Bearer" } }
-            };
-            c.AddSecurityRequirement(securityRequirement);
-        });
 
         services.AddOpenApiDocument();
 
-        services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey("YourSecretKey"u8.ToArray())
-                };
-            });
 
         services.AddAuthorization(options =>
         {
@@ -93,9 +52,72 @@ public class Startup
             });
         });
 
+        var secretKey = new SymmetricSecurityKey("superSecretKey@2410"u8.ToArray());
+        var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+        var tokenOptions = new JwtSecurityToken(
+            issuer: "Kev",
+            audience: "https://localhost:44317",
+            claims: new List<Claim>(),
+            expires: DateTime.Now.AddMinutes(5),
+            signingCredentials: signinCredentials
+        );
+        var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
+        Console.WriteLine(tokenString);
+
+        services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            // Adding Jwt Bearer
+            .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidAudience = "https://localhost:44317",
+                    ValidIssuer = "Kev",
+                    IssuerSigningKey = secretKey
+                };
+            });
+
+
         services.AddLogging(builder =>
         {
             builder.AddConsole(); // Add console logging provider
+        });
+
+        services.AddSwaggerGen(opt =>
+        {
+            opt.SwaggerDoc("v1", new OpenApiInfo { Title = "SwitchCommander", Version = "v1" });
+            opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            {
+                In = ParameterLocation.Header,
+                Description = "Please enter token",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "bearer"
+            });
+            opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] { }
+                }
+            });
         });
     }
 
@@ -105,8 +127,7 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
             app.UseOpenApi();
-            app.UseSwaggerUi3();
-            app.UseReDoc(options => { options.Path = "/redoc"; });
+            app.UseSwaggerUI(c => c.ConfigObject.AdditionalItems.Add("persistAuthorization", "true"));
         }
         else
         {
@@ -122,7 +143,7 @@ public class Startup
                 Environment.Exit(0);
             }
         }
-        
+
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
@@ -130,7 +151,7 @@ public class Startup
         app.UseErrorHandler();
         app.UseCors();
         app.UseHangfireDashboard();
-        
+
         //Net.8
         //app.MapIdentityApi<IdentityUser>();
         app.UseEndpoints(endpoints =>

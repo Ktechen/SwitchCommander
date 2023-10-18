@@ -17,6 +17,7 @@ public class SSHConfigurationController : BaseController
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<UpdateSSHCommandConfigurationResponse>>> ReadAll(
@@ -27,6 +28,7 @@ public class SSHConfigurationController : BaseController
     }
 
     [HttpPut]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UpdateSSHCommandConfigurationResponse>> UpdateSSHCommandConfiguration(

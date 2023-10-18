@@ -7,11 +7,15 @@ namespace SwitchCommander.WebAPI.Controllers.SSH;
 
 public class SSHExecuteCommandController : BaseController
 {
-    public SSHExecuteCommandController(IMediator mediator) : base(mediator)
+    private ILogger<SSHExecuteCommandController> _logger;
+    
+    public SSHExecuteCommandController(IMediator mediator, ILogger<SSHExecuteCommandController> logger) : base(mediator)
     {
+        _logger = logger;
     }
 
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<ExecuteSSHCommandResponse>> Execute([FromBody] ExecuteSSHCommandRequest request,
@@ -23,10 +27,12 @@ public class SSHExecuteCommandController : BaseController
         try
         {
             var response = await _mediator.Send(request, cancellationToken);
+            _logger.LogInformation("Execute a command" + response);
             return Ok(response);
         }
         catch (Exception e) when (e is BadRequestException or SSHNetException)
         {
+            _logger.LogError(e.Message);
             return BadRequest(e.Message);
         }
     }

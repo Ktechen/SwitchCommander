@@ -1,5 +1,4 @@
-﻿using Hangfire;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features.SSH;
 
