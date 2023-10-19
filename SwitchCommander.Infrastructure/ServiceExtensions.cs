@@ -71,5 +71,6 @@ public static class ServiceExtensions
         services.AddTransient<ISshCommandMongoRepository, SshCommandMongoRepository>();
         services.AddTransient<ISshCommandConfigurationMongoRepository, SshCommandConfigurationMongoRepository>();
         services.AddTransient<ISshServerMongoRepository, SshServerMongoRepository>();
+        services.AddTransient<ISshCommandSequenceMongoRepository, SshCommandSequenceMongoRepository>();
     }
 }
