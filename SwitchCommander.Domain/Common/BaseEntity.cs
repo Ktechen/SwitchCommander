@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace SwitchCommander.Domain.Common;
 
@@ -17,5 +18,10 @@ public abstract class BaseEntity
     public void QueueDomainEvent(IDomainEvent @event)
     {
         DomainEvents.Add(@event);
+    }
+    
+    public override string ToString()
+    {
+        return JsonConvert.SerializeObject(this);
     }
 }

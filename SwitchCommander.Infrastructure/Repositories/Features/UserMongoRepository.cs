@@ -8,7 +8,7 @@ namespace SwitchCommander.Infrastructure.Repositories.Features;
 
 public class UserMongoRepository : BaseMongoRepository<User>, IUserMongoRepository
 {
-    public UserMongoRepository(MongoDbContext context, IMediator mediator) : base(context.UserCollection, mediator)
+    public UserMongoRepository(MongoDbSshContext sshContext, IMediator mediator) : base(sshContext.UserCollection, mediator)
     {
     }
 

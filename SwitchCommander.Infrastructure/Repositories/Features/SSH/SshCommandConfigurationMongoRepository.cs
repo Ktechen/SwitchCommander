@@ -8,8 +8,8 @@ namespace SwitchCommander.Infrastructure.Repositories.Features.SSH;
 public class SshCommandConfigurationMongoRepository : BaseMongoRepository<SShCommandConfiguration>,
     ISshCommandConfigurationMongoRepository
 {
-    public SshCommandConfigurationMongoRepository(MongoDbContext context, IMediator mediator) : base(
-        context.SSHCommandConfigurationCollection, mediator)
+    public SshCommandConfigurationMongoRepository(MongoDbSshContext sshContext, IMediator mediator) : base(
+        sshContext.SSHCommandConfigurationCollection, mediator)
     {
     }
 

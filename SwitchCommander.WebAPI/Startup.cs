@@ -84,8 +84,7 @@ public class Startup
         {
             builder.AddConsole(); // Add console logging provider
         });
-
-
+        
         services.ConfigureSwagger();
     }
 

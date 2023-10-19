@@ -4,11 +4,11 @@ using SwitchCommander.Domain.Dtos;
 
 namespace SwitchCommander.Infrastructure.Context;
 
-public class MongoDbContext
+public class MongoDbSshContext
 {
-    public MongoDbContext(IConfiguration configuration)
+    public MongoDbSshContext(IConfiguration configuration)
     {
-        var config = configuration.GetSection("MongoDB");
+        var config = configuration.GetSection("MongoDBSsh");
         var mongoClient = new MongoClient(config.GetValue<string>("ConnectionString"));
         var mongoDatabase = mongoClient.GetDatabase(config.GetValue<string>("DatabaseName"));
 
@@ -18,6 +18,7 @@ public class MongoDbContext
         SSHCommandConfigurationCollection =
             mongoDatabase.GetCollection<SShCommandConfiguration>(nameof(SShCommandConfiguration));
         SSHServerCollection = mongoDatabase.GetCollection<SSHServer>(nameof(SSHServer));
+        SSHCommandSequenceCollection = mongoDatabase.GetCollection<SSHCommandSequence>(nameof(SSHCommandSequence));
     }
 
     public IMongoCollection<User> UserCollection { get; }
@@ -29,4 +30,6 @@ public class MongoDbContext
     public IMongoCollection<SShCommandConfiguration> SSHCommandConfigurationCollection { get; }
 
     public IMongoCollection<SSHServer> SSHServerCollection { get; }
+    
+    public IMongoCollection<SSHCommandSequence> SSHCommandSequenceCollection { get; }
 }

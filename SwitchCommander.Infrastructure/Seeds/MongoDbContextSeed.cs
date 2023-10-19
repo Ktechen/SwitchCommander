@@ -6,7 +6,7 @@ namespace SwitchCommander.Infrastructure.Seeds;
 
 public class MongoDbContextSeed
 {
-    public MongoDbContextSeed(MongoDbContext context)
+    public MongoDbContextSeed(MongoDbSshContext sshContext)
     {
         var seed = new List<SSHCommand>
         {
@@ -24,9 +24,9 @@ public class MongoDbContextSeed
             }
         };
 
-        var hasInsert = context.SSHCommandConfigurationCollection.FindAsync(x => true).Result.Any();
+        var hasInsert = sshContext.SSHCommandConfigurationCollection.FindAsync(x => true).Result.Any();
         if (!hasInsert)
-            context.SSHCommandConfigurationCollection.InsertOne(new SShCommandConfiguration
+            sshContext.SSHCommandConfigurationCollection.InsertOne(new SShCommandConfiguration
             {
                 CommandMinimumLength = 1,
                 DescriptionMinimumLength = 10,

@@ -25,6 +25,12 @@ public sealed class CreateInitHangfireTask
 
     private async void SendPingServer(string hostname)
     {
+        var quene = new Queue<Func<string>>();
+        var jobId = BackgroundJob.Enqueue(
+            () => quene.Dequeue());
         var result = await _pingService.IsConnected(hostname);
+        using (var server = new BackgroundJobServer())
+        {
+        }
     }
 }

@@ -25,7 +25,7 @@ public static class ServiceExtensions
 
     private static void AddMongoDb(this IServiceCollection services)
     {
-        services.AddScoped<MongoDbContext>();
+        services.AddScoped<MongoDbSshContext>();
         services.AddTransient<MongoDbContextSeed>();
         services.BuildServiceProvider().GetRequiredService<MongoDbContextSeed>();
     }

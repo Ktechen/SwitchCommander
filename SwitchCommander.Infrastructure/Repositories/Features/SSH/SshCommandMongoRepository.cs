@@ -7,7 +7,7 @@ namespace SwitchCommander.Infrastructure.Repositories.Features.SSH;
 
 public class SshCommandMongoRepository : BaseMongoRepository<SSHCommand>, ISshCommandMongoRepository
 {
-    public SshCommandMongoRepository(MongoDbContext context, IMediator mediator) : base(context.SSHCommandCollection,
+    public SshCommandMongoRepository(MongoDbSshContext sshContext, IMediator mediator) : base(sshContext.SSHCommandCollection,
         mediator)
     {
     }
