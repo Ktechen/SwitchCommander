@@ -1,5 +1,4 @@
-﻿@using SwitchCommander.Blazor.Services
-@using System.Net.NetworkInformation
+﻿@using System.Net.Sockets
 @inherits LayoutComponentBase
 
 <PageTitle>SwitchCommander.Blazor</PageTitle>
@@ -37,7 +36,7 @@
 {
     private bool _isApiValid;
     private bool _isShow;
-    
+
     protected override async Task OnInitializedAsync()
     {
         await CheckIsApiOnline();
@@ -49,7 +48,7 @@
         {
             while (true)
             {
-                var client = new System.Net.Sockets.TcpClient();
+                var client = new TcpClient();
                 try
                 {
                     await client.ConnectAsync("localhost", 44317);
@@ -58,7 +57,7 @@
                         _isApiValid = true;
                     }
                 }
-                catch (System.Net.Sockets.SocketException)
+                catch (SocketException)
                 {
                     _isApiValid = false;
                 }
@@ -67,7 +66,7 @@
                     await InvokeAsync(StateHasChanged);
                     await Task.Delay(1000);
                     client.Close();
-                    
+
                     if (_isApiValid)
                     {
                         await Task.Delay(5000); // Delay for 5 seconds

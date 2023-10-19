@@ -16,7 +16,7 @@ public class PingService : IPingService
 
     public async Task<PingReply> GetPingReply(string hostname)
     {
-        var resultDns = await Dns.GetHostAddressesAsync(hostname); 
+        var resultDns = await Dns.GetHostAddressesAsync(hostname);
         return await _ping.SendPingAsync(resultDns[0]);
     }
 }

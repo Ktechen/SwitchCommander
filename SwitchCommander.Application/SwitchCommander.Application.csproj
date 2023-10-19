@@ -16,11 +16,11 @@
         <PackageReference Include="BCrypt.Net" Version="0.1.0"/>
         <PackageReference Include="FluentValidation" Version="11.7.1"/>
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1"/>
-        <PackageReference Include="Hangfire.Core" Version="1.8.5" />
+        <PackageReference Include="Hangfire.Core" Version="1.8.5"/>
         <PackageReference Include="MediatR" Version="12.1.1"/>
-        <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.3" />
-        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+        <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.4.3"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0"/>
         <PackageReference Include="MongoDB.Driver" Version="2.21.0"/>
         <PackageReference Include="Riok.Mapperly" Version="3.1.0"/>
         <PackageReference Include="SSH.NET" Version="2020.0.2"/>

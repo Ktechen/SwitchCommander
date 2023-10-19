@@ -4,7 +4,7 @@ using SwitchCommander.Application.Repositories.Features.SSH;
 
 namespace SwitchCommander.Application.Features.SSH.Read.Server;
 
-public sealed record ReadAllSSHServerRequest() : IRequest<IEnumerable<ReadAllSSHServerResponse>>;
+public sealed record ReadAllSSHServerRequest : IRequest<IEnumerable<ReadAllSSHServerResponse>>;
 
 public sealed record ReadAllSSHServerResponse(Guid? Id, string? Hostname, string? Username, long DateCreated,
     long? DateUpdated);

@@ -22,7 +22,7 @@ services:
       - mongodb_data_container:/data/db
     networks:
       - backend
-      
+
 networks:
   backend:
 

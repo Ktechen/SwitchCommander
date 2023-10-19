@@ -7,8 +7,8 @@ namespace SwitchCommander.WebAPI.Controllers.SSH;
 
 public class SSHExecuteCommandController : BaseController
 {
-    private ILogger<SSHExecuteCommandController> _logger;
-    
+    private readonly ILogger<SSHExecuteCommandController> _logger;
+
     public SSHExecuteCommandController(IMediator mediator, ILogger<SSHExecuteCommandController> logger) : base(mediator)
     {
         _logger = logger;

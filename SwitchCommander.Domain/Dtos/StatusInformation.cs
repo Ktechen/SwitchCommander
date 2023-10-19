@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace SwitchCommander.Domain.Dtos;
+﻿namespace SwitchCommander.Domain.Dtos;
 
 public class StatusInformation
 {

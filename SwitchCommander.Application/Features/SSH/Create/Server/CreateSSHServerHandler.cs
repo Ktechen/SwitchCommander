@@ -1,5 +1,4 @@
-﻿using Hangfire;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Common.Services;
 using SwitchCommander.Application.Repositories.Features.SSH;
@@ -19,7 +18,8 @@ public class CreateSSHServerHandler : IRequestHandler<CreateSSHServerRequest, Cr
     private readonly IPasswordService _passwordService;
 
     public CreateSSHServerHandler(ILogger<CreateSSHServerHandler> logger,
-        ISshServerMongoRepository serverMongoRepository, CreateSSHServerMapper mapper, IPasswordService passwordService, IPingService pingService)
+        ISshServerMongoRepository serverMongoRepository, CreateSSHServerMapper mapper, IPasswordService passwordService,
+        IPingService pingService)
     {
         _logger = logger;
         _mongoRepository = serverMongoRepository;

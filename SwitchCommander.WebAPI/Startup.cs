@@ -1,15 +1,10 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Interfaces;
-using Microsoft.OpenApi.Models;
 using SwitchCommander.Application;
 using SwitchCommander.Infrastructure;
-using SwitchCommander.Infrastructure.Context;
 using SwitchCommander.WebAPI.Extensions;
 
 namespace SwitchCommander.WebAPI;
@@ -34,8 +29,6 @@ public class Startup
         services.AddControllers();
         services.AddEndpointsApiExplorer();
 
-        services.AddOpenApiDocument();
-
 
         services.AddAuthorization(options =>
         {
@@ -55,9 +48,9 @@ public class Startup
         var secretKey = new SymmetricSecurityKey("superSecretKey@2410"u8.ToArray());
         var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
         var tokenOptions = new JwtSecurityToken(
-            issuer: "Kev",
-            audience: "https://localhost:44317",
-            claims: new List<Claim>(),
+            "Kev",
+            "https://localhost:44317",
+            new List<Claim>(),
             expires: DateTime.Now.AddMinutes(5),
             signingCredentials: signinCredentials
         );
@@ -76,7 +69,7 @@ public class Startup
             {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters()
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = false,
                     ValidateAudience = false,
@@ -92,33 +85,8 @@ public class Startup
             builder.AddConsole(); // Add console logging provider
         });
 
-        services.AddSwaggerGen(opt =>
-        {
-            opt.SwaggerDoc("v1", new OpenApiInfo { Title = "SwitchCommander", Version = "v1" });
-            opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-            {
-                In = ParameterLocation.Header,
-                Description = "Please enter token",
-                Name = "Authorization",
-                Type = SecuritySchemeType.Http,
-                BearerFormat = "JWT",
-                Scheme = "bearer"
-            });
-            opt.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    new string[] { }
-                }
-            });
-        });
+
+        services.ConfigureSwagger();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -127,7 +95,12 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
             app.UseOpenApi();
-            app.UseSwaggerUI(c => c.ConfigObject.AdditionalItems.Add("persistAuthorization", "true"));
+
+            app.UseSwaggerUI(c =>
+            {
+                c.ConfigObject.AdditionalItems.Add("persistAuthorization", "true");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1 von Swagger");
+            });
         }
         else
         {

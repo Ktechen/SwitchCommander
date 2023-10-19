@@ -9,7 +9,8 @@ public sealed class CreateInitHangfireTask
 {
     private readonly IPingService _pingService;
 
-    public CreateInitHangfireTask(IPingService pingService, ISshServerMongoRepository mongoRepository, IConfiguration configuration)
+    public CreateInitHangfireTask(IPingService pingService, ISshServerMongoRepository mongoRepository,
+        IConfiguration configuration)
     {
         _pingService = pingService;
 
@@ -17,11 +18,9 @@ public sealed class CreateInitHangfireTask
 
         var readAllServer = mongoRepository.ReadAllAsync().Result;
         foreach (var sshServer in readAllServer)
-        {
             BackgroundJob.Schedule(
-                () => SendPingServer(sshServer.Hostname), 
+                () => SendPingServer(sshServer.Hostname),
                 new TimeSpan(0, 1, 0));
-        }
     }
 
     private async void SendPingServer(string hostname)

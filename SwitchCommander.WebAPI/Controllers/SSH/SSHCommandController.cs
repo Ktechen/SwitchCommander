@@ -7,7 +7,7 @@ using SwitchCommander.Application.Features.SSH.Delete.Command;
 using SwitchCommander.Application.Features.SSH.Read.Command;
 using SwitchCommander.Application.Features.SSH.Update.Command;
 
-namespace SwitchCommander.WebAPI.Controllers.v1.SSH;
+namespace SwitchCommander.WebAPI.Controllers.SSH;
 
 public class SSHCommandController : BaseController
 {
@@ -52,7 +52,7 @@ public class SSHCommandController : BaseController
 
         return Ok(response);
     }
-    
+
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

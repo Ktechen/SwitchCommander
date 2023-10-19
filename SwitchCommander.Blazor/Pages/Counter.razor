@@ -21,12 +21,13 @@
 
 @code{
     private readonly int _papers = 12;
-    private readonly SSHServerClient _serverService;
+    private readonly SSHServerClient _sshServerClient;
 
 
     protected override async Task OnInitializedAsync()
     {
-
+        var a = new CreateSSHCommandResponse().ToJson();
+        await _sshServerClient.CreateAsync(new CreateSSHServerRequest());
     }
 
 }

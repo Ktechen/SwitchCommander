@@ -53,7 +53,7 @@ public class SSHServerController : BaseController
         if (response.Id is null) return BadRequest(response);
         return Ok(response);
     }
-    
+
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]

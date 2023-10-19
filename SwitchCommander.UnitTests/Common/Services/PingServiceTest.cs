@@ -26,7 +26,7 @@ public class PingServiceTest
         // Arrange
         var pingService = new PingService();
         var invalidHostname = "invalid-hostname";
-        
+
         // Assert
         await Assert.ThrowsAsync<SocketException>(async () => await pingService.IsConnected(invalidHostname));
     }
@@ -52,7 +52,7 @@ public class PingServiceTest
         // Arrange
         var pingService = new PingService();
         var invalidHostname = "invalid-hostname";
-        
+
         // Assert
         await Assert.ThrowsAsync<SocketException>(async () => await pingService.GetPingReply(invalidHostname));
     }

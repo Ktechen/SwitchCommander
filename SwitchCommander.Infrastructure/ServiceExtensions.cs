@@ -7,11 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using SwitchCommander.Application.Repositories.Features;
 using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Infrastructure.Context;
-using SwitchCommander.Infrastructure.Features.SSH.BackgroundJobs;
 using SwitchCommander.Infrastructure.Repositories.Features;
 using SwitchCommander.Infrastructure.Repositories.Features.SSH;
 using SwitchCommander.Infrastructure.Seeds;
-using ZstdSharp.Unsafe;
 
 namespace SwitchCommander.Infrastructure;
 
@@ -63,7 +61,7 @@ public static class ServiceExtensions
                 UseRecommendedIsolationLevel = true,
                 DisableGlobalLocks = true
             }));
-        
+
         services.AddHangfireServer();
     }
 
