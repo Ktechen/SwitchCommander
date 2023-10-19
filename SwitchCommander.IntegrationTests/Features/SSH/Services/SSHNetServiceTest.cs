@@ -1,4 +1,5 @@
-﻿using Renci.SshNet;
+﻿using System.ComponentModel.DataAnnotations;
+using Renci.SshNet;
 using Xunit.Abstractions;
 
 namespace SwitchCommander.IntegrationTests.Features.SSH.Services;
@@ -12,7 +13,8 @@ public class SSHNetServiceTest
         _testOutputHelper = testOutputHelper;
     }
 
-    [Fact]
+    [Display(Description = "Connect to SSH server and execute a command")]
+    [Fact(Skip = "need a real server")]
     public void Connect_To_Rasperrypi_SSH_Server()
     {
         using var client = new SshClient("raspberrypi", "kevin", "1234");
