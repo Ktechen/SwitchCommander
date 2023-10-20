@@ -2,7 +2,7 @@
 
 namespace SwitchCommander.Application.Repositories.Features.SSH;
 
-public interface ISshCommandSequenceMongoRepository : IBaseMongoRepository<SSHCommandSequence>
+public interface ISshCommandSequenceMongoRepository : IBaseMongoRepository<SSHSequence>
 {
     
 }

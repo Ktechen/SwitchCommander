@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -45,13 +46,14 @@ public class Startup
             });
         });
 
-        var secretKey = new SymmetricSecurityKey("superSecretKey@2410"u8.ToArray());
+        var key = Configuration.GetValue<string>("Bearer:Key");
+        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
         var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
         var tokenOptions = new JwtSecurityToken(
             "Kev",
             "https://localhost:44317",
             new List<Claim>(),
-            expires: DateTime.Now.AddMinutes(5),
+            expires: DateTime.Now.AddYears(100),
             signingCredentials: signinCredentials
         );
         var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);

@@ -18,7 +18,7 @@ public class MongoDbSshContext
         SSHCommandConfigurationCollection =
             mongoDatabase.GetCollection<SShCommandConfiguration>(nameof(SShCommandConfiguration));
         SSHServerCollection = mongoDatabase.GetCollection<SSHServer>(nameof(SSHServer));
-        SSHCommandSequenceCollection = mongoDatabase.GetCollection<SSHCommandSequence>(nameof(SSHCommandSequence));
+        SSHCommandSequenceCollection = mongoDatabase.GetCollection<SSHSequence>(nameof(SSHSequence));
     }
 
     public IMongoCollection<User> UserCollection { get; }
@@ -31,5 +31,5 @@ public class MongoDbSshContext
 
     public IMongoCollection<SSHServer> SSHServerCollection { get; }
     
-    public IMongoCollection<SSHCommandSequence> SSHCommandSequenceCollection { get; }
+    public IMongoCollection<SSHSequence> SSHCommandSequenceCollection { get; }
 }
