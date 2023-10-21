@@ -19,7 +19,20 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data_container:/data/db
+      - mongodb_volume
+    networks:
+      - backend
+
+  mssql_data_container:
+    container_name: sql-server
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Wambo1234"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_volume:/var/opt/mssql
     networks:
       - backend
 
@@ -27,4 +40,5 @@ networks:
   backend:
 
 volumes:
-  mongodb_data_container:
+  mongodb_volume:
+  mssql_volume:
