@@ -1,6 +1,14 @@
-﻿namespace SwitchCommander.WebAPI.Controllers.SSH;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using SwitchCommander.Application.Features.SSH.Create.Sequence;
 
-public class SSHImportController
+namespace SwitchCommander.WebAPI.Controllers.SSH;
+
+public class SSHImportController : BaseController
 {
+    public SSHImportController(IMediator mediator) : base(mediator)
+    {
+    }
     
+
 }

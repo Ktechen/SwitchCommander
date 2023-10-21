@@ -36,6 +36,7 @@
 
     <ItemGroup>
         <Folder Include="Common\Attributes\"/>
+        <Folder Include="Features\SSH\Create\Import\" />
         <Folder Include="Features\User\ReadUser\DomainEvents\"/>
     </ItemGroup>
 
