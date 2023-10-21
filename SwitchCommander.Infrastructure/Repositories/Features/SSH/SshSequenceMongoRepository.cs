@@ -5,9 +5,9 @@ using SwitchCommander.Infrastructure.Context;
 
 namespace SwitchCommander.Infrastructure.Repositories.Features.SSH;
 
-public class SshCommandSequenceMongoRepository : BaseMongoRepository<SSHSequence>, ISshCommandSequenceMongoRepository
+public class SshSequenceMongoRepository : BaseMongoRepository<SSHSequence>, ISshSequenceMongoRepository
 {
-    public SshCommandSequenceMongoRepository(MongoDbSshContext sshContext, IMediator mediator) : base(
+    public SshSequenceMongoRepository(MongoDbSshContext sshContext, IMediator mediator) : base(
         sshContext.SSHCommandSequenceCollection, mediator)
     {
     }

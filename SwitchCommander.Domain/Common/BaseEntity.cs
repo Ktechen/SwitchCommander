@@ -13,7 +13,9 @@ public abstract class BaseEntity
     [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; } = Guid.NewGuid();
 
-    [BsonIgnore] public List<IDomainEvent> DomainEvents { get; } = new();
+    [JsonIgnore]
+    [BsonIgnore] 
+    public List<IDomainEvent> DomainEvents { get; } = new();
 
     public void QueueDomainEvent(IDomainEvent @event)
     {
