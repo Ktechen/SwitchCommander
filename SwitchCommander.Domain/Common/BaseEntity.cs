@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 
@@ -13,6 +14,7 @@ public abstract class BaseEntity
     [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; } = Guid.NewGuid();
 
+    [NotMapped]
     [JsonIgnore]
     [BsonIgnore] 
     public List<IDomainEvent> DomainEvents { get; } = new();

@@ -8,5 +8,5 @@ public class SSHSequence : BaseEntity
     public DateTimeOffset StartTime { get; set; }
     public DateTimeOffset? EndTime { get; set; }
     public DateTimeOffset LastExecute { get; set; }
-    public List<SSHCommand> SshCommands { get; set; }
+    public IEnumerable<SSHCommand> SshCommands { get; set; }
 }

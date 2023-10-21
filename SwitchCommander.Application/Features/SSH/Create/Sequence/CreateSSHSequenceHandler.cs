@@ -13,7 +13,7 @@ public sealed record SSHCommandSequenceRequestDto
     (Guid Id, string? Name, string? Description, string? Command);
 
 public sealed record CreateSSHCommandSequenceRequest(string? SequenceName,
-    IEnumerable<SSHCommandSequenceRequestDto>? Commands) : IRequest<CreateSSHSequenceResponse>;
+    IEnumerable<SSHCommand> Commands) : IRequest<CreateSSHSequenceResponse>;
 
 public sealed record CreateSSHSequenceResponse(bool IsCreated);
 
