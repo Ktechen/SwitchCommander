@@ -13,7 +13,6 @@ namespace SwitchCommander.Application.Features.SSH.Read.Export;
 /// </summary>
 /// <param name="Type">command, server, sequence, config</param>
 public sealed record ReadSSHExportJsonRequest(string Type) : IRequest<ReadSSHExportJsonResponse>;
-
 public sealed record ReadSSHExportJsonResponse(string Json);
 
 sealed record ReadSSHExportJsonBlob(
