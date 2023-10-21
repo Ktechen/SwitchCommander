@@ -54,7 +54,7 @@ public class SSHCommandController : BaseController
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerator<ReadAllSSHCommandResponse>>> ReadAll(CancellationToken cancellationToken)
+    public async Task<ActionResult<IEnumerable<ReadAllSSHCommandResponse>>> ReadAll(CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new ReadAllSSHCommandRequest(), cancellationToken);
         return Ok(result);
