@@ -13,15 +13,3 @@ public class CreateSSHSequenceValidator : AbstractValidator<CreateSSHSequenceReq
     }
     
 }
-
-public class CreateSSHCommandSequenceValidator : AbstractValidator<CreateSSHCommandSequenceRequest>
-{
-    public CreateSSHCommandSequenceValidator()
-    {
-        RuleFor(x => x.SequenceName)
-            .NotNull()
-            .NotEmpty()
-            .WithMessage("SequenceName is null or empty");
-    }
-    
-}

@@ -34,7 +34,7 @@ public class CreateSSHImportJsonHandler : IRequestHandler<CreateSSHImportJsonReq
     }
 
     /// <summary>
-    /// Create the imports object as new elements <seealso cref="UpdateSSHImportJsonHandler"/>
+    /// Create the imports object as new elements / update: <seealso cref="UpdateSSHImportJsonHandler"/>
     /// </summary>
     /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
