@@ -70,7 +70,7 @@ public class SSHServerController : BaseController
     public async Task<ActionResult<UpdateSSHServerResponse>> Update([FromBody] UpdateSSHServerRequest request,
         CancellationToken cancellationToken)
     {
-        if (!Guid.TryParse(request.Id, out var result)) return BadRequest("Id is invalid");
+        if (request is null) return BadRequest("Id is invalid");
         var validationResult = await _validatorUpdateSSHServerValidator.ValidateAsync(request, cancellationToken);
         if (!validationResult.IsValid)
         {

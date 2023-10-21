@@ -8,7 +8,7 @@ using SwitchCommander.Domain.Dtos;
 namespace SwitchCommander.Application.Features.SSH.Update.Server;
 
 public sealed record UpdateSSHServerRequest
-    (string Id, string Hostname, string Username) : IRequest<UpdateSSHServerResponse>;
+    (Guid Id, string Hostname, string Username) : IRequest<UpdateSSHServerResponse>;
 
 public sealed record UpdateSSHServerResponse(bool result);
 
@@ -30,7 +30,7 @@ public class UpdateSSHServerHandler : IRequestHandler<UpdateSSHServerRequest, Up
         CancellationToken cancellationToken)
     {
         // Define the filter to identify the document to update
-        var filter = Builders<SSHServer>.Filter.Eq(x => x.Id, new Guid(request.Id));
+        var filter = Builders<SSHServer>.Filter.Eq(x => x.Id, request.Id);
 
         // Define the update operation
         var update = Builders<SSHServer>.Update

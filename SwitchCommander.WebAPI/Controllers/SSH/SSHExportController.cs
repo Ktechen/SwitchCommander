@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SwitchCommander.Application.Common.Enums;
 using SwitchCommander.Application.Common.Exceptions;
 using SwitchCommander.Application.Features.SSH.Read.Export;
 
@@ -18,7 +19,7 @@ public class SSHExportController : BaseController
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ReadSSHExportJsonRequest>> GetExport(string type, CancellationToken cancellationToken)
+    public async Task<ActionResult<ReadSSHExportJsonRequest>> GetExport(SshImportExportType type, CancellationToken cancellationToken)
     {
         try
         {

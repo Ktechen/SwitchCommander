@@ -67,7 +67,7 @@ public class SSHCommandController : BaseController
     public async Task<ActionResult<UpdateSSHCommandResponse>> Update(UpdateSSHCommandRequest request,
         CancellationToken cancellationToken)
     {
-        if (!Guid.TryParse(request.Id, out var result)) return BadRequest("Id is invalid");
+        if (request is null) return BadRequest("Id is invalid");
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }

@@ -5,7 +5,7 @@ using SwitchCommander.Application.Repositories.Features.SSH;
 namespace SwitchCommander.Application.Features.SSH.Update.Command;
 
 public sealed record UpdateSSHCommandRequest
-    (string Id, string Name, string Description, string Command) : IRequest<UpdateSSHCommandResponse>;
+    (Guid Id, string? Name, string? Description, string? Command) : IRequest<UpdateSSHCommandResponse>;
 
 public sealed record UpdateSSHCommandResponse(bool result);
 
