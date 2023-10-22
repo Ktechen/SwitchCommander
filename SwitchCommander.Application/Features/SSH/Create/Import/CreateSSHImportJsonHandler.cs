@@ -1,11 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using SwitchCommander.Application.Features.SSH.Create.Command;
-using SwitchCommander.Application.Features.SSH.Create.Sequence;
-using SwitchCommander.Application.Features.SSH.Create.Server;
-using SwitchCommander.Application.Features.SSH.Update.Config;
 using SwitchCommander.Application.Features.SSH.Update.Import;
+using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Domain.Dtos;
 
 namespace SwitchCommander.Application.Features.SSH.Create.Import;
@@ -24,13 +21,23 @@ sealed record CreateSSHImportJsonBlob(
 public class CreateSSHImportJsonHandler : IRequestHandler<CreateSSHImportJsonRequest, CreateSSHImportJsonResponse>
 {
     private readonly ILogger<CreateSSHImportJsonHandler> _logger;
-    private readonly IMediator _mediator;
+    private readonly ISshCommandMongoRepository _commandMongoRepository;
+    private readonly ISshSequenceMongoRepository _sequenceMongoRepository;
+    private readonly ISshServerMongoRepository _sshServerMongoRepository;
+    private readonly ISshCommandConfigurationMongoRepository _configurationMongoRepository;
 
     public CreateSSHImportJsonHandler(
-        ILogger<CreateSSHImportJsonHandler> logger, IMediator mediator)
+        ILogger<CreateSSHImportJsonHandler> logger,
+        ISshCommandMongoRepository commandMongoRepository,
+        ISshSequenceMongoRepository sequenceMongoRepository,
+        ISshServerMongoRepository sshServerMongoRepository,
+        ISshCommandConfigurationMongoRepository configurationMongoRepository)
     {
         _logger = logger;
-        _mediator = mediator;
+        _commandMongoRepository = commandMongoRepository;
+        _sequenceMongoRepository = sequenceMongoRepository;
+        _sshServerMongoRepository = sshServerMongoRepository;
+        _configurationMongoRepository = configurationMongoRepository;
     }
 
     /// <summary>
@@ -46,44 +53,26 @@ public class CreateSSHImportJsonHandler : IRequestHandler<CreateSSHImportJsonReq
 
         foreach (var jsonObjectSshCommand in jsonObject.SshCommands)
         {
-            await _mediator.Send(
-                new CreateSSHCommandRequest(
-                    jsonObjectSshCommand.Name,
-                    jsonObjectSshCommand.Description,
-                    jsonObjectSshCommand.Command
-                ), cancellationToken
-            );
+            await _commandMongoRepository.AddAsync(jsonObjectSshCommand, cancellationToken);
+            _logger.LogInformation("SshCommands were imported " + jsonObjectSshCommand.Id);
         }
 
         foreach (var jsonObjectSshSequence in jsonObject.SshSequences)
         {
-            await _mediator.Send(
-                new CreateSSHCommandSequenceRequest(
-                    jsonObjectSshSequence.SequenceName,
-                    jsonObjectSshSequence.SshCommands
-                ), cancellationToken);
+            await _sequenceMongoRepository.AddAsync(jsonObjectSshSequence, cancellationToken);
+            _logger.LogInformation("SshSequences were imported " + jsonObjectSshSequence.Id);
         }
 
         foreach (var jsonObjectSshServer in jsonObject.SshServers)
         {
-            await _mediator.Send(
-                new CreateSSHServerRequest(
-                    jsonObjectSshServer.Hostname,
-                    jsonObjectSshServer.Username,
-                    jsonObjectSshServer.Password
-                ), cancellationToken);
+            await _sshServerMongoRepository.AddAsync(jsonObjectSshServer, cancellationToken);
+            _logger.LogInformation("SshServers were imported " + jsonObjectSshServer.Id);
         }
 
         foreach (var jsonObjectSShCommandConfiguration in jsonObject.SShCommandConfigurations)
         {
-            await _mediator.Send(
-                new UpdateSSHCommandConfigurationRequest(
-                    jsonObjectSShCommandConfiguration.Id,
-                    jsonObjectSShCommandConfiguration.CommandMinimumLength,
-                    jsonObjectSShCommandConfiguration.CommandMaximumLength,
-                    jsonObjectSShCommandConfiguration.DescriptionMinimumLength,
-                    jsonObjectSShCommandConfiguration.DescriptionMaximumLength
-                ), cancellationToken);
+            await _configurationMongoRepository.AddAsync(jsonObjectSShCommandConfiguration, cancellationToken);
+            _logger.LogInformation("SShCommandConfigurations were imported " + jsonObjectSShCommandConfiguration.Id);
         }
 
         return new CreateSSHImportJsonResponse(true);

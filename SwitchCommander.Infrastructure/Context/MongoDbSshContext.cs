@@ -15,8 +15,7 @@ public class MongoDbSshContext
         UserCollection = mongoDatabase.GetCollection<User>(nameof(User));
         SwitchCollection = mongoDatabase.GetCollection<Switch>(nameof(Switch));
         SSHCommandCollection = mongoDatabase.GetCollection<SSHCommand>(nameof(SSHCommand));
-        SSHCommandConfigurationCollection =
-            mongoDatabase.GetCollection<SShCommandConfiguration>(nameof(SShCommandConfiguration));
+        SSHCommandConfigurationCollection = mongoDatabase.GetCollection<SShCommandConfiguration>(nameof(SShCommandConfiguration));
         SSHServerCollection = mongoDatabase.GetCollection<SSHServer>(nameof(SSHServer));
         SSHCommandSequenceCollection = mongoDatabase.GetCollection<SSHSequence>(nameof(SSHSequence));
     }

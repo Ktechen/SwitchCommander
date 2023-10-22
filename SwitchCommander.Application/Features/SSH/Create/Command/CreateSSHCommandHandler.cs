@@ -7,7 +7,7 @@ namespace SwitchCommander.Application.Features.SSH.Create.Command;
 public sealed record CreateSSHCommandRequest
     (string? Name, string? Description, string? Command) : IRequest<CreateSSHCommandResponse>;
 
-public sealed record CreateSSHCommandResponse(string? Name, string? Description, string? Command);
+public sealed record CreateSSHCommandResponse(Guid? Id, string? Name, string? Description, string? Command);
 
 public class CreateSSHCommandHandler : IRequestHandler<CreateSSHCommandRequest, CreateSSHCommandResponse>
 {

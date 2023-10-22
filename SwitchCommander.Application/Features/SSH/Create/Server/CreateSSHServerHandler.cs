@@ -34,6 +34,7 @@ public class CreateSSHServerHandler : IRequestHandler<CreateSSHServerRequest, Cr
         var map = _mapper.FromRequest(request);
         map.Password = await _passwordService.HashPassword(map.Password);
         await _mongoRepository.AddAsync(map, cancellationToken);
+        
         return _mapper.ToResponse(map);
     }
 }
