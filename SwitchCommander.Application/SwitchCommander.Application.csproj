@@ -36,6 +36,9 @@
 
     <ItemGroup>
         <Folder Include="Common\Attributes\"/>
+        <Folder Include="Features\Switch\Delete\" />
+        <Folder Include="Features\Switch\Read\" />
+        <Folder Include="Features\Switch\Update\" />
         <Folder Include="Features\User\ReadUser\DomainEvents\"/>
     </ItemGroup>
 
