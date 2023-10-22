@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using SwitchCommander.Domain.Dtos;
+using SwitchCommander.Domain.Dtos.SSH;
 using SwitchCommander.Infrastructure.Context;
 
 namespace SwitchCommander.Infrastructure.Seeds;

@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using SwitchCommander.Application.Common.Services;
 using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Domain.Dtos;
+using SwitchCommander.Domain.Dtos.SSH;
 
 namespace SwitchCommander.Application.Features.SSH.Update.Server;
 

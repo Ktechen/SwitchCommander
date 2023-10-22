@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SwitchCommander.Application.Common.Enums;
 using SwitchCommander.Application.Common.Exceptions;
-using SwitchCommander.Application.Features.SSH.Read.Export;
+using SwitchCommander.Application.Features.Export;
 
 namespace SwitchCommander.WebAPI.Controllers.SSH;
 

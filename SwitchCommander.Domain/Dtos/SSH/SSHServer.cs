@@ -1,6 +1,6 @@
 ﻿using SwitchCommander.Domain.Common;
 
-namespace SwitchCommander.Domain.Dtos;
+namespace SwitchCommander.Domain.Dtos.SSH;
 
 public class SSHServer : BaseEntity
 {

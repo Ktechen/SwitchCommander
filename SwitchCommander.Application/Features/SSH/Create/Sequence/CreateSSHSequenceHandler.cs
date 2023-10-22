@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SwitchCommander.Application.Repositories.Features.SSH;
 using SwitchCommander.Domain.Dtos;
+using SwitchCommander.Domain.Dtos.SSH;
 
 namespace SwitchCommander.Application.Features.SSH.Create.Sequence;
 

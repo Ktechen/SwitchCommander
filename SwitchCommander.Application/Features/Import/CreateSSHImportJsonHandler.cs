@@ -1,11 +1,10 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using SwitchCommander.Application.Features.SSH.Update.Import;
 using SwitchCommander.Application.Repositories.Features.SSH;
-using SwitchCommander.Domain.Dtos;
+using SwitchCommander.Domain.Dtos.SSH;
 
-namespace SwitchCommander.Application.Features.SSH.Create.Import;
+namespace SwitchCommander.Application.Features.Import;
 
 public sealed record CreateSSHImportJsonRequest(string Json) : IRequest<CreateSSHImportJsonResponse>;
 

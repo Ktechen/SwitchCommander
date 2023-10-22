@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 using SwitchCommander.Application.Common.Enums;
 using SwitchCommander.Application.Common.Exceptions;
 using SwitchCommander.Application.Repositories.Features.SSH;
-using SwitchCommander.Domain.Dtos;
+using SwitchCommander.Domain.Dtos.SSH;
 
-namespace SwitchCommander.Application.Features.SSH.Read.Export;
+namespace SwitchCommander.Application.Features.Export;
 
 /// <summary>
 /// Request for json request

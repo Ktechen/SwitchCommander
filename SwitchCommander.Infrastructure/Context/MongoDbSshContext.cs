@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using SwitchCommander.Domain.Dtos;
+using SwitchCommander.Domain.Dtos.SSH;
 
 namespace SwitchCommander.Infrastructure.Context;
 

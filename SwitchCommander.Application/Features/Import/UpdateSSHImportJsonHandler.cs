@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 using SwitchCommander.Application.Features.SSH.Update.Command;
 using SwitchCommander.Application.Features.SSH.Update.Config;
 using SwitchCommander.Application.Features.SSH.Update.Server;
-using SwitchCommander.Domain.Dtos;
+using SwitchCommander.Domain.Dtos.SSH;
 
-namespace SwitchCommander.Application.Features.SSH.Update.Import;
+namespace SwitchCommander.Application.Features.Import;
 
 public sealed record UpdateSSHImportJsonRequest(string Json) : IRequest;
 

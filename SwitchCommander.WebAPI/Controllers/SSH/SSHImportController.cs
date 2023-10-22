@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SwitchCommander.Application.Features.SSH.Create.Import;
-using SwitchCommander.Application.Features.SSH.Update.Import;
+using SwitchCommander.Application.Features.Import;
 
 namespace SwitchCommander.WebAPI.Controllers.SSH;
 
