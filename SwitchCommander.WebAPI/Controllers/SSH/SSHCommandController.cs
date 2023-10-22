@@ -21,6 +21,12 @@ public class SSHCommandController : BaseController
         _validatorCreateSSHCommandRequest = validatorCreateSshCommandRequest;
     }
     
+    /// <summary>
+    /// Test
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status200OK)]
